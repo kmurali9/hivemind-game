@@ -2,361 +2,361 @@
   {
     "gameId": "2026-04-04",
     "number": 1,
-    "prompt": "Build Your Dream Rewatch Lineup",
+    "prompt": "Build Your Toxic Situationship Starter Pack",
     "rows": [
-      { "label": "Action", "icon": "💥", "items": ["Die Hard", "Mad Max Fury Road", "John Wick", "The Dark Knight", "Top Gun Maverick"] },
-      { "label": "Comedy", "icon": "😂", "items": ["Superbad", "Bridesmaids", "The Hangover", "Mean Girls", "Anchorman"] },
-      { "label": "Sci-Fi", "icon": "🚀", "items": ["Inception", "The Matrix", "Interstellar", "Blade Runner 2049", "Alien"] },
-      { "label": "Drama", "icon": "🎭", "items": ["Shawshank", "Forrest Gump", "Good Will Hunting", "Fight Club", "Parasite"] },
-      { "label": "Horror", "icon": "👻", "items": ["Get Out", "The Shining", "Scream", "A Quiet Place", "Hereditary"] }
+      { "label": "Red Flag Song", "icon": "🚩", "items": ["Hotline Bling", "Earned It", "Often", "Come Thru", "Climax"] },
+      { "label": "Late Night App", "icon": "📱", "items": ["Instagram", "Snapchat", "Tinder", "Uber", "DoorDash"] },
+      { "label": "Their Excuse", "icon": "🤥", "items": ["Phone Died", "Was Busy", "Fell Asleep", "Didn't See It", "Was at the Gym"] },
+      { "label": "Comfort Food", "icon": "🍕", "items": ["Ice Cream Pint", "Hot Cheetos", "McDonald's Fries", "Instant Ramen", "Frozen Pizza"] },
+      { "label": "Cope Activity", "icon": "💅", "items": ["Hot Girl Walk", "Hair Change", "Retail Therapy", "Block & Unblock", "Gym Arc"] }
     ]
   },
   {
     "gameId": "2026-04-05",
     "number": 2,
-    "prompt": "Plan the Ultimate Road Trip Playlist",
+    "prompt": "Draft Your Zombie Apocalypse Squad",
     "rows": [
-      { "label": "Sing-Alongs", "icon": "🎤", "items": ["Bohemian Rhapsody", "Don't Stop Believin", "Sweet Caroline", "Mr. Brightside", "Livin on a Prayer"] },
-      { "label": "Feel Good", "icon": "☀️", "items": ["Happy", "Walking on Sun", "Here Comes the Sun", "Best Day of My Life", "Good as Hell"] },
-      { "label": "Rock Anthems", "icon": "🎸", "items": ["Back in Black", "Thunder", "Welcome to Jungle", "We Will Rock You", "Smells Like Teen"] },
-      { "label": "Hip Hop Bangers", "icon": "🔥", "items": ["Lose Yourself", "HUMBLE.", "Gold Digger", "Sicko Mode", "Alright"] },
-      { "label": "Throwbacks", "icon": "📼", "items": ["Wannabe", "Bye Bye Bye", "Hey Ya!", "I Want It That Way", "Toxic"] }
+      { "label": "Leader", "icon": "👑", "items": ["The Rock", "Beyoncé", "Keanu Reeves", "Rihanna", "Pedro Pascal"] },
+      { "label": "Weapons Expert", "icon": "🔫", "items": ["John Wick", "Daryl Dixon", "Katniss", "Lara Croft", "Michonne"] },
+      { "label": "Medic", "icon": "🩺", "items": ["Sandra Oh", "Dr. House", "Meredith Grey", "Doc McStuffins", "Dr. Strange"] },
+      { "label": "Comic Relief", "icon": "😂", "items": ["Kevin Hart", "Awkwafina", "Jack Black", "Tiffany Haddish", "Ryan Reynolds"] },
+      { "label": "First to Go", "icon": "💀", "items": ["Jake Paul", "Your Ex", "That One Coworker", "Martin Shkreli", "Guy Fieri"] }
     ]
   },
   {
     "gameId": "2026-04-06",
     "number": 3,
-    "prompt": "Stock Your Dream Kitchen",
+    "prompt": "Cast the Group Chat",
     "rows": [
-      { "label": "Breakfast", "icon": "🥞", "items": ["Pancakes", "Eggs Benedict", "French Toast", "Acai Bowl", "Avocado Toast"] },
-      { "label": "Comfort Food", "icon": "🍲", "items": ["Mac & Cheese", "Chicken Soup", "Grilled Cheese", "Mashed Potatoes", "Lasagna"] },
-      { "label": "Street Food", "icon": "🌮", "items": ["Tacos", "Dumplings", "Falafel", "Empanadas", "Banh Mi"] },
-      { "label": "Snacks", "icon": "🍿", "items": ["Popcorn", "Chips & Guac", "Mozzarella Sticks", "Pretzels", "Trail Mix"] },
-      { "label": "Desserts", "icon": "🍰", "items": ["Cheesecake", "Brownies", "Tiramisu", "Ice Cream", "Churros"] }
+      { "label": "Never Responds", "icon": "👻", "items": ["Zendaya", "Rihanna", "Frank Ocean", "Beyoncé", "Keanu Reeves"] },
+      { "label": "Sends Memes 24/7", "icon": "💀", "items": ["Pete Davidson", "Snoop Dogg", "Cardi B", "Lil Nas X", "Kevin Hart"] },
+      { "label": "Starts Drama", "icon": "🔥", "items": ["Kanye", "Nicki Minaj", "Azealia Banks", "Wendy Williams", "50 Cent"] },
+      { "label": "Voice Notes Only", "icon": "🎙️", "items": ["Joe Rogan", "Oprah", "DJ Khaled", "Lizzo", "Doja Cat"] },
+      { "label": "Reacts But No Text", "icon": "👍", "items": ["Your Dad", "Timothée", "Bad Bunny", "Billie Eilish", "Travis Kelce"] }
     ]
   },
   {
     "gameId": "2026-04-07",
     "number": 4,
-    "prompt": "Draft Your Fantasy Sports Team",
+    "prompt": "Build the Ultimate Fast Food Tier List",
     "rows": [
-      { "label": "Basketball", "icon": "🏀", "items": ["LeBron James", "Steph Curry", "Michael Jordan", "Kobe Bryant", "Kevin Durant"] },
-      { "label": "Football", "icon": "🏈", "items": ["Patrick Mahomes", "Tom Brady", "Travis Kelce", "Tyreek Hill", "Aaron Donald"] },
-      { "label": "Soccer", "icon": "⚽", "items": ["Messi", "Ronaldo", "Mbappe", "Haaland", "Neymar"] },
-      { "label": "Baseball", "icon": "⚾", "items": ["Shohei Ohtani", "Mike Trout", "Aaron Judge", "Mookie Betts", "Bryce Harper"] },
-      { "label": "Tennis", "icon": "🎾", "items": ["Federer", "Nadal", "Djokovic", "Serena Williams", "Alcaraz"] }
+      { "label": "God Tier", "icon": "👑", "items": ["Chick-fil-A", "In-N-Out", "Raising Cane's", "Whataburger", "Popeyes"] },
+      { "label": "Solid Choice", "icon": "👍", "items": ["Wendy's", "Chipotle", "Five Guys", "Shake Shack", "Panda Express"] },
+      { "label": "3 AM Desperation", "icon": "🌙", "items": ["Taco Bell", "McDonald's", "Waffle House", "Jack in the Box", "Denny's"] },
+      { "label": "Overrated", "icon": "🙄", "items": ["Subway", "Panera", "Arby's", "Quiznos", "Boston Market"] },
+      { "label": "Only If Free", "icon": "💸", "items": ["Long John Silver", "Sbarro", "Hardee's", "Church's", "Rally's"] }
     ]
   },
   {
     "gameId": "2026-04-08",
     "number": 5,
-    "prompt": "Build Your Dream Vacation",
+    "prompt": "Draft Your Thanksgiving Argument Lineup",
     "rows": [
-      { "label": "Beach", "icon": "🏖️", "items": ["Maldives", "Bali", "Hawaii", "Cancun", "Amalfi Coast"] },
-      { "label": "City Break", "icon": "🏙️", "items": ["Tokyo", "Paris", "New York", "London", "Barcelona"] },
-      { "label": "Adventure", "icon": "🧗", "items": ["Machu Picchu", "Safari Kenya", "Iceland", "New Zealand", "Patagonia"] },
-      { "label": "Chill Vibes", "icon": "🧘", "items": ["Santorini", "Tulum", "Swiss Alps", "Bora Bora", "Lake Como"] },
-      { "label": "Food Trip", "icon": "🍜", "items": ["Bangkok", "Rome", "Mexico City", "Istanbul", "Osaka"] }
+      { "label": "Starter Topic", "icon": "🗣️", "items": ["Politics", "Your Job", "Rent Prices", "Student Loans", "Crypto"] },
+      { "label": "Instigator", "icon": "😈", "items": ["Drunk Uncle", "Fox News Grandpa", "Woke Cousin", "Know-It-All Aunt", "Your Stepdad"] },
+      { "label": "Side Dish War", "icon": "🍽️", "items": ["Mac & Cheese", "Cranberry Sauce", "Stuffing", "Sweet Potatoes", "Green Bean Bake"] },
+      { "label": "Escape Plan", "icon": "🚪", "items": ["Walk the Dog", "Black Friday Prep", "Dishes Volunteer", "Kids Table Vibes", "Food Coma Nap"] },
+      { "label": "Peacemaker Food", "icon": "🕊️", "items": ["Pumpkin Pie", "Rolls & Butter", "Mashed Potatoes", "Gravy Boat", "Leftover Plate"] }
     ]
   },
   {
     "gameId": "2026-04-09",
     "number": 6,
-    "prompt": "Curate Your Streaming Binge List",
+    "prompt": "Build Your Reality TV All-Stars Season",
     "rows": [
-      { "label": "Drama", "icon": "📺", "items": ["Breaking Bad", "Succession", "The Wire", "Game of Thrones", "Better Call Saul"] },
-      { "label": "Comedy", "icon": "😆", "items": ["The Office", "Parks & Rec", "Ted Lasso", "Seinfeld", "Brooklyn Nine-Nine"] },
-      { "label": "Thriller", "icon": "🔍", "items": ["Severance", "True Detective", "Ozark", "Mindhunter", "You"] },
-      { "label": "Sci-Fi/Fantasy", "icon": "🐉", "items": ["Stranger Things", "Mandalorian", "Westworld", "Dark", "The Expanse"] },
-      { "label": "Reality", "icon": "🌹", "items": ["Survivor", "The Bachelor", "Love Island", "Great Bake Off", "Amazing Race"] }
+      { "label": "Main Villain", "icon": "😈", "items": ["Omarosa", "Tiffany Pollard", "NeNe Leakes", "Spencer Pratt", "Bethenny Frankel"] },
+      { "label": "Fan Favorite", "icon": "❤️", "items": ["Snoop Dogg", "Guy Fieri", "Tabitha Brown", "Bob Ross Energy", "Flavor Flav"] },
+      { "label": "Chaos Agent", "icon": "🌪️", "items": ["Kanye", "Gary Busey", "Tila Tequila", "Gemma Collins", "Johnny Bananas"] },
+      { "label": "Confessional MVP", "icon": "🎤", "items": ["Cardi B", "Nicki Minaj", "Gordon Ramsay", "Kim K", "Teresa Giudice"] },
+      { "label": "First Eliminated", "icon": "🚪", "items": ["Jake Paul", "James Corden", "Jared Leto", "Ellen", "Dr. Phil"] }
     ]
   },
   {
     "gameId": "2026-04-10",
     "number": 7,
-    "prompt": "Pick Your Video Game Hall of Fame",
+    "prompt": "Pick Your Netflix & Chill Lineup",
     "rows": [
-      { "label": "RPGs", "icon": "⚔️", "items": ["Skyrim", "Elden Ring", "Witcher 3", "Zelda BOTW", "Final Fantasy VII"] },
-      { "label": "Shooters", "icon": "🔫", "items": ["Halo", "Call of Duty", "Fortnite", "Valorant", "Doom"] },
-      { "label": "Nintendo", "icon": "🍄", "items": ["Mario Kart", "Smash Bros", "Pokemon Red/Blue", "Animal Crossing", "Mario Odyssey"] },
-      { "label": "Story Games", "icon": "📖", "items": ["Last of Us", "Red Dead 2", "God of War", "Mass Effect 2", "Bioshock"] },
-      { "label": "Multiplayer", "icon": "🎮", "items": ["Minecraft", "Among Us", "Rocket League", "GTA Online", "Overwatch"] }
+      { "label": "First Date Vibes", "icon": "🦋", "items": ["The Office", "Friends", "New Girl", "Brooklyn Nine-Nine", "Schitt's Creek"] },
+      { "label": "Married Energy", "icon": "💍", "items": ["Ozark", "Breaking Bad", "Succession", "The Bear", "Yellowjackets"] },
+      { "label": "Nobody's Watching", "icon": "😏", "items": ["Love Island", "Too Hot to Handle", "Bridgerton", "YOU", "365 Days"] },
+      { "label": "Background Noise", "icon": "🔊", "items": ["Great British Bake", "Planet Earth", "Selling Sunset", "Queer Eye", "Bob's Burgers"] },
+      { "label": "Red Flag Pick", "icon": "🚩", "items": ["True Crime Docs", "Dahmer", "Making a Murderer", "Don't F**k With Cats", "Mindhunter"] }
     ]
   },
   {
     "gameId": "2026-04-11",
     "number": 8,
-    "prompt": "Design Your Dream Closet",
+    "prompt": "Build the Office Villain Origin Story",
     "rows": [
-      { "label": "Sneakers", "icon": "👟", "items": ["Air Jordan 1", "Yeezy 350", "Air Force 1", "Dunks", "New Balance 550"] },
-      { "label": "Brands", "icon": "🏷️", "items": ["Nike", "Adidas", "Zara", "Lululemon", "Patagonia"] },
-      { "label": "Essentials", "icon": "👕", "items": ["White Tee", "Denim Jacket", "Black Jeans", "Hoodie", "Flannel Shirt"] },
-      { "label": "Accessories", "icon": "🕶️", "items": ["Sunglasses", "Watch", "Baseball Cap", "Gold Chain", "Tote Bag"] },
-      { "label": "Occasion", "icon": "👗", "items": ["Little Black Dress", "Tailored Suit", "Leather Jacket", "Cocktail Dress", "Bomber Jacket"] }
+      { "label": "Breaking Point", "icon": "💢", "items": ["Reply All Email", "Stolen Lunch", "Loud Chewer", "CC'd the Boss", "No Raise Again"] },
+      { "label": "Villain Anthem", "icon": "🎵", "items": ["Bad Guy - Billie", "Villain - K/DA", "Toxic - Britney", "Power - Kanye", "Run This Town"] },
+      { "label": "Evil Lair", "icon": "🏢", "items": ["Corner Office", "Server Room", "Parking Garage", "Supply Closet", "Roof Access"] },
+      { "label": "Henchman", "icon": "🤝", "items": ["HR Karen", "IT Guy", "Intern Army", "The Snitch", "Passive-Aggressive VP"] },
+      { "label": "Master Plan", "icon": "📋", "items": ["Reply All Nuke", "PTO Heist", "Thermostat War", "Meeting Overload", "Printer Sabotage"] }
     ]
   },
   {
     "gameId": "2026-04-12",
     "number": 9,
-    "prompt": "Throw the Ultimate House Party",
+    "prompt": "Draft Your Breakup Recovery Team",
     "rows": [
-      { "label": "Drinks", "icon": "🍹", "items": ["Margarita", "Mojito", "Espresso Martini", "Aperol Spritz", "Old Fashioned"] },
-      { "label": "Party Food", "icon": "🍕", "items": ["Pizza", "Wings", "Nachos", "Sliders", "Spring Rolls"] },
-      { "label": "Music Genre", "icon": "🎵", "items": ["Pop", "Hip Hop", "EDM", "R&B", "Latin"] },
-      { "label": "Games", "icon": "🎲", "items": ["Beer Pong", "Cards Against", "Karaoke", "Mario Kart", "Charades"] },
-      { "label": "Vibes", "icon": "✨", "items": ["Disco Ball", "String Lights", "Fog Machine", "Photo Booth", "Neon Signs"] }
+      { "label": "Sad Phase Song", "icon": "😭", "items": ["Someone Like You", "All Too Well", "Drivers License", "Marvin's Room", "Happier Than Ever"] },
+      { "label": "Glow Up Tool", "icon": "✨", "items": ["New Haircut", "Gym Membership", "Wardrobe Haul", "Skincare Routine", "Thirst Trap Post"] },
+      { "label": "Support Friend", "icon": "🫂", "items": ["The Hype Person", "The Therapist One", "The Petty One", "The Planner", "The One Who Cried"] },
+      { "label": "Rebound App", "icon": "📲", "items": ["Hinge", "Bumble", "Tinder", "Raya", "LinkedIn (Chaos)"] },
+      { "label": "Villain Era Song", "icon": "🖤", "items": ["Best Thing I Never", "Thank U Next", "Irreplaceable", "Good as Hell", "Since U Been Gone"] }
     ]
   },
   {
     "gameId": "2026-04-13",
     "number": 10,
-    "prompt": "Build Your 90s Time Capsule",
+    "prompt": "Build the Main Character Morning Routine",
     "rows": [
-      { "label": "TV Shows", "icon": "📺", "items": ["Friends", "Fresh Prince", "Seinfeld", "Buffy", "Saved by the Bell"] },
-      { "label": "Music", "icon": "💿", "items": ["Backstreet Boys", "Spice Girls", "Nirvana", "TLC", "Tupac"] },
-      { "label": "Movies", "icon": "🎬", "items": ["Titanic", "Toy Story", "Clueless", "The Lion King", "Jurassic Park"] },
-      { "label": "Toys & Tech", "icon": "🕹️", "items": ["Tamagotchi", "Game Boy", "Furby", "Beanie Babies", "N64"] },
-      { "label": "Snacks", "icon": "🍬", "items": ["Gushers", "Dunkaroos", "Lunchables", "Ring Pops", "Fruit Roll-Ups"] }
+      { "label": "Wake Up Song", "icon": "⏰", "items": ["Good Morning", "Lovely Day", "Best Day of Life", "Walking on Sun", "Here Comes the Sun"] },
+      { "label": "Bougie Drink", "icon": "☕", "items": ["Matcha Latte", "Oat Milk Coffee", "Pressed Juice", "Stanley Cup Water", "Celsius"] },
+      { "label": "Podcast", "icon": "🎧", "items": ["Call Her Daddy", "Joe Rogan", "Crime Junkie", "SmartLess", "On Purpose"] },
+      { "label": "Fit Check", "icon": "👟", "items": ["Matching Set", "Oversized Hoodie", "Business Casual", "Athleisure Queen", "Pajamas Still"] },
+      { "label": "First App Open", "icon": "📱", "items": ["TikTok", "Twitter/X", "Instagram", "Email (Psycho)", "Wordle"] }
     ]
   },
   {
     "gameId": "2026-04-14",
     "number": 11,
-    "prompt": "Pick Your Anime All-Stars",
+    "prompt": "Pick Your Celeb Dinner Party Guests",
     "rows": [
-      { "label": "Shonen", "icon": "👊", "items": ["Naruto", "One Piece", "Dragon Ball Z", "Demon Slayer", "My Hero Academia"] },
-      { "label": "Classics", "icon": "⭐", "items": ["Cowboy Bebop", "Neon Genesis", "Akira", "Ghost in Shell", "Spirited Away"] },
-      { "label": "Modern Hits", "icon": "🔥", "items": ["Attack on Titan", "Jujutsu Kaisen", "Spy x Family", "Chainsaw Man", "One Punch Man"] },
-      { "label": "Romance", "icon": "💕", "items": ["Your Name", "Toradora", "Fruits Basket", "Kaguya-sama", "Horimiya"] },
-      { "label": "Dark/Mature", "icon": "🖤", "items": ["Death Note", "Tokyo Ghoul", "Berserk", "Vinland Saga", "Psycho-Pass"] }
+      { "label": "Storyteller", "icon": "📖", "items": ["Snoop Dogg", "Matthew McConaughey", "Dolly Parton", "Will Smith", "Mariah Carey"] },
+      { "label": "The Cook", "icon": "👨‍🍳", "items": ["Gordon Ramsay", "Salt Bae", "Guy Fieri", "Ina Garten", "Action Bronson"] },
+      { "label": "Wild Card", "icon": "🃏", "items": ["Kanye West", "Nicolas Cage", "Elon Musk", "Dennis Rodman", "Courtney Love"] },
+      { "label": "Wine Aunt Energy", "icon": "🍷", "items": ["Jennifer Coolidge", "Kris Jenner", "Martha Stewart", "Drew Barrymore", "Cher"] },
+      { "label": "Uninvited Crasher", "icon": "🚫", "items": ["James Corden", "DJ Khaled", "Logan Paul", "Dr. Oz", "Gwyneth Paltrow"] }
     ]
   },
   {
     "gameId": "2026-04-15",
     "number": 12,
-    "prompt": "Create Your Perfect Pizza Menu",
+    "prompt": "Build Your Gen Z vs Millennial Battle Deck",
     "rows": [
-      { "label": "Meats", "icon": "🥩", "items": ["Pepperoni", "Sausage", "Bacon", "Prosciutto", "BBQ Chicken"] },
-      { "label": "Veggies", "icon": "🥬", "items": ["Mushrooms", "Bell Peppers", "Onions", "Olives", "Jalapenos"] },
-      { "label": "Cheese", "icon": "🧀", "items": ["Mozzarella", "Parmesan", "Gouda", "Ricotta", "Burrata"] },
-      { "label": "Styles", "icon": "🍕", "items": ["New York Thin", "Deep Dish", "Neapolitan", "Detroit Style", "Wood Fired"] },
-      { "label": "Sauces", "icon": "🫙", "items": ["Marinara", "White Garlic", "Pesto", "BBQ Sauce", "Buffalo Sauce"] }
+      { "label": "Music Weapon", "icon": "🎵", "items": ["Side Part Diss", "Skinny Jean Roast", "Vine vs TikTok", "Emoji Wars", "Harry Potter Drag"] },
+      { "label": "Gen Z Champion", "icon": "🧊", "items": ["Olivia Rodrigo", "Charli D'Amelio", "Ice Spice", "Ayo Edebiri", "Timothée"] },
+      { "label": "Millennial Champ", "icon": "🥑", "items": ["Taylor Swift", "Beyoncé", "Ryan Gosling", "Mindy Kaling", "John Mulaney"] },
+      { "label": "Battlefield", "icon": "⚔️", "items": ["TikTok Comments", "Twitter Thread", "Instagram Reels", "Reddit AMA", "Group Chat"] },
+      { "label": "Peace Treaty", "icon": "🤝", "items": ["Shrek Memes", "The Office Quotes", "Liking Dogs", "Hating Mondays", "Nap Worship"] }
     ]
   },
   {
     "gameId": "2026-04-16",
     "number": 13,
-    "prompt": "Assemble Your Superhero Squad",
+    "prompt": "Assemble Your Gym Bro Cinematic Universe",
     "rows": [
-      { "label": "Marvel", "icon": "🦸", "items": ["Spider-Man", "Iron Man", "Wolverine", "Thor", "Black Panther"] },
-      { "label": "DC", "icon": "🦇", "items": ["Batman", "Superman", "Wonder Woman", "Flash", "Aquaman"] },
-      { "label": "Villains", "icon": "😈", "items": ["Joker", "Thanos", "Magneto", "Loki", "Doc Ock"] },
-      { "label": "Powers", "icon": "⚡", "items": ["Super Strength", "Teleportation", "Invisibility", "Time Travel", "Telepathy"] },
-      { "label": "Sidekicks", "icon": "🤝", "items": ["Robin", "Bucky Barnes", "War Machine", "Groot", "Alfred"] }
+      { "label": "Pre-Workout", "icon": "⚡", "items": ["C4 Original", "Ghost Legend", "Bucked Up", "Total War", "Just Coffee"] },
+      { "label": "Gym Anthem", "icon": "🎵", "items": ["Lose Yourself", "Stronger - Kanye", "Eye of the Tiger", "Till I Collapse", "HUMBLE."] },
+      { "label": "Gym Nemesis", "icon": "😤", "items": ["Curl in Squat Rack", "Mirror Selfie Guy", "Loud Grunter", "Bench Hogger", "Unsolicited Advice"] },
+      { "label": "Protein Source", "icon": "🥤", "items": ["Chicken & Rice", "Protein Shake", "Greek Yogurt", "Chipotle Bowl", "Costco Chicken"] },
+      { "label": "Rest Day Cope", "icon": "😩", "items": ["Active Recovery", "Still Goes Anyway", "YouTube Form Vids", "Mirror Flexing", "Buys More Gear"] }
     ]
   },
   {
     "gameId": "2026-04-17",
     "number": 14,
-    "prompt": "Design Your Dream Music Festival",
+    "prompt": "Build Your Unhinged Wedding Playlist",
     "rows": [
-      { "label": "Headliners", "icon": "🎤", "items": ["Beyonce", "Drake", "Taylor Swift", "Kendrick Lamar", "The Weeknd"] },
-      { "label": "Rock Stage", "icon": "🎸", "items": ["Foo Fighters", "Arctic Monkeys", "Radiohead", "Red Hot Chili", "Tame Impala"] },
-      { "label": "Electronic", "icon": "🎧", "items": ["Daft Punk", "Calvin Harris", "Skrillex", "Disclosure", "Fred Again"] },
-      { "label": "Food Trucks", "icon": "🚚", "items": ["Taco Truck", "BBQ Pit", "Poke Bowls", "Crepes", "Loaded Fries"] },
-      { "label": "Festival Gear", "icon": "🎪", "items": ["Flower Crown", "Fanny Pack", "Bucket Hat", "Glitter Makeup", "Rain Boots"] }
+      { "label": "First Dance", "icon": "💃", "items": ["At Last - Etta", "Perfect - Ed", "All of Me", "Thinking Out Loud", "A Thousand Years"] },
+      { "label": "Drunk Uncle Bop", "icon": "🕺", "items": ["Shout", "Sweet Caroline", "YMCA", "Cha Cha Slide", "September"] },
+      { "label": "Bridesmaid Anthem", "icon": "👯", "items": ["Single Ladies", "Man! I Feel Like", "Girls Just Wanna", "No Scrubs", "Wannabe"] },
+      { "label": "Clear the Floor", "icon": "🏃", "items": ["Macarena", "Chicken Dance", "Electric Slide", "Cotton Eye Joe", "Cupid Shuffle"] },
+      { "label": "Chaos Closer", "icon": "🔥", "items": ["Mr. Brightside", "Bohemian Rhapsody", "Don't Stop Believin", "Livin on a Prayer", "Sweet Home Alabama"] }
     ]
   },
   {
     "gameId": "2026-04-18",
     "number": 15,
-    "prompt": "Build Your Dream Brunch Spot",
+    "prompt": "Build the Influencer Starter Pack",
     "rows": [
-      { "label": "Eggs", "icon": "🍳", "items": ["Eggs Benedict", "Omelette", "Shakshuka", "Scrambled", "Poached Eggs"] },
-      { "label": "Sweets", "icon": "🧇", "items": ["Waffles", "French Toast", "Cinnamon Roll", "Crepes", "Banana Bread"] },
-      { "label": "Drinks", "icon": "🥂", "items": ["Mimosa", "Bloody Mary", "Cold Brew", "Matcha Latte", "Fresh OJ"] },
-      { "label": "Sides", "icon": "🥓", "items": ["Bacon", "Hash Browns", "Sausage Links", "Fresh Fruit", "Toast & Jam"] },
-      { "label": "Vibe", "icon": "🌿", "items": ["Outdoor Patio", "Jazz Music", "Exposed Brick", "Plant Wall", "Cozy Booth"] }
+      { "label": "Platform", "icon": "📱", "items": ["TikTok", "YouTube", "Instagram", "Twitch", "Podcast"] },
+      { "label": "Aesthetic", "icon": "🎨", "items": ["Clean Girl", "Dark Academia", "Cottagecore", "Coastal Grandma", "That Girl"] },
+      { "label": "Catchphrase", "icon": "💬", "items": ["Link in Bio", "Not Sponsored", "Use My Code", "It's Giving", "No Cap"] },
+      { "label": "Sponsorship", "icon": "💰", "items": ["Hello Fresh", "NordVPN", "Squarespace", "Athletic Greens", "BetterHelp"] },
+      { "label": "Controversy", "icon": "😬", "items": ["Apology Video", "Cancelled Tweet", "Bad Collab", "Fake Giveaway", "Photoshop Fail"] }
     ]
   },
   {
     "gameId": "2026-04-19",
     "number": 16,
-    "prompt": "Pick Your Childhood Favorites",
+    "prompt": "Draft Your Airport Meltdown Survival Kit",
     "rows": [
-      { "label": "Cartoons", "icon": "📺", "items": ["SpongeBob", "Avatar TLA", "Rugrats", "Kim Possible", "Fairly OddParents"] },
-      { "label": "Snacks", "icon": "🍪", "items": ["Oreos", "Goldfish", "Fruit Snacks", "Capri Sun", "Pop-Tarts"] },
-      { "label": "Games", "icon": "🎮", "items": ["Pokemon", "Mario Kart", "Club Penguin", "Wii Sports", "GTA San Andreas"] },
-      { "label": "Movies", "icon": "🎬", "items": ["Shrek", "Finding Nemo", "Incredibles", "Monsters Inc", "Harry Potter 1"] },
-      { "label": "Activities", "icon": "🛝", "items": ["Freeze Tag", "Hide and Seek", "LEGO Building", "Trampoline", "Water Balloon"] }
+      { "label": "Delay Snack", "icon": "🍿", "items": ["Overpriced Sushi", "$9 Water Bottle", "Cinnabon", "Trail Mix", "Airport Bar Wings"] },
+      { "label": "Seat Nemesis", "icon": "😠", "items": ["Armrest Hogger", "Seat Recliner", "Crying Baby", "Chatty Neighbor", "Bare Feet Guy"] },
+      { "label": "Coping Show", "icon": "📺", "items": ["Downloaded Office", "Ted Lasso", "Love Island", "Comfort Movie", "Plane Wifi Netflix"] },
+      { "label": "Power Move", "icon": "💪", "items": ["Lounge Access", "Pre-Boarded", "Overhead Bin Win", "Exit Row Flex", "First Class Bump"] },
+      { "label": "Meltdown Song", "icon": "🎵", "items": ["Leaving on Jet Plane", "I Gotta Feeling", "Fly Away - Lenny", "Come Fly With Me", "Free Fallin"] }
     ]
   },
   {
     "gameId": "2026-04-20",
     "number": 17,
-    "prompt": "Stock Your Dream Coffee Shop",
+    "prompt": "Build the Perfect 4/20 Experience",
     "rows": [
-      { "label": "Hot Drinks", "icon": "☕", "items": ["Cappuccino", "Flat White", "Chai Latte", "Americano", "Hot Chocolate"] },
-      { "label": "Cold Drinks", "icon": "🧊", "items": ["Iced Latte", "Cold Brew", "Frappuccino", "Iced Matcha", "Lemonade"] },
-      { "label": "Pastries", "icon": "🥐", "items": ["Croissant", "Muffin", "Scone", "Danish", "Cinnamon Roll"] },
-      { "label": "Extras", "icon": "🍯", "items": ["Oat Milk", "Vanilla Syrup", "Caramel Drizzle", "Whipped Cream", "Extra Shot"] },
-      { "label": "Ambiance", "icon": "🪴", "items": ["Free Wi-Fi", "Vinyl Records", "Comfy Couches", "Board Games", "Book Shelf"] }
+      { "label": "Munchie Run", "icon": "🍕", "items": ["Taco Bell", "Pizza Rolls", "Doritos", "Cookie Dough", "Everything Bagel"] },
+      { "label": "Vibe Movie", "icon": "🎬", "items": ["Half Baked", "Dazed & Confused", "Big Lebowski", "Friday", "Pineapple Express"] },
+      { "label": "Album Choice", "icon": "🎵", "items": ["Dark Side of Moon", "Man on the Moon", "Blonde - Frank", "Swimming - Mac", "Currents - Tame"] },
+      { "label": "Activity", "icon": "🌿", "items": ["Nature Walk", "Video Games", "Cooking Show", "Planet Earth", "Art Project"] },
+      { "label": "Squad Member", "icon": "🤙", "items": ["Snoop Dogg", "Seth Rogen", "Wiz Khalifa", "Willie Nelson", "Martha Stewart"] }
     ]
   },
   {
     "gameId": "2026-04-21",
     "number": 18,
-    "prompt": "Create Your Dream Gym",
+    "prompt": "Build Your Petty Revenge Toolkit",
     "rows": [
-      { "label": "Cardio", "icon": "🏃", "items": ["Treadmill", "Peloton Bike", "Rowing Machine", "StairMaster", "Jump Rope"] },
-      { "label": "Strength", "icon": "💪", "items": ["Bench Press", "Squat Rack", "Dumbbells", "Pull-Up Bar", "Kettlebells"] },
-      { "label": "Classes", "icon": "🧘", "items": ["Yoga", "Spin Class", "Boxing", "Pilates", "CrossFit"] },
-      { "label": "Recovery", "icon": "🧖", "items": ["Sauna", "Cold Plunge", "Massage Gun", "Foam Roller", "Steam Room"] },
-      { "label": "Fuel", "icon": "🥤", "items": ["Protein Shake", "Smoothie Bar", "Energy Bar", "Coconut Water", "BCAA Drink"] }
+      { "label": "Power Song", "icon": "🎵", "items": ["Bad Blood", "Sorry Not Sorry", "Best Thing I Never", "You Oughta Know", "Karma - Taylor"] },
+      { "label": "Move", "icon": "♟️", "items": ["Glow Up Post", "Living Well", "New Best Friend", "Public Success", "Strategic Ignore"] },
+      { "label": "Spirit Animal", "icon": "🐍", "items": ["Rihanna", "Keke Palmer", "Ice Spice Unbothered", "Zendaya", "SZA"] },
+      { "label": "Outfit", "icon": "👗", "items": ["Revenge Dress", "All Black Fit", "Designer Bag", "Sunglasses Inside", "Red Lip Moment"] },
+      { "label": "Final Boss Move", "icon": "🏆", "items": ["Thrive in Silence", "Wrote a Hit Song", "Got Promoted", "Better Relationship", "Hot Girl Summer"] }
     ]
   },
   {
     "gameId": "2026-04-22",
     "number": 19,
-    "prompt": "Plan Your Dream Date Night",
+    "prompt": "Build Your Couch Potato Championship Team",
     "rows": [
-      { "label": "Dinner", "icon": "🍽️", "items": ["Italian", "Sushi", "Steakhouse", "Thai", "French Bistro"] },
-      { "label": "Activity", "icon": "🎯", "items": ["Movie Night", "Comedy Show", "Wine Tasting", "Bowling", "Mini Golf"] },
-      { "label": "Dessert", "icon": "🍫", "items": ["Chocolate Fondue", "Ice Cream Shop", "Creme Brulee", "Gelato Walk", "Cookie Dough"] },
-      { "label": "Music", "icon": "🎶", "items": ["Jazz Club", "Live Band", "Rooftop DJ", "Concert", "Vinyl Night"] },
-      { "label": "Ending", "icon": "🌙", "items": ["Stargazing", "Late Night Diner", "Rooftop Bar", "Beach Walk", "Cozy Movie"] }
+      { "label": "Main Show", "icon": "📺", "items": ["Succession", "The Bear", "Abbott Elementary", "Severance", "Shogun"] },
+      { "label": "Delivery App", "icon": "🛵", "items": ["DoorDash", "Uber Eats", "Grubhub", "Postmates", "Instacart"] },
+      { "label": "Couch Snack", "icon": "🍿", "items": ["Hot Cheetos", "Popcorn", "Goldfish", "Gummy Bears", "Peanut Butter Spoon"] },
+      { "label": "Blanket Choice", "icon": "🛋️", "items": ["Weighted Blanket", "Grandma's Quilt", "Snuggie", "Heated Blanket", "Stolen Hoodie"] },
+      { "label": "Excuse to Skip", "icon": "🤒", "items": ["Mental Health Day", "Stomach Thing", "Car Trouble", "WiFi Down", "Allergies"] }
     ]
   },
   {
     "gameId": "2026-04-23",
     "number": 20,
-    "prompt": "Build Your Taco Truck Empire",
+    "prompt": "Draft Your Celebrity Roast Panel",
     "rows": [
-      { "label": "Proteins", "icon": "🥩", "items": ["Carne Asada", "Al Pastor", "Carnitas", "Fish", "Birria"] },
-      { "label": "Toppings", "icon": "🥑", "items": ["Guacamole", "Pico de Gallo", "Sour Cream", "Pickled Onion", "Cilantro"] },
-      { "label": "Salsas", "icon": "🌶️", "items": ["Salsa Verde", "Chipotle", "Habanero", "Mango Salsa", "Salsa Roja"] },
-      { "label": "Sides", "icon": "🌽", "items": ["Elote", "Rice & Beans", "Chips & Queso", "Churros", "Mexican Corn"] },
-      { "label": "Drinks", "icon": "🥤", "items": ["Horchata", "Jarritos", "Agua Fresca", "Mexican Coke", "Michelada"] }
+      { "label": "Host", "icon": "🎤", "items": ["Nikki Glaser", "Jeff Ross", "Kevin Hart", "Tiffany Haddish", "John Mulaney"] },
+      { "label": "Roast Target", "icon": "🎯", "items": ["Tom Brady", "Justin Bieber", "Kim K", "Drake", "Mark Zuckerberg"] },
+      { "label": "Surprise Guest", "icon": "😲", "items": ["Snoop Dogg", "Martha Stewart", "Shaq", "Betty White Energy", "Pete Davidson"] },
+      { "label": "Topic Off Limits", "icon": "🚫", "items": ["The Kids", "The Surgeries", "The Exes", "The DMs", "The Tax Returns"] },
+      { "label": "Walk-On Song", "icon": "🎵", "items": ["Gonna Fly Now", "Eye of the Tiger", "Back in Black", "Crazy Train", "Imperial March"] }
     ]
   },
   {
     "gameId": "2026-04-24",
     "number": 21,
-    "prompt": "Pick Your Dream Concert Lineup",
+    "prompt": "Build the Worst First Date Bingo Card",
     "rows": [
-      { "label": "Pop Icons", "icon": "👑", "items": ["Taylor Swift", "Beyonce", "Adele", "Lady Gaga", "Bruno Mars"] },
-      { "label": "Rap/Hip Hop", "icon": "🎤", "items": ["Kendrick Lamar", "Drake", "Jay-Z", "Eminem", "Travis Scott"] },
-      { "label": "Rock Legends", "icon": "🤘", "items": ["Led Zeppelin", "Queen", "Pink Floyd", "Nirvana", "AC/DC"] },
-      { "label": "R&B/Soul", "icon": "🎵", "items": ["Frank Ocean", "SZA", "The Weeknd", "Usher", "Lauryn Hill"] },
-      { "label": "Wild Cards", "icon": "🃏", "items": ["Dua Lipa", "Bad Bunny", "Billie Eilish", "Tyler Creator", "Doja Cat"] }
+      { "label": "Red Flag Order", "icon": "🍽️", "items": ["Water Only", "Well Done Steak", "Rude to Server", "Separate Checks", "Eats Off Your Plate"] },
+      { "label": "Conversation Ick", "icon": "🤢", "items": ["Talks About Ex", "Crypto Bro Pitch", "Shows Meme Folder", "Zodiac Deep Dive", "LinkedIn Flex"] },
+      { "label": "Outfit Crime", "icon": "👔", "items": ["Cargo Shorts", "Toe Shoes", "Fedora", "Graphic Tee Date", "Bluetooth Earpiece"] },
+      { "label": "Escape Method", "icon": "🚪", "items": ["Fake Emergency Text", "Bathroom Window", "Allergic Reaction", "Friend Rescue Call", "Just Honest"] },
+      { "label": "Post-Date Text", "icon": "📱", "items": ["Hey u up?", "Had fun period", "No Text Ever", "Sends Voice Note", "Venmo Request"] }
     ]
   },
   {
     "gameId": "2026-04-25",
     "number": 22,
-    "prompt": "Design Your Ideal Bookshelf",
+    "prompt": "Assemble Your Karaoke War Setlist",
     "rows": [
-      { "label": "Fantasy", "icon": "🧙", "items": ["Harry Potter", "Lord of Rings", "Game of Thrones", "Name of Wind", "Mistborn"] },
-      { "label": "Thriller", "icon": "🔪", "items": ["Gone Girl", "Girl on Train", "Da Vinci Code", "Silent Patient", "Shutter Island"] },
-      { "label": "Classics", "icon": "📚", "items": ["1984", "Great Gatsby", "To Kill a Mocking", "Pride & Prejudice", "Catcher in Rye"] },
-      { "label": "Non-Fiction", "icon": "🧠", "items": ["Atomic Habits", "Sapiens", "Thinking Fast", "Becoming", "Educated"] },
-      { "label": "Sci-Fi", "icon": "🌌", "items": ["Dune", "Hitchhikers Guide", "Enders Game", "Neuromancer", "Foundation"] }
+      { "label": "Opener Banger", "icon": "🎤", "items": ["Mr. Brightside", "Livin on a Prayer", "Don't Stop Believin", "Sweet Caroline", "Bohemian Rhapsody"] },
+      { "label": "R&B Flex", "icon": "🎶", "items": ["No Diggity", "Killing Me Softly", "Ain't No Sunshine", "Waterfalls - TLC", "End of the Road"] },
+      { "label": "Country Chaos", "icon": "🤠", "items": ["Friends in Low", "Man! I Feel Like", "Before He Cheats", "Jolene", "Old Town Road"] },
+      { "label": "Crowd Killer", "icon": "💀", "items": ["My Heart Will Go On", "Total Eclipse", "I Will Always Love", "Creep - Radiohead", "Hallelujah"] },
+      { "label": "Unhinged Closer", "icon": "🔥", "items": ["WAP", "Baby Got Back", "I Want It That Way", "Shout", "Wannabe"] }
     ]
   },
   {
     "gameId": "2026-04-26",
     "number": 23,
-    "prompt": "Create Your Theme Park Day",
+    "prompt": "Build Your Social Media Detox Relapse Kit",
     "rows": [
-      { "label": "Roller Coasters", "icon": "🎢", "items": ["Space Mountain", "Thunder Mountain", "Kingda Ka", "Steel Vengeance", "The Hulk"] },
-      { "label": "Parks", "icon": "🏰", "items": ["Disney World", "Universal", "Six Flags", "Cedar Point", "Disneyland"] },
-      { "label": "Park Food", "icon": "🍦", "items": ["Funnel Cake", "Churros", "Turkey Leg", "Corn Dog", "Soft Serve"] },
-      { "label": "Characters", "icon": "🐭", "items": ["Mickey Mouse", "SpongeBob", "Mario", "Harry Potter", "Spider-Man"] },
-      { "label": "Attractions", "icon": "🎡", "items": ["Ferris Wheel", "Haunted House", "Log Flume", "Bumper Cars", "Water Slide"] }
+      { "label": "First Relapse App", "icon": "📱", "items": ["TikTok", "Twitter/X", "Instagram", "Reddit", "YouTube Shorts"] },
+      { "label": "Doom Scroll Topic", "icon": "🕳️", "items": ["Celebrity Drama", "Political Takes", "Relationship Advice", "Conspiracy Theories", "AITA Posts"] },
+      { "label": "Screen Time Lie", "icon": "🤥", "items": ["Just 5 Minutes", "Only for Work", "Checking One Thing", "Research Purposes", "Need Directions"] },
+      { "label": "Replacement Hobby", "icon": "🎨", "items": ["Sourdough Starter", "Bought a Journal", "Plant Parent Era", "Puzzle Phase", "Learned 3 Chords"] },
+      { "label": "Surrender Song", "icon": "🏳️", "items": ["Toxic - Britney", "Bad Habit", "I Can't Quit You", "Addicted - Avicii", "Can't Feel My Face"] }
     ]
   },
   {
     "gameId": "2026-04-27",
     "number": 24,
-    "prompt": "Pack for a Zombie Apocalypse",
+    "prompt": "Build Your Sports Hot Takes Starting Five",
     "rows": [
-      { "label": "Weapons", "icon": "🪓", "items": ["Baseball Bat", "Crossbow", "Katana", "Shotgun", "Machete"] },
-      { "label": "Supplies", "icon": "🎒", "items": ["First Aid Kit", "Flashlight", "Water Filter", "Duct Tape", "Fire Starter"] },
-      { "label": "Food", "icon": "🥫", "items": ["Canned Beans", "Beef Jerky", "Peanut Butter", "Ramen Packs", "Protein Bars"] },
-      { "label": "Shelter", "icon": "🏚️", "items": ["Costco", "Prison", "Treehouse", "Houseboat", "Mountain Cabin"] },
-      { "label": "Squad", "icon": "🧟", "items": ["Doctor", "Mechanic", "Chef", "Army Vet", "Survivalist"] }
+      { "label": "GOAT Debate", "icon": "🐐", "items": ["Jordan vs LeBron", "Brady vs Montana", "Messi vs Ronaldo", "Serena vs Everyone", "Gretzky vs Orr"] },
+      { "label": "Overrated Team", "icon": "📉", "items": ["Dallas Cowboys", "LA Lakers", "NY Yankees", "Man United", "Notre Dame FB"] },
+      { "label": "Best Rivalry", "icon": "⚔️", "items": ["Yankees-Red Sox", "Lakers-Celtics", "Barca-Real Madrid", "Ohio St-Michigan", "Ali vs Frazier"] },
+      { "label": "Worst Take Ever", "icon": "🤡", "items": ["Skip Bayless Daily", "Stephen A Rant", "Hot Take Twitter", "Your Uncle at BBQ", "ESPN Comments"] },
+      { "label": "Sport to Watch", "icon": "📺", "items": ["March Madness", "World Cup Final", "Super Bowl", "NBA Playoffs", "Olympics Opening"] }
     ]
   },
   {
     "gameId": "2026-04-28",
     "number": 25,
-    "prompt": "Build Your Dream Home Theater",
+    "prompt": "Draft Your Work From Home Villain Arc",
     "rows": [
-      { "label": "Screen", "icon": "🖥️", "items": ["75in OLED", "4K Projector", "100in Screen", "Curved Samsung", "Laser Projector"] },
-      { "label": "Sound", "icon": "🔊", "items": ["Dolby Atmos", "Sonos Arc", "Subwoofer", "Surround Sound", "Soundbar"] },
-      { "label": "Seating", "icon": "🛋️", "items": ["Recliner", "Sectional Sofa", "Bean Bags", "Theater Seats", "Floor Cushions"] },
-      { "label": "Snack Bar", "icon": "🍿", "items": ["Popcorn Machine", "Mini Fridge", "Candy Shelf", "Soda Fountain", "Nacho Station"] },
-      { "label": "Extras", "icon": "🎮", "items": ["PS5", "Nintendo Switch", "VR Headset", "Karaoke Mic", "LED Strip Lights"] }
+      { "label": "Camera Off Reason", "icon": "📷", "items": ["Still in Bed", "No Pants", "Eating Lunch", "Messy Background", "Bad Hair Day"] },
+      { "label": "Mute Button Sin", "icon": "🔇", "items": ["Talking Trash", "Dog Barking", "Eating Chips", "TV in Background", "Toilet Flush"] },
+      { "label": "Fake Busy Move", "icon": "💻", "items": ["Mouse Jiggler", "Slack Online Dot", "Scheduled Sends", "Calendar Blocks", "Typing Sounds On"] },
+      { "label": "WFH Uniform", "icon": "👕", "items": ["Meeting Mullet", "Same Hoodie 5 Days", "Zoom Shirt Only", "Full Pajamas", "Robe Energy"] },
+      { "label": "Guilty Pleasure", "icon": "🤫", "items": ["Nap at 2pm", "Netflix Second Mon", "Long Lunch Walk", "Online Shopping", "Laundry Mid-Call"] }
     ]
   },
   {
     "gameId": "2026-04-29",
     "number": 26,
-    "prompt": "Plan the Ultimate BBQ Cookout",
+    "prompt": "Build Your Time Traveler's Playlist",
     "rows": [
-      { "label": "Grill", "icon": "🔥", "items": ["Burgers", "Hot Dogs", "Ribs", "Brisket", "Grilled Chicken"] },
-      { "label": "Sides", "icon": "🥗", "items": ["Coleslaw", "Corn on Cob", "Potato Salad", "Baked Beans", "Mac & Cheese"] },
-      { "label": "Drinks", "icon": "🍺", "items": ["Craft Beer", "Lemonade", "Sweet Tea", "Hard Seltzer", "Root Beer"] },
-      { "label": "Sauces", "icon": "🫙", "items": ["Kansas City BBQ", "Carolina Vinegar", "Texas Rub", "Honey Mustard", "Chimichurri"] },
-      { "label": "Desserts", "icon": "🍉", "items": ["Watermelon", "Peach Cobbler", "S'mores", "Banana Pudding", "Popsicles"] }
+      { "label": "90s Banger", "icon": "💿", "items": ["Wannabe - Spice", "Smells Like Teen", "No Scrubs - TLC", "Waterfalls", "MMMBop"] },
+      { "label": "2000s Classic", "icon": "📀", "items": ["Crazy in Love", "Hey Ya!", "In Da Club", "Yeah! - Usher", "Mr. Brightside"] },
+      { "label": "2010s Anthem", "icon": "📱", "items": ["Uptown Funk", "Rolling in the Deep", "Happy - Pharrell", "Old Town Road", "Bad Guy - Billie"] },
+      { "label": "One Hit Wonder", "icon": "☄️", "items": ["Macarena", "Who Let Dogs Out", "Mambo No. 5", "Chumbawamba", "Gangnam Style"] },
+      { "label": "Timeless Forever", "icon": "♾️", "items": ["Bohemian Rhapsody", "Respect - Aretha", "Imagine - Lennon", "Superstition", "Purple Rain"] }
     ]
   },
   {
     "gameId": "2026-04-30",
     "number": 27,
-    "prompt": "Design Your Dream Office",
+    "prompt": "Assemble Your Toxic Trait All-Stars",
     "rows": [
-      { "label": "Desk Setup", "icon": "🖥️", "items": ["Standing Desk", "Ultrawide Monitor", "Mech Keyboard", "Ergonomic Chair", "Desk Pad"] },
-      { "label": "Tech", "icon": "💻", "items": ["MacBook Pro", "AirPods Max", "iPad Pro", "Webcam HD", "Desk Mic"] },
-      { "label": "Decor", "icon": "🪴", "items": ["Houseplants", "Art Prints", "LED Lights", "Bookshelf", "Candle"] },
-      { "label": "Drinks", "icon": "☕", "items": ["Espresso Machine", "Matcha Kit", "Water Bottle", "Tea Set", "Kombucha"] },
-      { "label": "Perks", "icon": "🎯", "items": ["Nap Pod", "Ping Pong Table", "Snack Wall", "Rooftop Access", "Dog Friendly"] }
+      { "label": "Dating Toxic", "icon": "💔", "items": ["Double Texting", "Orbiting Exes", "Love Bombing", "Benching People", "Soft Launching"] },
+      { "label": "Friend Toxic", "icon": "🫠", "items": ["Flakes Last Min", "One-Upper", "Trauma Dumper", "Screenshot Sharer", "Chronic Lateness"] },
+      { "label": "Work Toxic", "icon": "💼", "items": ["Reply All Abuser", "Lunch Thief", "Meeting Addict", "Credit Stealer", "Passive Aggressor"] },
+      { "label": "Online Toxic", "icon": "🌐", "items": ["Vague Posting", "Ratio Hunter", "Quote Tweet Dunks", "Main Character", "Read Receipt On"] },
+      { "label": "Self Toxic", "icon": "🪞", "items": ["Revenge Bedtime", "Impulse Shopping", "Spite Eating", "Comparison Spiral", "Starting Not Finish"] }
     ]
   },
   {
     "gameId": "2026-05-01",
     "number": 28,
-    "prompt": "Pick Your Survival Island Items",
+    "prompt": "Build Your May Day Chaos Festival Lineup",
     "rows": [
-      { "label": "Tools", "icon": "🪚", "items": ["Swiss Army Knife", "Rope", "Hatchet", "Fishing Rod", "Compass"] },
-      { "label": "Shelter", "icon": "⛺", "items": ["Tarp", "Hammock", "Sleeping Bag", "Tent", "Fire Pit"] },
-      { "label": "Food", "icon": "🥥", "items": ["Coconuts", "Fishing Net", "Seeds", "Dried Fruit", "Canned Goods"] },
-      { "label": "Comfort", "icon": "📖", "items": ["Book", "Guitar", "Journal", "Playing Cards", "Hammock"] },
-      { "label": "Rescue", "icon": "🚨", "items": ["Flare Gun", "Mirror Signal", "Radio", "Whistle", "Orange Flag"] }
+      { "label": "Headliner", "icon": "🌟", "items": ["Beyoncé", "Taylor Swift", "Bad Bunny", "The Weeknd", "Kendrick Lamar"] },
+      { "label": "Surprise Set", "icon": "😱", "items": ["Frank Ocean", "Rihanna", "Daft Punk Reunion", "Outkast", "Lauryn Hill"] },
+      { "label": "Crowd Vibe Act", "icon": "🎉", "items": ["Doja Cat", "Megan Thee Stallion", "Lizzo", "Post Malone", "Jack Harlow"] },
+      { "label": "Festival Food", "icon": "🌮", "items": ["$18 Tacos", "Overpriced Pizza", "Açaí Bowl", "Turkey Leg", "Loaded Fries"] },
+      { "label": "Survival Gear", "icon": "🎒", "items": ["Portable Charger", "Hydration Pack", "Comfortable Shoes", "Sunscreen SPF 100", "Cash for Merch"] }
     ]
   },
   {
     "gameId": "2026-05-02",
     "number": 29,
-    "prompt": "Build Your Ideal Sushi Menu",
+    "prompt": "Build Your Delusional Career Pivot Plan",
     "rows": [
-      { "label": "Nigiri", "icon": "🍣", "items": ["Salmon", "Tuna", "Yellowtail", "Shrimp", "Eel"] },
-      { "label": "Rolls", "icon": "🌀", "items": ["Spicy Tuna", "Dragon Roll", "California Roll", "Rainbow Roll", "Philly Roll"] },
-      { "label": "Appetizers", "icon": "🥟", "items": ["Edamame", "Gyoza", "Miso Soup", "Seaweed Salad", "Tempura"] },
-      { "label": "Drinks", "icon": "🍶", "items": ["Hot Sake", "Sapporo Beer", "Green Tea", "Ramune Soda", "Plum Wine"] },
-      { "label": "Extras", "icon": "🥢", "items": ["Wasabi", "Ginger", "Soy Sauce", "Sriracha Mayo", "Ponzu"] }
+      { "label": "New Career", "icon": "💼", "items": ["Podcast Host", "Dog Influencer", "Etsy Empire", "Life Coach", "Day Trader"] },
+      { "label": "Inspiration", "icon": "💡", "items": ["One TikTok", "A Netflix Doc", "Friend Makes Bank", "LinkedIn Post", "Mercury Retrograde"] },
+      { "label": "Investment", "icon": "💸", "items": ["Ring Light", "Udemy Course", "Business Cards", "LLC Filing", "Manifestation Journal"] },
+      { "label": "Support System", "icon": "🫡", "items": ["Mom Believes You", "Partner Concerned", "Friends Supportive", "Cat Indifferent", "Therapist Curious"] },
+      { "label": "Backup Plan", "icon": "🔙", "items": ["Old Job Begging", "Grad School App", "Moving Home", "Van Life Maybe", "Just Vibes"] }
     ]
   },
   {
     "gameId": "2026-05-03",
     "number": 30,
-    "prompt": "Create Your Pet Paradise",
+    "prompt": "Build Your Internet Hall of Fame Exhibit",
     "rows": [
-      { "label": "Dogs", "icon": "🐕", "items": ["Golden Retriever", "French Bulldog", "Labrador", "Husky", "Corgi"] },
-      { "label": "Cats", "icon": "🐈", "items": ["Ragdoll", "Persian", "Siamese", "Maine Coon", "British Short"] },
-      { "label": "Exotic", "icon": "🦎", "items": ["Parrot", "Hedgehog", "Bunny", "Turtle", "Gecko"] },
-      { "label": "Accessories", "icon": "🦴", "items": ["Cozy Bed", "Treat Dispenser", "Cat Tree", "Bandana", "GPS Tracker"] },
-      { "label": "Activities", "icon": "🎾", "items": ["Dog Park", "Fetch", "Agility Course", "Swimming", "Hiking Trail"] }
+      { "label": "Legendary Meme", "icon": "🏆", "items": ["Distracted BF", "Woman Yelling Cat", "This Is Fine Dog", "Drake Approve", "Bernie Mittens"] },
+      { "label": "Viral Moment", "icon": "📹", "items": ["Charlie Bit Me", "Double Rainbow", "Damn Daniel", "Cash Me Outside", "Corn Kid"] },
+      { "label": "Iconic Tweet", "icon": "🐦", "items": ["Wendy's Roasts", "Dril Candles", "Covfefe", "Ratio'd Post", "30-50 Feral Hogs"] },
+      { "label": "Internet Legend", "icon": "👑", "items": ["Keyboard Cat", "Nyan Cat", "Grumpy Cat", "Doge", "Rick Astley"] },
+      { "label": "Gone Too Soon", "icon": "🕊️", "items": ["Vine App", "Flappy Bird", "Club Penguin", "Google+", "AIM Away Messages"] }
     ]
   }
 ]
