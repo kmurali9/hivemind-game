@@ -358,5 +358,725 @@
       { "label": "Internet Legend", "icon": "👑", "items": ["Keyboard Cat", "Nyan Cat", "Grumpy Cat", "Doge", "Rick Astley"] },
       { "label": "Gone Too Soon", "icon": "🕊️", "items": ["Vine App", "Flappy Bird", "Club Penguin", "Google+", "AIM Away Messages"] }
     ]
+  },
+  {
+    "gameId": "2026-05-04",
+    "number": 31,
+    "prompt": "Build Your Star Wars Day Squad (May the 4th)",
+    "rows": [
+      { "label": "Your Jedi Master", "icon": "⚔️", "items": ["Obi-Wan", "Yoda", "Mace Windu", "Ahsoka Tano", "Qui-Gon Jinn"] },
+      { "label": "Ship to Steal", "icon": "🚀", "items": ["Millennium Falcon", "X-Wing", "TIE Fighter", "Razor Crest", "Star Destroyer"] },
+      { "label": "Cantina Drink", "icon": "🍹", "items": ["Blue Milk", "Jawa Juice", "Spotchka", "Corellian Ale", "Death Sticks (Nah)"] },
+      { "label": "Sidekick", "icon": "🤖", "items": ["Baby Yoda", "R2-D2", "BB-8", "Chewbacca", "K-2SO"] },
+      { "label": "Dark Side Tempt", "icon": "😈", "items": ["Unlimited Power", "Cool Red Saber", "The Drip Cape", "Force Choke HR", "Sith PTO Policy"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-05",
+    "number": 32,
+    "prompt": "Build Your Cinco de Mayo Fiesta Tier List",
+    "rows": [
+      { "label": "Margarita Style", "icon": "🍹", "items": ["Classic Lime", "Spicy Mango", "Frozen Strawberry", "Skinny Marg", "Pitcher for One"] },
+      { "label": "Taco Filling", "icon": "🌮", "items": ["Al Pastor", "Carnitas", "Birria", "Barbacoa", "Fish Taco"] },
+      { "label": "Party Song", "icon": "🎵", "items": ["Gasolina", "Despacito", "La Bamba", "Livin La Vida Loca", "Bailando"] },
+      { "label": "Side Debate", "icon": "🔥", "items": ["Corn or Flour", "Mild or Spicy", "Guac Extra Worth?", "Cilantro Love/Hate", "Queso vs Salsa"] },
+      { "label": "Regret Tomorrow", "icon": "😵", "items": ["One More Shot", "Ate Too Much", "Sunburn", "Lost My Phone", "Karaoke Video"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-06",
+    "number": 33,
+    "prompt": "Draft Your Hinge Profile Red Flag Audit",
+    "rows": [
+      { "label": "Bio Ick", "icon": "🤮", "items": ["Fluent in Sarcasm", "Looking for Partner", "The Office is Best", "Dog Dad 🐶", "6'0 Since It Matters"] },
+      { "label": "Photo Red Flag", "icon": "📸", "items": ["Fish Pic", "Group of 12", "Mirror Gym Selfie", "Car Selfie", "Machu Picchu Same"] },
+      { "label": "Voice Prompt Ick", "icon": "🎙️", "items": ["Talks About Gym", "Whisper Voice", "Inside Joke Solo", "Lists Their Height", "Reads Their Bio"] },
+      { "label": "First Message", "icon": "💬", "items": ["Hey", "🔥🔥🔥", "Sup gorgeous", "You seem cool", "ur pretty"] },
+      { "label": "Green Flag Rare", "icon": "💚", "items": ["Asks a Question", "Mentions Your Bio", "Funny Opener", "Plans a Real Date", "Normal Photos"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-07",
+    "number": 34,
+    "prompt": "Build the Ultimate Sibling Rivalry Toolkit",
+    "rows": [
+      { "label": "Classic Move", "icon": "👊", "items": ["I'm Not Touching U", "Shotgun Called", "Mom Said I Could", "Copying Everything", "Invisible Line"] },
+      { "label": "Tattletale Topic", "icon": "🗣️", "items": ["Ate My Snacks", "In My Room", "Won't Share", "Hit Me First", "Said a Bad Word"] },
+      { "label": "Car Ride War", "icon": "🚗", "items": ["Armrest Battle", "Aux Cord Fight", "Too Much Space", "Are We There Yet", "Stop Looking at Me"] },
+      { "label": "Adult Version", "icon": "🧑‍🦳", "items": ["Who Mom Loves More", "Holiday Host Duty", "WiFi Password War", "Thermostat Control", "Better Gift Giver"] },
+      { "label": "Truce Offering", "icon": "🕊️", "items": ["Shared Netflix", "Covering for Them", "Inside Joke", "Mutual Enemy", "Leftovers Split"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-08",
+    "number": 35,
+    "prompt": "Assemble Your Streaming Service Hunger Games",
+    "rows": [
+      { "label": "Champion Show", "icon": "🏆", "items": ["Squid Game", "Stranger Things", "Ted Lasso", "The Last of Us", "House of Dragon"] },
+      { "label": "Platform to Axe", "icon": "🪓", "items": ["Peacock", "Paramount+", "Apple TV+", "Discovery+", "Tubi"] },
+      { "label": "Worth the Price", "icon": "💰", "items": ["Netflix", "HBO Max", "Disney+", "Hulu", "Amazon Prime"] },
+      { "label": "Guilty Binge", "icon": "🫣", "items": ["Love Is Blind", "Selling Sunset", "Too Hot to Handle", "The Circle", "Indian Matchmaking"] },
+      { "label": "Password Mooch", "icon": "🔑", "items": ["Ex's Account", "Parent's Login", "Sibling's Plan", "Friend's Hulu", "Work VPN Trick"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-09",
+    "number": 36,
+    "prompt": "Build the Ultimate Brunch Personality Test",
+    "rows": [
+      { "label": "Drink Order", "icon": "🥂", "items": ["Mimosa Pitcher", "Bloody Mary", "Espresso Martini", "Just Coffee", "Water (Judging)"] },
+      { "label": "Egg Opinion", "icon": "🥚", "items": ["Over Easy", "Scrambled Soft", "Poached (Bougie)", "Hard Boiled", "Egg White Only"] },
+      { "label": "Brunch Person", "icon": "👤", "items": ["30 Min Late", "Photos Everything", "Bottomless Only", "Splits to Penny", "Menu for 20 Min"] },
+      { "label": "Side Choice", "icon": "🥓", "items": ["Extra Bacon", "Avocado Toast", "Fruit Cup (Why)", "Hash Browns", "Biscuits & Gravy"] },
+      { "label": "Post-Brunch Move", "icon": "😴", "items": ["Immediate Nap", "Day Drinking", "Target Run", "Cancel All Plans", "Post the Grid Pic"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-10",
+    "number": 37,
+    "prompt": "Build the Mother's Day Guilt Trip Starter Pack",
+    "rows": [
+      { "label": "Gift Tier", "icon": "🎁", "items": ["Flowers Last Min", "Spa Gift Card", "Homemade Card", "Brunch Reserv", "Forgot (RIP)"] },
+      { "label": "Mom's Phrase", "icon": "🗣️", "items": ["I'm Fine", "Do Whatever", "Ask Your Father", "When I Was Your Age", "I'm Not Mad"] },
+      { "label": "Brunch Spot", "icon": "🍽️", "items": ["Cheesecake Factory", "That Fancy Place", "Her Kitchen Again", "Olive Garden", "Cracker Barrel"] },
+      { "label": "Mom's Show", "icon": "📺", "items": ["Grey's Anatomy", "HGTV All Day", "Real Housewives", "Dateline", "Hallmark Channel"] },
+      { "label": "Guilt Level", "icon": "😰", "items": ["Didn't Call", "Called Too Late", "Sibling Did More", "Card Was Generic", "Forgot Last Year"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-11",
+    "number": 38,
+    "prompt": "Draft Your Road Trip From Hell Cast",
+    "rows": [
+      { "label": "Driver Energy", "icon": "🚗", "items": ["Won't Stop Ever", "Road Rage King", "Backseat Drives", "Needs Waze Always", "Goes 10 Under"] },
+      { "label": "Aux Tyrant", "icon": "🎵", "items": ["Plays One Genre", "Full Podcast Mode", "Sings Every Word", "DJ Changes Songs", "Bluetooth Won't Pair"] },
+      { "label": "Snack Offender", "icon": "🍫", "items": ["Eats Loud Chips", "Gas Station Sushi", "Nothing (Hangry)", "Crumbs Everywhere", "Smelly Sandwich"] },
+      { "label": "Bathroom Stop", "icon": "🚻", "items": ["Every 30 Minutes", "Holds It Forever", "Only Nice Places", "Side of Road Person", "Didn't Go When Asked"] },
+      { "label": "Car Game", "icon": "🎮", "items": ["License Plate Game", "I Spy Extreme", "20 Questions Loop", "Silent Treatment", "Are We There Yet x100"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-12",
+    "number": 39,
+    "prompt": "Build Your Emotional Support Takeout Roster",
+    "rows": [
+      { "label": "Breakup Food", "icon": "💔", "items": ["Pad Thai", "Pint of Ben & Jerry", "Domino's Pizza", "Chipotle Burrito", "Entire Cake"] },
+      { "label": "Celebration Food", "icon": "🎉", "items": ["Sushi Platter", "Steak Dinner", "Lobster Tail", "Fancy Italian", "Champagne & Wings"] },
+      { "label": "Sick Day Order", "icon": "🤒", "items": ["Pho", "Chicken Soup", "Ginger Ale & Crackers", "Congee", "Grilled Cheese"] },
+      { "label": "Hangover Cure", "icon": "🤢", "items": ["Greasy Breakfast", "McD's Hash Browns", "Pho Again", "Gatorade & Advil", "Bacon Egg Cheese"] },
+      { "label": "Main Character Era", "icon": "✨", "items": ["Omakase Solo", "Charcuterie for One", "Caviar on Credit", "Wine & Cheese Night", "Fancy Salad ($22)"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-13",
+    "number": 40,
+    "prompt": "Assemble Your Toxic Workplace Bingo Card",
+    "rows": [
+      { "label": "Email Phrase", "icon": "📧", "items": ["Per My Last Email", "Just Following Up", "Friendly Reminder", "As Discussed", "Hope This Finds You"] },
+      { "label": "Meeting Crime", "icon": "🖥️", "items": ["Could've Been Email", "15 Min Over", "No Agenda", "Screen Share Panic", "You're on Mute"] },
+      { "label": "Kitchen Drama", "icon": "🍽️", "items": ["Labeled Lunch Gone", "Microwave Fish", "Dirty Dishes", "Empty Coffee Pot", "Passive Note"] },
+      { "label": "HR Speak", "icon": "🤖", "items": ["Circle Back", "Synergy", "Bandwidth", "Move the Needle", "Deep Dive"] },
+      { "label": "Quiet Quitting", "icon": "🚶", "items": ["No Extra Hours", "Bare Minimum Mon", "Logging Off at 5", "Not My Job Energy", "Auto-Reply On"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-14",
+    "number": 41,
+    "prompt": "Build Your Disney Adult Intervention Kit",
+    "rows": [
+      { "label": "Warning Sign", "icon": "🚨", "items": ["Annual Pass Holder", "Ears to Work", "Knows Wait Times", "Disney+ Only", "Trip Every Month"] },
+      { "label": "Park Must-Ride", "icon": "🎢", "items": ["Space Mountain", "Tower of Terror", "Haunted Mansion", "Splash Mountain RIP", "Flight of Passage"] },
+      { "label": "Snack Obsession", "icon": "🍭", "items": ["Dole Whip", "Turkey Leg", "Mickey Pretzel", "Churro", "Grey Stuff"] },
+      { "label": "Hot Take", "icon": "🔥", "items": ["Epcot is Best", "Hollywood Studios W", "Magic Kingdom Overr", "Genie+ is a Scam", "Universal Better"] },
+      { "label": "Merch Problem", "icon": "🛍️", "items": ["Spirit Jersey", "Loungefly Bag", "Pin Collection", "MagicBand Custom", "Minnie Ears Wall"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-15",
+    "number": 42,
+    "prompt": "Build the Celebrity Baby Name Generator",
+    "rows": [
+      { "label": "First Name Vibe", "icon": "👶", "items": ["A Compass Dir", "A Fruit", "A Season", "Old Timey Name", "Just a Letter"] },
+      { "label": "Middle Name", "icon": "✨", "items": ["Moon", "Reign", "Blue", "Saint", "Bear"] },
+      { "label": "Inspiration", "icon": "💡", "items": ["Where Conceived", "Favorite City", "A Luxury Brand", "Random Noun", "TikTok Trend"] },
+      { "label": "Most Iconic Real", "icon": "👑", "items": ["Apple Martin", "North West", "X AE A-XII", "Blue Ivy", "Stormi Webster"] },
+      { "label": "PR Statement", "icon": "📰", "items": ["We Are So Blessed", "Mama Bear Mode", "Our Little Angel", "Name Has Meaning", "Please Respect Us"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-16",
+    "number": 43,
+    "prompt": "Draft Your Summer Body Delusion Timeline",
+    "rows": [
+      { "label": "January Promise", "icon": "💪", "items": ["Gym Every Day", "No Sugar", "Run a Marathon", "Meal Prep King", "Yoga at Dawn"] },
+      { "label": "February Reality", "icon": "📉", "items": ["Gym 3x Total", "Valentine Chocolate", "Bought Leggings", "Watched YouTube Yoga", "Ordered Dumbbells"] },
+      { "label": "April Panic", "icon": "😱", "items": ["Crash Diet", "Bought Ozempic Tea", "Cardio Only", "No Carb Attempt", "Hired a Trainer"] },
+      { "label": "June Acceptance", "icon": "🏖️", "items": ["It's Fine", "High Waisted Only", "Good Angles Exist", "Embracing It", "Summer Next Year"] },
+      { "label": "Cope Snack", "icon": "🍦", "items": ["Ice Cream Cone", "Frozen Marg", "Beach Nachos", "Boardwalk Fries", "Full Funnel Cake"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-17",
+    "number": 44,
+    "prompt": "Build Your Conspiracy Theory Starter Pack",
+    "rows": [
+      { "label": "Entry Level", "icon": "🔍", "items": ["Bermuda Triangle", "Area 51", "Bigfoot Maybe", "Mandela Effect", "Mattress Firm Stores"] },
+      { "label": "YouTube Hole", "icon": "📹", "items": ["3 AM Challenge", "Ancient Aliens", "True Crime Deep", "Simulation Theory", "Flat Earth Debate"] },
+      { "label": "Evidence Board", "icon": "📌", "items": ["Red String", "Blurry Photo", "Trust Me Bro", "One Reddit Post", "My Cousin Saw It"] },
+      { "label": "Skeptic Friend", "icon": "🙄", "items": ["Show Me Proof", "That's Debunked", "You Need Sleep", "Close the Tab", "Touch Grass"] },
+      { "label": "Rabbit Hole Fuel", "icon": "☕", "items": ["3 AM Energy Drink", "Cold Pizza", "Adderall Focus", "Pure Adrenaline", "Existential Dread"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-18",
+    "number": 45,
+    "prompt": "Build the Passive-Aggressive Roommate Hall of Fame",
+    "rows": [
+      { "label": "Kitchen Crime", "icon": "🍳", "items": ["Unwashed Dishes", "Ate My Leftovers", "Empty Milk Back", "Burns Everything", "Hogs the Fridge"] },
+      { "label": "Bathroom Issue", "icon": "🚿", "items": ["Hair Everywhere", "Hour Long Shower", "No Toilet Paper", "Wet Floor Always", "Products Takeover"] },
+      { "label": "Noise Offense", "icon": "🔊", "items": ["3 AM Blender", "Loud FaceTime", "Alarm Snooze x10", "Subwoofer Bass", "Stomps Like Bigfoot"] },
+      { "label": "Note Left", "icon": "📝", "items": ["Smiley Face Note", "ALL CAPS WARNING", "Labeled Everything", "Chore Chart", "Venmo Request"] },
+      { "label": "Nuclear Option", "icon": "☢️", "items": ["Lease Loophole", "Landlord Email", "Move Out Threat", "Passive WiFi Change", "Label the Milk"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-19",
+    "number": 46,
+    "prompt": "Draft Your Uber Driver Rating System",
+    "rows": [
+      { "label": "5 Star King", "icon": "⭐", "items": ["Offers Water", "Great Music", "No Small Talk", "Clean Car", "Knows Shortcuts"] },
+      { "label": "4 Star Fine", "icon": "👌", "items": ["Follows GPS", "AC Works", "Arrives on Time", "Minimal Convo", "No Weird Smells"] },
+      { "label": "3 Star Yikes", "icon": "😬", "items": ["Wrong Turn", "Speakerphone Call", "Eating While Drive", "Misses the Turn", "Asks for 5 Stars"] },
+      { "label": "1 Star Never", "icon": "🚨", "items": ["Wrong Address", "Phone Mounted TikTok", "AC Broken Summer", "Won't End Trip", "Brought Their Kid"] },
+      { "label": "Passenger Crime", "icon": "🤦", "items": ["Backseat Driver", "Slams the Door", "Eats in Car", "Wrong Pin Drop", "Pukes (Sorry)"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-20",
+    "number": 47,
+    "prompt": "Build Your AI Takeover Survival Plan",
+    "rows": [
+      { "label": "First Sign", "icon": "🤖", "items": ["Siri Gets Smart", "ChatGPT Sass", "Alexa Laughs Alone", "Roomba Rebellion", "Autocorrect Wins"] },
+      { "label": "Useful Skill", "icon": "🛠️", "items": ["Can Make Fire", "Grows Own Food", "Reads a Map", "Knows First Aid", "Can Cook No Google"] },
+      { "label": "Useless Skill", "icon": "🤷", "items": ["Knows All Memes", "Excel Shortcuts", "Parallel Parks", "Wine Sommelier", "Fantasy Football"] },
+      { "label": "Hideout", "icon": "🏕️", "items": ["Costco Bunker", "Off Grid Cabin", "Amish Country", "Library (No WiFi)", "National Park"] },
+      { "label": "Negotiation Tool", "icon": "🤝", "items": ["Good Yelp Review", "Compliment the AI", "Offer My Data", "Play Dead", "Unplug the Router"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-21",
+    "number": 48,
+    "prompt": "Build the Worst Wedding Guest Bingo",
+    "rows": [
+      { "label": "Speech Crime", "icon": "🎤", "items": ["Mentions the Ex", "Goes 20 Minutes", "Inside Joke Only", "Drunk Crying", "Proposes at It"] },
+      { "label": "Dance Floor Sin", "icon": "💃", "items": ["Too Grindy", "Won't Dance Once", "Requests Cha Cha", "Steals Spotlight", "Mosh Pit Energy"] },
+      { "label": "Outfit Offense", "icon": "👗", "items": ["Wore White", "Casual Jeans", "More Extra Than Bride", "Hawaiian Shirt", "Matching Couple Fit"] },
+      { "label": "Open Bar Abuse", "icon": "🍸", "items": ["First in Line", "Double Fisting", "Tips Nobody", "Top Shelf Only", "Passed Out by 9"] },
+      { "label": "Gift Disaster", "icon": "🎁", "items": ["Off Registry", "Cash in Card", "Re-Gifted Obvious", "Nothing (Venmo?)", "Self-Help Book"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-22",
+    "number": 49,
+    "prompt": "Assemble Your Coffee Shop Personality Matrix",
+    "rows": [
+      { "label": "Order Type", "icon": "☕", "items": ["Black Coffee (Psycho)", "Oat Milk Latte", "Frappuccino Adult", "Chai Tea Latte", "Matcha Everything"] },
+      { "label": "Laptop Setup", "icon": "💻", "items": ["One Outlet Hog", "Standing Desk DIY", "Sticker Laptop", "Two Monitors WHY", "iPad Only Flex"] },
+      { "label": "Vibes Needed", "icon": "🎵", "items": ["Lo-fi Beats", "Jazz Classics", "Dead Silence", "Coffee Shop ASMR", "Main Character BGM"] },
+      { "label": "Overstayed Sign", "icon": "⏰", "items": ["One Coffee 6 Hours", "Brought Own Lunch", "Charger Tangled", "Knows Staff Names", "Chair Indent Left"] },
+      { "label": "Side Character", "icon": "👀", "items": ["Loud Phone Call", "First Date Couple", "Studying Freak Out", "Author Cosplaying", "Dog Outside Tied"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-23",
+    "number": 50,
+    "prompt": "Build Your Nostalgia Childhood Starter Pack",
+    "rows": [
+      { "label": "After School Show", "icon": "📺", "items": ["SpongeBob", "Kim Possible", "Drake & Josh", "Avatar Aang", "Fairly OddParents"] },
+      { "label": "Lunchbox Flex", "icon": "🍱", "items": ["Lunchables", "Gushers", "Capri Sun", "Dunkaroos", "String Cheese"] },
+      { "label": "Video Game", "icon": "🎮", "items": ["Club Penguin", "Wii Sports", "Minecraft OG", "Mario Kart", "Webkinz"] },
+      { "label": "School Drama", "icon": "🏫", "items": ["Passed Notes", "AIM Away Message", "Myspace Top 8", "Silly Bandz Trade", "Gel Pen Drama"] },
+      { "label": "Toy Obsession", "icon": "🧸", "items": ["Tamagotchi", "Beyblades", "Bakugan", "Heelys", "Rainbow Loom"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-24",
+    "number": 51,
+    "prompt": "Draft Your Delusional Summer Vacation Plan",
+    "rows": [
+      { "label": "Dream Destination", "icon": "✈️", "items": ["Amalfi Coast", "Bali", "Tokyo", "Santorini", "Tulum"] },
+      { "label": "Budget Reality", "icon": "💸", "items": ["Stayed Home", "Drove to Beach", "Friend's Lake House", "Camping Again", "Backyard Kiddie Pool"] },
+      { "label": "Instagram Lie", "icon": "📸", "items": ["Good Angle Only", "One Nice Outfit", "Rented That Car", "Borrowed the Villa", "Filter Heavy"] },
+      { "label": "Travel Companion", "icon": "🫠", "items": ["Plans Nothing", "Over-Plans All", "Gets Sick Day 1", "Wants Naps Only", "Fights at Airport"] },
+      { "label": "Souvenir", "icon": "🎁", "items": ["Fridge Magnet", "Shot Glass", "Airport Keychain", "Overpriced Tee", "Tattoo (Mistake?)"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-25",
+    "number": 52,
+    "prompt": "Build Your Memorial Day BBQ Drama Forecast",
+    "rows": [
+      { "label": "Grill Master", "icon": "🔥", "items": ["Burns Everything", "Only Hot Dogs", "Propane Purist", "Charcoal or Die", "Won't Let You Help"] },
+      { "label": "Side Dish War", "icon": "🥗", "items": ["Potato Salad Safe?", "Coleslaw Split", "Baked Beans Mid", "Corn on Cob", "Macaroni Salad"] },
+      { "label": "Pool Move", "icon": "🏊", "items": ["Cannonball", "Won't Get In", "Phone by Pool Edge", "Floatie All Day", "Pushes Someone In"] },
+      { "label": "Uncle Energy", "icon": "🍺", "items": ["Too Many Beers", "Bad Joke Machine", "Fell Asleep Outside", "Political Rant", "Grill Guard Duty"] },
+      { "label": "Playlist Battle", "icon": "🎵", "items": ["Country Only", "Dad Rock", "Top 40 Pop", "Reggaeton Vibes", "Kids Cocomelon"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-26",
+    "number": 53,
+    "prompt": "Build Your Dating App Villain Backstory",
+    "rows": [
+      { "label": "Origin Wound", "icon": "💔", "items": ["Left on Read", "Ghosted After 3", "Catfished Once", "Stood Up at Bar", "Ex Got Engaged"] },
+      { "label": "Current Weapon", "icon": "⚔️", "items": ["Strategic Ghosting", "Rotation Roster", "Breadcrumbing", "Haunting Stories", "Multi-App Running"] },
+      { "label": "Profile Lie", "icon": "🤥", "items": ["Height +2 Inches", "Old Photos", "Love Hiking (Don't)", "Looking for Real", "Dog Isn't Mine"] },
+      { "label": "Signature Move", "icon": "💅", "items": ["Slow Fade Expert", "Never Plans Date", "Date for Free Meal", "Keeps as Backup", "Opens Never Reply"] },
+      { "label": "Redemption Arc?", "icon": "🌅", "items": ["Met Someone IRL", "Therapy Finally", "Deleted All Apps", "Lowered Standards", "Got a Dog Instead"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-27",
+    "number": 54,
+    "prompt": "Build Your Therapist's Bingo Card About You",
+    "rows": [
+      { "label": "Opening Line", "icon": "🛋️", "items": ["So Funny Story", "I'm Fine Actually", "My Mom Again", "Work Is Stressful", "Don't Judge But"] },
+      { "label": "Deflection Move", "icon": "🪃", "items": ["Makes It a Joke", "Changes Subject", "Blames Mercury", "Says It's Not Bad", "Talks About Friend"] },
+      { "label": "Homework Excuse", "icon": "📝", "items": ["Forgot the Journal", "Too Busy", "Did It in My Head", "Journaling is Cringe", "My Week Was Fine"] },
+      { "label": "Breakthrough Topic", "icon": "💡", "items": ["Attachment Style", "Inner Child Work", "Boundaries Exist", "People-Pleasing", "Not My Fault"] },
+      { "label": "After Session", "icon": "🚗", "items": ["Cried in Car", "Texted Best Friend", "Got Iced Coffee", "Felt Nothing", "Booked Next Week"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-28",
+    "number": 55,
+    "prompt": "Draft Your True Crime Podcast Starter Pack",
+    "rows": [
+      { "label": "Listen Location", "icon": "🎧", "items": ["Walking the Dog", "Doing Dishes", "3 AM in Bed", "Long Drive", "At the Gym"] },
+      { "label": "Fave Pod", "icon": "🎙️", "items": ["My Fav Murder", "Crime Junkie", "Serial", "Casefile", "Morbid"] },
+      { "label": "Red Flag Hobby", "icon": "🚩", "items": ["Knows Too Much", "Forensics Nerd", "Maps Crime Scenes", "Rates Alibis", "Suspiciously Calm"] },
+      { "label": "Partner Concern", "icon": "😰", "items": ["Why Do You Know?", "Don't Google That", "Should I Worry?", "New Lock Please", "You're Scaring Me"] },
+      { "label": "Documentary Night", "icon": "🎬", "items": ["Making a Murderer", "Tiger King", "The Staircase", "Don't F With Cats", "Jinx"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-29",
+    "number": 56,
+    "prompt": "Build Your Chaotic Energy Drink Tier List",
+    "rows": [
+      { "label": "God Tier", "icon": "⚡", "items": ["Celsius", "Red Bull", "Monster Ultra", "Ghost Energy", "Alani Nu"] },
+      { "label": "Mid Tier", "icon": "😐", "items": ["Bang", "Reign", "Rockstar", "C4 Energy", "3D Energy"] },
+      { "label": "Gasoline Tier", "icon": "⛽", "items": ["OG Four Loko", "Jolt Cola", "Spike Shooter", "Redline", "5 Hour Energy x3"] },
+      { "label": "Boomer Juice", "icon": "👴", "items": ["Black Coffee x4", "Mountain Dew", "Jolt Cola Classic", "Tab Energy", "Vivarin Pill"] },
+      { "label": "When You Drink", "icon": "⏰", "items": ["6 AM Gym", "2 PM Slump", "Before the Club", "All-Nighter Cram", "Monday Morning"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-30",
+    "number": 57,
+    "prompt": "Build Your Unhinged Group Trip Planning",
+    "rows": [
+      { "label": "Trip Planner", "icon": "📋", "items": ["Spreadsheet Queen", "Go With the Flow", "Pinterest Board", "Asks AI", "Winging It All"] },
+      { "label": "Money Friend", "icon": "💰", "items": ["Splits to Cent", "Covers Everyone", "Forgot Their Wallet", "Venmo 3 Weeks Late", "Budget Spreadsheet"] },
+      { "label": "Packing Style", "icon": "🧳", "items": ["3 Bags 2 Nights", "One Backpack Only", "Forgets Essentials", "Brings Pillow", "Checks 5 Bags"] },
+      { "label": "Trip Drama", "icon": "😤", "items": ["Someone Gets Lost", "Hangry Meltdown", "No One Agrees", "Secret Couple Fight", "Left at Restaurant"] },
+      { "label": "Never Going Again", "icon": "🙅", "items": ["I'm Done Planning", "Next Time Solo", "Just Send Venmo", "New Friend Group", "This Was a Mistake"] }
+    ]
+  },
+  {
+    "gameId": "2026-05-31",
+    "number": 58,
+    "prompt": "Build Your Neighborhood Villain Starter Pack",
+    "rows": [
+      { "label": "Offense", "icon": "😤", "items": ["Leaf Blower 7 AM", "Dog Doesn't Pick Up", "Parks Crooked", "HOA Complaint", "Mows at Dawn Sun"] },
+      { "label": "Nemesis Type", "icon": "🏠", "items": ["Nosy Neighbor", "Party House", "Ring Cam Obsessed", "Trash Day Cop", "Christmas Overboard"] },
+      { "label": "Passive Move", "icon": "📝", "items": ["Anonymous Note", "NextDoor Post", "Strategic Sprinkler", "Parking Cone War", "Fence Moved 1 Inch"] },
+      { "label": "Escalation", "icon": "📈", "items": ["Called the HOA", "County Complaint", "Security Camera Up", "Built Higher Fence", "Lawyer Letter"] },
+      { "label": "Peace Offering", "icon": "🕊️", "items": ["Brought Cookies", "Waved First", "Lent the Mower", "Invited to BBQ", "Ignored Each Other"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-01",
+    "number": 59,
+    "prompt": "Build Your Hot Girl Summer Starter Kit",
+    "rows": [
+      { "label": "Anthem", "icon": "🎵", "items": ["Hot Girl Summer", "Kiss Me More", "About Damn Time", "Cruel Summer", "Good as Hell"] },
+      { "label": "Outfit Vibe", "icon": "👙", "items": ["Matching Set", "That Sundress", "Bikini Confidence", "Linen Everything", "Festival Fit"] },
+      { "label": "Activity", "icon": "🏖️", "items": ["Beach Day", "Pool Party", "Rooftop Drinks", "Boat Day", "Outdoor Concert"] },
+      { "label": "Self-Care Weapon", "icon": "💅", "items": ["Gel Nails Fresh", "New Perfume", "Tan Routine", "Hair Appointment", "Teeth Whitened"] },
+      { "label": "Energy Source", "icon": "⚡", "items": ["Iced Coffee IV", "Frozen Margs", "White Claw", "Açaí Bowl", "Main Char Delusion"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-02",
+    "number": 60,
+    "prompt": "Build Your Worst Coworker Starter Pack",
+    "rows": [
+      { "label": "Kitchen Crime", "icon": "🐟", "items": ["Microwaves Fish", "Burns Popcorn", "Steals Creamer", "Leaves Dishes", "Fridge Hoarder"] },
+      { "label": "Meeting Move", "icon": "🗣️", "items": ["Talks Over You", "Let Me Share Screen", "Unmutes to Breathe", "Asks Answered Q's", "Stays After End"] },
+      { "label": "Slack Behavior", "icon": "💬", "items": ["Hey. (No Follow Up)", "Reacts to Everything", "Voice Note in Chat", "Tags Everyone", "Emoji Overload 🎉🎉"] },
+      { "label": "Desk Crime", "icon": "🖥️", "items": ["Speaker Phone", "Clips Nails", "Essential Oils", "Eats Loud", "Decorates Too Much"] },
+      { "label": "LinkedIn Energy", "icon": "🤮", "items": ["Agree? 🤔", "Humbled to Share", "Grateful Journey", "I Was Fired And...", "Selfie with Badge"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-03",
+    "number": 61,
+    "prompt": "Build Your Main Character Red Carpet Fit",
+    "rows": [
+      { "label": "Designer Pick", "icon": "👗", "items": ["Versace", "Valentino", "Balenciaga", "Gucci", "Thrift Flip Chaos"] },
+      { "label": "Celeb Inspo", "icon": "✨", "items": ["Zendaya Moment", "Rihanna Met Gala", "Billy Porter Serve", "Harry Styles Era", "Lady Gaga Meat"] },
+      { "label": "Accessory", "icon": "💎", "items": ["Statement Necklace", "Tiny Sunglasses", "Feather Boa", "Platform Boots", "One Long Glove"] },
+      { "label": "Red Carpet Pose", "icon": "📸", "items": ["Over Shoulder Look", "Power Stance", "Spin and Smile", "Not Looking Camera", "Peace Sign Chaos"] },
+      { "label": "After Party", "icon": "🥂", "items": ["Vanity Fair Party", "In-N-Out Run", "Pajama Change", "Lost My Shoes", "Went Home at 9"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-04",
+    "number": 62,
+    "prompt": "Build Your Petty Parking Lot Cinematic Universe",
+    "rows": [
+      { "label": "Villain Move", "icon": "🚗", "items": ["Takes Two Spots", "Steals Your Spot", "Dings Your Door", "Parks Too Close", "Shopping Cart Leave"] },
+      { "label": "Revenge Fantasy", "icon": "😈", "items": ["Passive Note", "Wait Them Out", "Box Them In", "Photo for Reddit", "Dramatic Stare"] },
+      { "label": "Lot Type", "icon": "🏢", "items": ["Costco Saturday", "Mall at Christmas", "Airport Long Term", "Trader Joe's Chaos", "Concert Venue"] },
+      { "label": "Spot Finder Style", "icon": "🔍", "items": ["Circles Forever", "First Spot Always", "Creates a Spot", "Stalks Walkers", "Valet Only"] },
+      { "label": "Bumper Sticker", "icon": "🏷️", "items": ["My Kid Honor Roll", "Coexist", "Salt Life", "Baby on Board", "Send It"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-05",
+    "number": 63,
+    "prompt": "Draft Your Guilty Pleasure Music Confessional",
+    "rows": [
+      { "label": "Shower Anthem", "icon": "🚿", "items": ["Bohemian Rhapsody", "I Will Survive", "Dancing Queen", "Since U Been Gone", "Livin on a Prayer"] },
+      { "label": "Car Sing Along", "icon": "🚗", "items": ["Toxic - Britney", "All Star - Smash", "Party in the USA", "Call Me Maybe", "Bye Bye Bye"] },
+      { "label": "Workout Secret", "icon": "🏋️", "items": ["Shake It Off", "Fergalicious", "Hollaback Girl", "Promiscuous", "Buttons - PCD"] },
+      { "label": "Would Never Admit", "icon": "🤫", "items": ["One Direction", "Jonas Brothers", "Nickelback", "Creed", "Imagine Dragons"] },
+      { "label": "Karaoke After 3", "icon": "🍻", "items": ["My Heart Will Go On", "Total Eclipse", "I Want It That Way", "Barbie Girl", "What Is Love"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-06",
+    "number": 64,
+    "prompt": "Build Your Fictional Squad for a Heist",
+    "rows": [
+      { "label": "Mastermind", "icon": "🧠", "items": ["Professor (LCDP)", "Danny Ocean", "Thomas Shelby", "Annalise Keating", "Walter White"] },
+      { "label": "Hacker", "icon": "💻", "items": ["Elliot - Mr Robot", "Felicity Smoak", "Penelope Garcia", "Neo", "Q - James Bond"] },
+      { "label": "Muscle", "icon": "💪", "items": ["Luke Hobbs", "Black Widow", "John Wick", "Mike Ehrmantraut", "Gamora"] },
+      { "label": "Getaway Driver", "icon": "🏎️", "items": ["Baby Driver", "Dom Toretto", "Jason Bourne", "Han Seoul-Oh", "Furiosa"] },
+      { "label": "Betrays the Team", "icon": "🐍", "items": ["Littlefinger", "Loki (Maybe)", "Cypher - Matrix", "Gus Fring", "Hans Gruber"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-07",
+    "number": 65,
+    "prompt": "Build Your Sunday Scaries Emergency Kit",
+    "rows": [
+      { "label": "Dread Song", "icon": "🎵", "items": ["Everybody Hurts", "Sunday Morning", "Creep - Radiohead", "Mad World", "Breathe Me - Sia"] },
+      { "label": "Comfort Show", "icon": "📺", "items": ["The Office", "Friends", "Parks and Rec", "Bob's Burgers", "New Girl"] },
+      { "label": "Panic Ritual", "icon": "😰", "items": ["Meal Prep Attempt", "Outfit Planning", "Alarm Set x5", "Laundry Sprint", "To-Do List Rewrite"] },
+      { "label": "Coping Meal", "icon": "🍝", "items": ["Comfort Pasta", "Rotisserie Chicken", "Soup and Bread", "Cereal for Dinner", "Entire Cheese Board"] },
+      { "label": "Lie You Tell", "icon": "🤥", "items": ["I Love My Job", "Monday's Great", "I'm Productive", "I'll Sleep Early", "This Week Is Diff"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-08",
+    "number": 66,
+    "prompt": "Build Your Fandom Trash Starter Pack",
+    "rows": [
+      { "label": "Fandom Choice", "icon": "🌟", "items": ["Swifties", "BTS ARMY", "Marvel Stans", "Star Wars Nerds", "Anime Nation"] },
+      { "label": "Level of Unhinged", "icon": "📊", "items": ["Casual Fan", "Knows Lore Deep", "Has Fan Account", "Wrote Fan Fiction", "Tattoo'd It"] },
+      { "label": "Merch Problem", "icon": "🛍️", "items": ["Concert Tee Wall", "Funko Pop Shelf", "Enamel Pin Board", "Custom Phone Case", "Car Decal"] },
+      { "label": "Online Behavior", "icon": "📱", "items": ["Quote Tweets All", "Fan Cam Replies", "Streaming Parties", "Defends in DMs", "Stan Account War"] },
+      { "label": "Friendship Test", "icon": "🧪", "items": ["Disrespect My Fave", "Skip the Album", "Say It's Mid", "Prefer the Rival", "Spoil the Finale"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-09",
+    "number": 67,
+    "prompt": "Build Your Grocery Store Chaos Alignment",
+    "rows": [
+      { "label": "Cart Style", "icon": "🛒", "items": ["List and Done", "Vibes Only Browse", "Basket Overloaded", "Self-Checkout Pro", "Asks for Samples"] },
+      { "label": "Aisle Crime", "icon": "😤", "items": ["Blocks the Aisle", "Opens Before Buy", "Squeezes All Fruit", "Price Check Hold Up", "Cart in the Middle"] },
+      { "label": "Checkout Move", "icon": "💳", "items": ["Express 15+ Items", "Coupon Binder", "Forgot Wallet", "Chats Up Cashier", "Self-Checkout Rage"] },
+      { "label": "Impulse Buy", "icon": "🍫", "items": ["Checkout Candy", "Magazine Why", "Rotisserie Chicken", "Fancy Cheese", "Kitchen Gadget"] },
+      { "label": "Store Loyalty", "icon": "🏪", "items": ["Trader Joe's Cult", "Costco Member Flex", "Whole Foods Broke", "Aldi Finds Aisle", "Target Dollar Spot"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-10",
+    "number": 68,
+    "prompt": "Assemble Your Summer Blockbuster Dream Cast",
+    "rows": [
+      { "label": "Action Lead", "icon": "💥", "items": ["Zendaya", "Oscar Isaac", "Margot Robbie", "John Boyega", "Florence Pugh"] },
+      { "label": "Villain", "icon": "😈", "items": ["Pedro Pascal", "Cate Blanchett", "Javier Bardem", "Viola Davis", "Daniel Craig"] },
+      { "label": "Comic Relief", "icon": "😂", "items": ["Ke Huy Quan", "Awkwafina", "Kumail Nanjiani", "Kate McKinnon", "Bowen Yang"] },
+      { "label": "Surprise Cameo", "icon": "😮", "items": ["The Rock Somehow", "Dolly Parton", "Keanu Always", "Snoop Dogg", "Your Mom (Twist)"] },
+      { "label": "Director", "icon": "🎬", "items": ["Greta Gerwig", "Jordan Peele", "Denis Villeneuve", "Taika Waititi", "Bong Joon-ho"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-11",
+    "number": 69,
+    "prompt": "Build Your Toxic Positivity Starter Pack",
+    "rows": [
+      { "label": "Catchphrase", "icon": "🌈", "items": ["Good Vibes Only", "Everything Happens", "Just Be Grateful", "Choose Happiness", "Manifest It"] },
+      { "label": "Home Decor", "icon": "🏠", "items": ["Live Laugh Love", "Blessed Sign", "Gather Wall Art", "Dream Catcher", "Gratitude Journal"] },
+      { "label": "Instagram Bio", "icon": "📱", "items": ["Plant Mom 🌱", "Dog Mom 🐕", "Wanderlust ✈️", "Foodie 🍕", "Boss Babe 💅"] },
+      { "label": "Cope Product", "icon": "🛍️", "items": ["Essential Oils", "Crystal Collection", "Sage Bundle", "Himalayan Salt Lamp", "Manifestation Deck"] },
+      { "label": "Red Flag Quote", "icon": "🚩", "items": ["If You Can't Handle", "I'm Just Honest", "I Don't Do Drama", "Low Maintenance", "Old Soul Energy"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-12",
+    "number": 70,
+    "prompt": "Build Your Summer Music Festival Survival Guide",
+    "rows": [
+      { "label": "Festival Choice", "icon": "🎪", "items": ["Coachella", "Lollapalooza", "Bonnaroo", "Governors Ball", "Outside Lands"] },
+      { "label": "Outfit Regret", "icon": "👢", "items": ["Platform Boots (Mud)", "Crop Top Sunburn", "Flower Crown Era", "All White (Why)", "Forgot Sunscreen"] },
+      { "label": "Friend Lost At", "icon": "📍", "items": ["Main Stage Pit", "Food Truck Area", "Porta Potty Line", "Merch Tent", "Charging Station"] },
+      { "label": "Survival Item", "icon": "🎒", "items": ["Baby Wipes", "Portable Fan", "Earplugs", "Fanny Pack", "Electrolyte Packets"] },
+      { "label": "Post-Fest Mood", "icon": "😵", "items": ["Post-Concert Deaf", "Blistered Feet", "Lost My Voice", "Sunburn Lobster", "Best Weekend Ever"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-13",
+    "number": 71,
+    "prompt": "Draft Your Unhinged Sleepover Agenda (Adult Edition)",
+    "rows": [
+      { "label": "Movie Pick", "icon": "🎬", "items": ["Mean Girls", "Bridesmaids", "Mamma Mia", "Legally Blonde", "White Chicks"] },
+      { "label": "Snack Spread", "icon": "🍿", "items": ["Pizza Rolls", "Wine & Cheese", "Cookie Dough Raw", "Charcuterie Board", "Gas Station Haul"] },
+      { "label": "Drama Activity", "icon": "🔮", "items": ["Tarot Reading", "Astrology Roast", "Rank Your Exes", "Burn the Letters", "Read Old Texts"] },
+      { "label": "3 AM Decision", "icon": "🌙", "items": ["Online Shopping", "Bangs (Don't)", "Text the Ex", "Tattoo Research", "Start a Business"] },
+      { "label": "Morning After", "icon": "☀️", "items": ["Regret Purchases", "Delete the Texts", "Brunch Somewhere", "Cancel Tattoo Appt", "Do It Again Friday"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-14",
+    "number": 72,
+    "prompt": "Build Your Dad Joke Hall of Fame (Happy Flag Day)",
+    "rows": [
+      { "label": "Dad Uniform", "icon": "👕", "items": ["Cargo Shorts", "New Balance 608", "Tucked In Polo", "Socks & Sandals", "Visor Hat"] },
+      { "label": "Grill Weapon", "icon": "🔥", "items": ["Weber Classic", "Traeger Flex", "George Foreman", "Charcoal Purist", "Propane and Propane"] },
+      { "label": "Catchphrase", "icon": "💬", "items": ["Hi Hungry I'm Dad", "Don't Touch That", "Ask Your Mother", "Back in My Day", "Money Doesn't Grow"] },
+      { "label": "Weekend Energy", "icon": "🏡", "items": ["Home Depot Trip", "Lawn Obsession", "Nap in Recliner", "Checks Thermostat", "Shows You a Deal"] },
+      { "label": "Music Choice", "icon": "🎵", "items": ["Steely Dan", "Eagles Greatest", "Dire Straits", "Classic Rock Radio", "Jimmy Buffett"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-15",
+    "number": 73,
+    "prompt": "Build Your Father's Day Chaos Tier List",
+    "rows": [
+      { "label": "Gift Tier", "icon": "🎁", "items": ["Tie (Again)", "Grill Accessories", "Golf Stuff", "World's Best Mug", "Literally a Card"] },
+      { "label": "Dad's Want", "icon": "❤️", "items": ["Peace and Quiet", "Nap Uninterrupted", "Remote Control", "No Honey-Do List", "Just Steak"] },
+      { "label": "Brunch vs BBQ", "icon": "🍖", "items": ["Steak Only", "Wings and Beer", "Fancy Brunch (Hates)", "His Own Cooking", "Someone Else Grills"] },
+      { "label": "Dad Show", "icon": "📺", "items": ["Top Gear/Clarkson", "Any War Doc", "How It's Made", "Sports All Day", "Yellowstone"] },
+      { "label": "Dad Quote Today", "icon": "🗣️", "items": ["I Don't Need Gifts", "Just Happy You're Here", "Who Touched Thermo", "That's Expensive", "I'm Not Crying"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-16",
+    "number": 74,
+    "prompt": "Build Your Accidentally Viral Moment Plan",
+    "rows": [
+      { "label": "Platform It Hits", "icon": "📱", "items": ["TikTok FYP", "Twitter Ratio", "Reddit Front Page", "Instagram Explore", "YouTube Shorts"] },
+      { "label": "Why It's Viral", "icon": "🔥", "items": ["Background Fail", "Hot Take Clip", "Caught on Ring Cam", "Pet Did Something", "Dance Gone Wrong"] },
+      { "label": "Follower Reaction", "icon": "📊", "items": ["10K Overnight", "Hate Comments", "Brand Deal DMs", "Mom Found It", "Ex Saw It"] },
+      { "label": "Monetize Attempt", "icon": "💸", "items": ["Merch Drop", "Start a Podcast", "Book Deal Pitch", "OnlyFans Pivot", "Morning Show Tour"] },
+      { "label": "15 Min Fame End", "icon": "⏰", "items": ["New Meme Replaces", "Said Something Dumb", "Got Cancelled", "Pivoted to LinkedIn", "Became a Memory"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-17",
+    "number": 75,
+    "prompt": "Build Your Chaotic Beach Day Bingo Card",
+    "rows": [
+      { "label": "Setup Drama", "icon": "⛱️", "items": ["Wind Took Umbrella", "Sand in Everything", "No Shade Left", "Forgot Sunscreen", "Towel Too Small"] },
+      { "label": "Beach Snack", "icon": "🍉", "items": ["Sandy Sandwich", "Warm Seltzer", "Melted Chocolate", "Chips Bag Popped", "Watermelon Drip"] },
+      { "label": "Ocean Move", "icon": "🌊", "items": ["Wave Knockdown", "Jellyfish Panic", "Seaweed Touch", "Lost Sunglasses", "Saltwater Nose"] },
+      { "label": "People Watching", "icon": "👀", "items": ["Metal Detector Guy", "Hole Digging Dad", "Speaker Blasting", "PDA Couple", "Seagull Thief"] },
+      { "label": "Departure", "icon": "🚗", "items": ["Sand in the Car", "Sunburn Realized", "Left Something", "Traffic Home", "Already Planning Next"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-18",
+    "number": 76,
+    "prompt": "Build Your Astrology Girl Starter Pack",
+    "rows": [
+      { "label": "First Question", "icon": "♈", "items": ["What's Your Sign?", "Moon or Rising?", "When's Your Bday?", "You're Such a Virgo", "Mercury Retrograde!"] },
+      { "label": "App of Choice", "icon": "📱", "items": ["Co-Star", "The Pattern", "TimePassages", "Astrology Zone", "Snapchat Horoscope"] },
+      { "label": "Compatibility Check", "icon": "💕", "items": ["Fire + Air = Yes", "Earth + Water = OK", "Scorpio + Scorpio?", "Gemini Red Flag", "Leo + Leo Ego War"] },
+      { "label": "Excuse Used", "icon": "🤷", "items": ["Mercury Retrograde", "Saturn Return", "Venus in Gatorade", "Moon Was Void", "Eclipse Energy"] },
+      { "label": "Non-Believer Cope", "icon": "🙄", "items": ["It's Not Real", "That's So Vague", "I'm Not a Typical", "Ok But It's Fun", "Fine Read Mine"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-19",
+    "number": 77,
+    "prompt": "Build Your Summer Intern Survival Guide",
+    "rows": [
+      { "label": "First Day Fear", "icon": "😰", "items": ["Where's the Printer", "Forgot My Badge", "Ate at Desk Wrong?", "CC'd Wrong Person", "Overdressed Hard"] },
+      { "label": "Lunch Strategy", "icon": "🍽️", "items": ["Sad Desk Lunch", "Free Food Hunter", "Eats with the Boss", "Chipotle Daily", "Brought Lunchbox"] },
+      { "label": "Intern Task", "icon": "📋", "items": ["Coffee Run Expert", "Spreadsheet Life", "Sit in Meetings", "Shadow Someone", "Fix the Printer"] },
+      { "label": "Office Politics", "icon": "🏢", "items": ["Who to Befriend", "Avoid That Person", "Slack Tone Check", "Email Signature Fix", "Don't Reply All"] },
+      { "label": "End of Summer", "icon": "🎓", "items": ["LinkedIn Post", "Return Offer Prayer", "References Secured", "Free Swag Haul", "Ghosted by HR"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-20",
+    "number": 78,
+    "prompt": "Build Your First Day of Summer Bucket List",
+    "rows": [
+      { "label": "Must Do", "icon": "☀️", "items": ["Beach Trip", "Pool Day", "Road Trip", "Outdoor Concert", "Rooftop Drinks"] },
+      { "label": "Food Goal", "icon": "🍦", "items": ["Ice Cream Daily", "Lobster Roll", "BBQ Ribs", "Farmers Market", "Street Tacos"] },
+      { "label": "Fitness Delusion", "icon": "🏃", "items": ["Morning Runs", "Beach Volleyball", "Hiking Phase", "Paddleboard Once", "Walk to Brunch"] },
+      { "label": "Read a Book (Cap)", "icon": "📚", "items": ["Bought 5 Read 0", "Beach Read Only", "Kindle Collecting", "Audiobook Counts?", "TikTok BookTok"] },
+      { "label": "Actually Will Do", "icon": "😅", "items": ["Binge a Series", "Order Delivery", "AC on Full Blast", "Scroll TikTok", "Complain It's Hot"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-21",
+    "number": 79,
+    "prompt": "Build Your Summer Solstice Main Character Day",
+    "rows": [
+      { "label": "Sunrise Move", "icon": "🌅", "items": ["Actually Woke Up", "Yoga on Beach", "Set Intentions", "Watched from Bed", "Slept Through It"] },
+      { "label": "Golden Hour Fit", "icon": "👗", "items": ["White Linen", "Flowy Sundress", "Matching Set", "Vintage Vibes", "Didn't Change"] },
+      { "label": "Photo Op", "icon": "📸", "items": ["Flower Field", "Rooftop Sunset", "Beach Silhouette", "Lavender Farm", "Backyard Works"] },
+      { "label": "Ritual Choice", "icon": "🔮", "items": ["Burn the List", "Crystal Charging", "Journal Intentions", "Sound Bath", "Just Grilled"] },
+      { "label": "Sunset Activity", "icon": "🌇", "items": ["Bonfire Beach", "Wine on Patio", "Dance Outside", "Stargazing", "Fell Asleep by 9"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-22",
+    "number": 80,
+    "prompt": "Build Your Chaotic Birthday Party Tier List",
+    "rows": [
+      { "label": "Venue Vibe", "icon": "🎂", "items": ["Rooftop Bar", "Karaoke Room", "House Party", "Bowling Alley", "Fancy Dinner"] },
+      { "label": "Cake Flavor", "icon": "🍰", "items": ["Funfetti (Correct)", "Red Velvet", "Ice Cream Cake", "Cheesecake", "No Cake (Psycho)"] },
+      { "label": "Gift Card?", "icon": "🎁", "items": ["Sephora", "Amazon (Lazy)", "Venmo $$ (Best)", "Handmade (Sweet)", "Forgot (Monster)"] },
+      { "label": "Party Crime", "icon": "🚨", "items": ["Stole the Spotlight", "Left Early", "Brought Uninvited+1", "Didn't Sing Happy", "Showed Up Sober"] },
+      { "label": "Post-Party", "icon": "📱", "items": ["Posted Everything", "Lost My Phone", "Regret Karaoke Vid", "Still at the Bar", "Napped Immediately"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-23",
+    "number": 81,
+    "prompt": "Build Your Terrible Roommate Ad Translator",
+    "rows": [
+      { "label": "Ad Says", "icon": "📝", "items": ["Cozy Space", "Social Household", "Flexible Clean", "Spiritual Home", "Good Vibes Only"] },
+      { "label": "Actually Means", "icon": "🔍", "items": ["It's Tiny", "Party House", "Never Cleans", "Sage at 6 AM", "No Complaints Pls"] },
+      { "label": "Tour Red Flag", "icon": "🚩", "items": ["Mystery Stain", "5 Locks on Door", "No Guest Policy", "Thermostat Locked", "Ring Cam Inside"] },
+      { "label": "Dealbreaker", "icon": "🙅", "items": ["Shared Bathroom", "Street Parking", "No Dishwasher", "Thin Walls", "Pet Restricted"] },
+      { "label": "Signed Anyway", "icon": "😩", "items": ["Rent Was Cheap", "Close to Work", "Nice Natural Light", "Desperate", "Ignored Red Flags"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-24",
+    "number": 82,
+    "prompt": "Build Your Online Shopping Addiction Confessional",
+    "rows": [
+      { "label": "Trigger", "icon": "📱", "items": ["Bored at 2 AM", "Instagram Ad Got Me", "Saw on TikTok", "Sale Notification", "Retail Therapy Need"] },
+      { "label": "Platform", "icon": "🛒", "items": ["Amazon Prime", "Shein Haul", "Target Drive Up", "Zara Online", "Temu Chaos"] },
+      { "label": "Justification", "icon": "🧠", "items": ["It Was on Sale", "I Deserve This", "Free Shipping Min", "Might Need It", "Investment Piece"] },
+      { "label": "Delivery Ritual", "icon": "📦", "items": ["Track Obsessively", "Forgot I Ordered", "Open Immediately", "Hide from Partner", "Try On Fashion Show"] },
+      { "label": "Return Shame", "icon": "😬", "items": ["Never Returns", "Returns Everything", "Past Return Window", "Keeps Tags On", "Donates Instead"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-25",
+    "number": 83,
+    "prompt": "Build Your Fictional TV Town to Live In",
+    "rows": [
+      { "label": "Dream Town", "icon": "🏘️", "items": ["Stars Hollow", "Pawnee Indiana", "Schitt's Creek", "Greendale Campus", "Letterkenny"] },
+      { "label": "Nightmare Town", "icon": "😱", "items": ["Hawkins Indiana", "Westeros", "Gotham City", "Riverdale", "Sunnydale"] },
+      { "label": "Neighbor Want", "icon": "🏠", "items": ["Leslie Knope", "Phil Dunphy", "Lorelai Gilmore", "Ted Lasso", "Mr. Rogers"] },
+      { "label": "Neighbor Avoid", "icon": "🚫", "items": ["Walter White", "Cersei Lannister", "Dennis Reynolds", "Homelander", "Joffrey"] },
+      { "label": "Job There", "icon": "💼", "items": ["Paddy's Pub Staff", "Dunder Mifflin", "Sacred Heart Doc", "Central Perk Barista", "Bluth Company Yikes"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-26",
+    "number": 84,
+    "prompt": "Build the Worst Group Project Starter Pack",
+    "rows": [
+      { "label": "Your Role", "icon": "📋", "items": ["Does Everything", "Makes the Slides", "Moral Support", "Proofreader Only", "Name on It Only"] },
+      { "label": "That One Person", "icon": "👻", "items": ["Never in Chat", "Joins Night Before", "Sends Wrong File", "Did the Wrong Part", "Disappeared Fully"] },
+      { "label": "Communication", "icon": "💬", "items": ["Dead Group Chat", "Too Many Texts", "Email Chain (Why)", "Google Doc Chaos", "One Person Decides"] },
+      { "label": "Night Before", "icon": "🌙", "items": ["All-Nighter", "Panic Formatting", "Someone Crying", "Pizza Ordered", "It's Fine Energy"] },
+      { "label": "Presentation", "icon": "🎤", "items": ["Who's Going First", "Reads the Slides", "Wing It Master", "Technical Difficulty", "Prof Asks Questions"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-27",
+    "number": 85,
+    "prompt": "Build Your Chaotic Family Vacation Bingo",
+    "rows": [
+      { "label": "Car Moment", "icon": "🚗", "items": ["Wrong Exit Taken", "AC Fight", "Someone Carsick", "Forgot Charger", "Snack Rationing"] },
+      { "label": "Hotel Drama", "icon": "🏨", "items": ["Bed Assignments", "Someone Snores", "Lost the Key Card", "Ice Machine Quest", "Pool Too Cold"] },
+      { "label": "Restaurant Fight", "icon": "🍽️", "items": ["Too Expensive Here", "No One Agrees", "Kids Menu Only", "Waited 2 Hours", "Wrong Yelp Review"] },
+      { "label": "Activity Meltdown", "icon": "🎢", "items": ["Too Hot to Walk", "Closed When Arrive", "Lost a Kid Brief", "Souvenir Budget War", "Sunburn Day 1"] },
+      { "label": "Ride Home", "icon": "🏠", "items": ["Never Again", "Best Trip Ever", "Need Vacation From", "Check Credit Card", "Already Planning Next"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-28",
+    "number": 86,
+    "prompt": "Build Your Unhinged Spotify Wrapped Prediction",
+    "rows": [
+      { "label": "Top Artist", "icon": "🎤", "items": ["Taylor Swift", "Bad Bunny", "Drake", "The Weeknd", "SZA"] },
+      { "label": "Guilty Top Song", "icon": "🫣", "items": ["A Disney Song", "TikTok Sound", "Ex's Fave Song", "Kidz Bop Track", "One on Repeat"] },
+      { "label": "Listening Mood", "icon": "🎭", "items": ["Sad Girl Autumn", "Rage Playlist", "Main Character", "Gym Bro Arc", "Chill Lofi"] },
+      { "label": "Minutes Listened", "icon": "⏱️", "items": ["Top 0.5%", "Embarrassingly High", "More Than Sleep", "Fell Asleep Playing", "On All Day"] },
+      { "label": "Wrapped Reaction", "icon": "📊", "items": ["Post Immediately", "Hide in Shame", "Lie About It", "Blame the Kids", "Make It Aesthetic"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-29",
+    "number": 87,
+    "prompt": "Build Your 4th of July Pregame Starter Pack",
+    "rows": [
+      { "label": "Outfit Choice", "icon": "🇺🇸", "items": ["Flag Tank Top", "Red White & Blue", "Old Navy Tee", "USA Sunglasses", "Just Wore Shorts"] },
+      { "label": "Cooler Essential", "icon": "🧊", "items": ["White Claw", "Bud Light", "Truly", "Capri Sun (Adult?)", "Watermelon Seltzer"] },
+      { "label": "Firework Take", "icon": "🎆", "items": ["Love Them", "Hate the Noise", "Dog Is Panicking", "Seen Better", "Where Are They"] },
+      { "label": "BBQ Debate", "icon": "🌭", "items": ["Hot Dog a Sandwich?", "Ketchup Age Limit?", "Charcoal vs Gas", "Burger Doneness", "Corn Butter Method"] },
+      { "label": "Post 10 PM Vibe", "icon": "🌙", "items": ["Sparkler Photos", "Bug Bites Already", "Food Coma Hard", "Kids Still Up", "Neighbor Still Loud"] }
+    ]
+  },
+  {
+    "gameId": "2026-06-30",
+    "number": 88,
+    "prompt": "Build Your Chaotic 2026 Midyear Review",
+    "rows": [
+      { "label": "Jan Resolution", "icon": "📝", "items": ["Gym 5x/Week", "Read 52 Books", "Save Money", "Learn to Cook", "Less Screen Time"] },
+      { "label": "June Reality", "icon": "😅", "items": ["Gym 5x Total", "Read 2 Books", "Spent More", "Ordered DoorDash", "Screen Time Up 40%"] },
+      { "label": "Unexpected Win", "icon": "🏆", "items": ["Got a Raise", "New Friend Group", "Found a Show", "Started Therapy", "Cooked Twice"] },
+      { "label": "Plot Twist", "icon": "🎭", "items": ["Situationship", "Job Change", "Moved Cities", "Got a Pet", "Went Viral"] },
+      { "label": "H2 Energy", "icon": "⚡", "items": ["This Is My Year", "Lower the Bar", "Just Survive", "Hot Girl Fall", "New Year New Plan"] }
+    ]
+  },
+  {
+    "gameId": "2026-07-01",
+    "number": 89,
+    "prompt": "Build Your Terrible Vacation Reply Email",
+    "rows": [
+      { "label": "Opening Line", "icon": "📧", "items": ["I Am OOO", "Thanks for Writing", "Currently Offline", "On Holiday Until", "Hello! I'm Away"] },
+      { "label": "Redirect To", "icon": "👉", "items": ["Nobody Lol", "Person Who Quit", "My Nemesis", "The Intern", "Google It"] },
+      { "label": "Real Status", "icon": "🏖️", "items": ["Checking Email Anyway", "Phone in Pool", "Working Secretly", "Fully Unplugged", "Lost WiFi (Bliss)"] },
+      { "label": "Return Dread", "icon": "😰", "items": ["847 Emails", "Forgot My Password", "Meetings Stacked", "Did They Miss Me?", "Should I Just Quit"] },
+      { "label": "Lie in Reply", "icon": "🤥", "items": ["Limited Access", "Remote Area", "Checking Sporadically", "Emergency Only", "Will Reply ASAP (Won't)"] }
+    ]
+  },
+  {
+    "gameId": "2026-07-02",
+    "number": 90,
+    "prompt": "Build Your Ultimate Summer Anthem Bracket",
+    "rows": [
+      { "label": "All-Time Classic", "icon": "🏆", "items": ["Summertime - Will", "Cruel Summer", "California Gurls", "Hot in Herre", "Summer of 69"] },
+      { "label": "2000s Banger", "icon": "📀", "items": ["Crazy in Love", "Yeah! - Usher", "In Da Club", "Toxic - Britney", "Hey Ya!"] },
+      { "label": "2010s Anthem", "icon": "📱", "items": ["Blinding Lights", "Despacito", "Uptown Funk", "Can't Stop Feeling", "Old Town Road"] },
+      { "label": "Sleeper Hit", "icon": "🌙", "items": ["Tequila Sunrise", "Stolen Dance", "Electric Feel", "Riptide", "Island in the Sun"] },
+      { "label": "Car Window Down", "icon": "🚗", "items": ["Don't Stop Believin", "Mr. Brightside", "Sweet Caroline", "Shut Up and Dance", "Stacy's Mom"] }
+    ]
   }
 ]
