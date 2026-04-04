@@ -615,44 +615,26 @@ const FIREBASE_CONFIG = {
 
 // ┌──────────────────────────────────────────────────────┐
 // │  2. TODAY'S GAME                                      │
-// │  Swap this out each day with a new theme.             │
-// │  gameId must be unique per day (use the date).        │
+// │  Loaded automatically from prompts.json by date.      │
 // └──────────────────────────────────────────────────────┘
-const TODAY = {
-  gameId: "2026-04-07",        // unique ID — use the date
-  number: 1,                    // game number (increment daily)
-  prompt: "Build Your Dream Rewatch Lineup",
-  rows: [
-    {
-      label: "Action",
-      icon: "💥",
-      items: ["The Dark Knight", "John Wick", "Top Gun: Maverick", "Die Hard", "Fast & Furious"]
-    },
-    {
-      label: "Comedy",
-      icon: "😂",
-      items: ["Superbad", "The Hangover", "Bridesmaids", "Dumb & Dumber", "Napoleon Dynamite"]
-    },
-    {
-      label: "Animated",
-      icon: "✨",
-      items: ["The Lion King", "Shrek", "Finding Nemo", "Toy Story", "Monsters Inc."]
-    },
-    {
-      label: "Drama",
-      icon: "🎭",
-      items: ["Shawshank Redemption", "Forrest Gump", "Titanic", "Good Will Hunting", "The Notebook"]
-    },
-    {
-      label: "Thriller",
-      icon: "😱",
-      items: ["Get Out", "A Quiet Place", "Jaws", "Scream", "Beetlejuice"]
-    }
-  ]
-};
+let TODAY = null;
 
 const COSTS = [5, 4, 3, 2, 1];
 const BUDGET = 15;
+
+async function loadTodaysPrompt() {
+  const res = await fetch('prompts.json');
+  const prompts = await res.json();
+  // Get today's date in Pacific Time
+  const ptDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  const todayStr = ptDate.getFullYear() + '-' + String(ptDate.getMonth() + 1).padStart(2, '0') + '-' + String(ptDate.getDate()).padStart(2, '0');
+  // Find today's prompt, or the most recent past prompt
+  TODAY = prompts.find(p => p.gameId === todayStr);
+  if (!TODAY) {
+    const past = prompts.filter(p => p.gameId <= todayStr).sort((a, b) => b.gameId.localeCompare(a.gameId));
+    TODAY = past[0] || prompts[0];
+  }
+}
 </script>
 
 <!-- ════════════════════════════════════════════════════════ -->
@@ -859,6 +841,9 @@ async function init() {
   }
 
   try {
+    // Load today's prompt from prompts.json
+    await loadTodaysPrompt();
+
     firebase.initializeApp(FIREBASE_CONFIG);
     db = firebase.firestore();
     auth = firebase.auth();
