@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hivemind — Build Your Team</title>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Franklin:wght@700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --text-sec: #6b6b6b;
+    --border: #e0e0e0;
+    --border-lt: #f0f0f0;
+    --accent: #d4a843;
+    --accent-bg: #faf5e8;
+    --sel: #1a1a1a;
+    --sel-text: #ffffff;
+    --dis: #f5f5f5;
+    --dis-text: #c0c0c0;
+    --green: #3a8a5c;
+    --green-bg: #e8f5ee;
+    --hover: #f8f8f8;
+    --orange: #c4841d;
+    --red: #c0392b;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* ─── Screens ─── */
+  .screen { display: none; min-height: 100vh; min-height: 100dvh; }
+  .screen.active { display: flex; flex-direction: column; align-items: center; }
+
+  /* ─── Header (shared) ─── */
+  .hdr {
+    width: 100%;
+    text-align: center;
+    padding: 16px 20px 0;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .hdr-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px; }
+  .hdr-logo {
+    width: 24px; height: 24px;
+  }
+  .hdr-brand {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hdr h1 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 1px;
+  }
+  .hdr .sub { font-size: 12px; color: var(--text-sec); }
+  .hdr .date { font-size: 11px; color: var(--text-sec); padding: 10px 0; }
+
+  /* ─── Welcome / Name Screen ─── */
+  .welcome {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .welcome-icon { font-size: 48px; margin-bottom: 16px; }
+  .welcome h2 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  .welcome p {
+    font-size: 14px;
+    color: var(--text-sec);
+    max-width: 340px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+  .name-input {
+    width: 260px;
+    padding: 14px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .name-input:focus { border-color: var(--text); }
+  .name-input::placeholder { color: #bbb; }
+  .start-btn {
+    margin-top: 16px;
+    padding: 14px 48px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    background: var(--dis);
+    color: var(--dis-text);
+    transition: all 0.2s;
+  }
+  .start-btn.ready { background: var(--text); color: var(--sel-text); }
+  .start-btn.ready:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+
+  /* ─── Game Screen ─── */
+  .game-body {
+    width: 100%;
+    max-width: 580px;
+    padding: 0 12px 100px;
+    flex: 1;
+  }
+
+  /* Question */
+  .q-banner {
+    text-align: center;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    background: var(--accent-bg);
+    border-radius: 10px;
+    border: 1px solid rgba(212,168,67,0.2);
+  }
+  .q-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  /* Budget */
+  .budget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid var(--border-lt);
+  }
+  .budget-lbl { font-size: 12px; font-weight: 500; color: var(--text-sec); }
+  .budget-val {
+    font-size: 20px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+  }
+  .budget-val.ok { color: var(--text); }
+  .budget-val.warn { color: var(--orange); }
+  .budget-val.done { color: var(--green); }
+
+  /* Grid */
+  .col-hdr {
+    display: grid;
+    grid-template-columns: 80px repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .col-hdr span {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 0;
+    background: #fafafa;
+    border-radius: 6px;
+  }
+  .col-hdr span:first-child { background: none; }
+
+  .g-row {
+    display: grid;
+    grid-template-columns: 80px repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 5px;
+    animation: slideUp 0.25s ease backwards;
+  }
+  .g-row:nth-child(1) { animation-delay: .03s; }
+  .g-row:nth-child(2) { animation-delay: .06s; }
+  .g-row:nth-child(3) { animation-delay: .09s; }
+  .g-row:nth-child(4) { animation-delay: .12s; }
+  .g-row:nth-child(5) { animation-delay: .15s; }
+
+  .r-label {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-left: 2px;
+    gap: 4px;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .r-label.done { color: var(--green); }
+
+  .cell {
+    text-align: center;
+    padding: 12px 4px;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.12s ease;
+    background: var(--bg);
+    line-height: 1.25;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cell:hover:not(.dis):not(.sel) {
+    background: var(--hover);
+    border-color: #ccc;
+  }
+  .cell.sel {
+    background: var(--sel);
+    color: var(--sel-text);
+    border-color: var(--sel);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .cell.sel .c-cost { color: rgba(255,255,255,0.5); }
+  .cell.dis {
+    background: var(--dis);
+    color: var(--dis-text);
+    border-color: var(--dis);
+    cursor: not-allowed;
+  }
+  .cell.dis .c-cost { color: var(--dis-text); }
+  .c-text { display: block; margin-bottom: 1px; }
+  .c-cost { display: block; font-size: 9px; color: var(--text-sec); font-weight: 600; }
+
+  /* Submit (sticky) */
+  .submit-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-lt);
+    text-align: center;
+    z-index: 50;
+  }
+  .sub-btn {
+    width: 100%;
+    max-width: 360px;
+    padding: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--dis);
+    color: var(--dis-text);
+  }
+  .sub-btn.ready { background: var(--text); color: white; }
+  .sub-btn.ready:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  .sub-btn:disabled { cursor: not-allowed; }
+  .sub-info {
+    font-size: 11px;
+    color: var(--text-sec);
+    margin-top: 4px;
+  }
+
+  /* ─── Already Played Screen ─── */
+  .already-played-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    max-width: 420px;
+  }
+  .already-played-body h2 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .already-played-body p {
+    font-size: 14px;
+    color: var(--text-sec);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .see-results-btn {
+    padding: 14px 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    background: var(--text);
+    color: white;
+    transition: all 0.2s;
+  }
+  .see-results-btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+
+  /* ─── Results Screen ─── */
+  .results-body {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px 16px 40px;
+    flex: 1;
+  }
+
+  .score-hero {
+    text-align: center;
+    padding: 24px 0 20px;
+  }
+  .score-big {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .score-max { font-size: 14px; color: var(--text-sec); font-weight: 500; }
+  .score-rank {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .res-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-sec);
+    padding: 14px 0 8px;
+    border-bottom: 1px solid var(--border-lt);
+  }
+
+  .res-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-lt);
+    animation: slideUp 0.3s ease backwards;
+  }
+  .res-row:nth-child(2) { animation-delay: .05s; }
+  .res-row:nth-child(3) { animation-delay: .1s; }
+  .res-row:nth-child(4) { animation-delay: .15s; }
+  .res-row:nth-child(5) { animation-delay: .2s; }
+  .res-row:nth-child(6) { animation-delay: .25s; }
+
+  .res-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+  .res-cat {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-sec);
+    width: 56px;
+    flex-shrink: 0;
+  }
+  .res-pick {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .res-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .pop-bar {
+    width: 50px;
+    height: 4px;
+    background: var(--border-lt);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pop-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease 0.3s; }
+  .pop-pct {
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    width: 36px;
+    text-align: right;
+  }
+  .pop-pct.hi { color: var(--green); }
+  .pop-pct.mid { color: var(--orange); }
+  .pop-pct.lo { color: var(--red); }
+
+  /* Most popular picks */
+  .popular-pick {
+    font-size: 11px;
+    color: var(--text-sec);
+    margin-top: 2px;
+  }
+  .popular-pick strong { color: var(--text); font-weight: 600; }
+
+
+  /* Player count */
+  .player-count {
+    text-align: center;
+    margin: 16px 0;
+    font-size: 12px;
+    color: var(--text-sec);
+  }
+  .player-count strong { color: var(--text); }
+
+  /* Share / actions */
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .act-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid var(--border);
+    border-radius: 40px;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.15s;
+  }
+  .act-btn:hover { background: #f5f5f5; }
+  .act-btn.primary { background: var(--text); color: white; border-color: var(--text); }
+  .act-btn.primary:hover { background: #333; }
+
+  /* ─── How to play ─── */
+  .htp-btn {
+    display: inline-block;
+    margin: 10px auto 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-sec);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    cursor: pointer;
+  }
+  .htp-btn:hover { background: #f8f8f8; }
+  .htp-panel {
+    display: none;
+    text-align: left;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid var(--border-lt);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-sec);
+  }
+  .htp-panel.show { display: block; }
+  .htp-panel strong { color: var(--text); }
+  .htp-rule { display: flex; gap: 8px; margin-bottom: 6px; }
+  .htp-num {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--text);
+    color: white;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+
+  /* ─── Loading ─── */
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 14px;
+    color: var(--text-sec);
+  }
+  .spinner {
+    width: 24px; height: 24px;
+    border: 2.5px solid var(--border);
+    border-top-color: var(--text);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 10px;
+  }
+
+  /* ─── Error / Setup ─── */
+  .setup-msg {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+  .setup-msg h2 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .setup-msg code {
+    display: block;
+    text-align: left;
+    background: #f5f5f5;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin: 16px 0;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  @keyframes slideUp {
+    0% { transform: translateY(6px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.92); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @media (max-width: 420px) {
+    .col-hdr, .g-row {
+      grid-template-columns: 62px repeat(5, 1fr);
+      gap: 3px;
+    }
+    .cell { padding: 10px 3px; font-size: 10px; }
+    .r-label { font-size: 9px; }
+    .hdr h1 { font-size: 20px; }
+    .q-text { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     CONFIGURATION — Edit the sections below to customize
+     ════════════════════════════════════════════════════════ -->
+<script>
+// ┌──────────────────────────────────────────────────────┐
+// │  1. FIREBASE CONFIG                                   │
+// │  Replace with YOUR Firebase project config.           │
+// │  See setup guide at bottom of this file.              │
+// └──────────────────────────────────────────────────────┘
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBn-n5b1tSHYUGZpzPkgex76rGWJ9NApLY",
+  authDomain: "hivemind-game-ab3f1.firebaseapp.com",
+  projectId: "hivemind-game-ab3f1",
+  storageBucket: "hivemind-game-ab3f1.firebasestorage.app",
+  messagingSenderId: "647955968736",
+  appId: "1:647955968736:web:61c84a87b4be6129149685",
+  measurementId: "G-TPCLBEHRYK"
+};
+
+// ┌──────────────────────────────────────────────────────┐
+// │  2. TODAY'S GAME                                      │
+// │  Swap this out each day with a new theme.             │
+// │  gameId must be unique per day (use the date).        │
+// └──────────────────────────────────────────────────────┘
+const TODAY = {
+  gameId: "2026-04-07",        // unique ID — use the date
+  number: 1,                    // game number (increment daily)
+  prompt: "Build Your Dream Rewatch Lineup",
+  rows: [
+    {
+      label: "Action",
+      icon: "💥",
+      items: ["The Dark Knight", "John Wick", "Top Gun: Maverick", "Die Hard", "Fast & Furious"]
+    },
+    {
+      label: "Comedy",
+      icon: "😂",
+      items: ["Superbad", "The Hangover", "Bridesmaids", "Dumb & Dumber", "Napoleon Dynamite"]
+    },
+    {
+      label: "Animated",
+      icon: "✨",
+      items: ["The Lion King", "Shrek", "Finding Nemo", "Toy Story", "Monsters Inc."]
+    },
+    {
+      label: "Drama",
+      icon: "🎭",
+      items: ["Shawshank Redemption", "Forrest Gump", "Titanic", "Good Will Hunting", "The Notebook"]
+    },
+    {
+      label: "Thriller",
+      icon: "😱",
+      items: ["Get Out", "A Quiet Place", "Jaws", "Scream", "Beetlejuice"]
+    }
+  ]
+};
+
+const COSTS = [5, 4, 3, 2, 1];
+const BUDGET = 15;
+</script>
+
+<!-- ════════════════════════════════════════════════════════ -->
+
+<!-- Loading -->
+<div class="screen active" id="loadingScreen">
+  <div class="loading"><div class="spinner"></div>Loading...</div>
+</div>
+
+<!-- Setup needed -->
+<div class="screen" id="setupScreen">
+  <div class="setup-msg">
+    <h2>Firebase Setup Needed</h2>
+    <p>To play with friends, you need to connect a (free) Firebase project. It takes about 3 minutes.</p>
+    <p><strong>Quick steps:</strong></p>
+    <p style="text-align:left; max-width: 400px; margin: 0 auto;">
+      1. Go to <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a><br>
+      2. Click "Add project" and give it a name<br>
+      3. Go to Project Settings → General → scroll to "Your apps" → click the web icon (&lt;/&gt;)<br>
+      4. Register the app (any name) and copy the config object<br>
+      5. Paste the values into the FIREBASE_CONFIG at the top of this file<br>
+      6. In the Firebase console, go to Authentication → Sign-in method → Enable "Anonymous"<br>
+      7. Go to Firestore Database → Create database → Start in test mode<br>
+      8. Refresh this page!
+    </p>
+  </div>
+</div>
+
+<!-- Welcome -->
+<div class="screen" id="welcomeScreen">
+  <div class="hdr">
+    <div class="hdr-row">
+      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
+        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
+      </svg>
+      <span class="hdr-brand">Hivemind</span>
+    </div>
+    <h1>Build Your Team</h1>
+    <div class="sub day-label"></div>
+    <div class="date">No. <span id="wGameNum"></span></div>
+  </div>
+  <div class="welcome">
+    <div class="welcome-icon">🧠</div>
+    <h2>Think Like the Crowd</h2>
+    <p>Pick one item from each row. You have $15. The more popular your picks, the higher your score. Can you predict what everyone else will choose?</p>
+    <button class="start-btn ready" onclick="launchGame()">Let's Go</button>
+  </div>
+</div>
+
+<!-- Game -->
+<div class="screen" id="gameScreen">
+  <div class="hdr">
+    <div class="hdr-row">
+      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
+        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
+      </svg>
+      <span class="hdr-brand">Hivemind</span>
+    </div>
+    <h1>Build Your Team</h1>
+    <div class="sub day-label"></div>
+    <div class="date">No. <span id="gGameNum"></span></div>
+  </div>
+  <div class="game-body">
+    <div style="text-align:center">
+      <button class="htp-btn" onclick="document.getElementById('htpPanel').classList.toggle('show')">How to play</button>
+    </div>
+    <div class="htp-panel" id="htpPanel">
+      <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Each column costs $5 → $1.</span></div>
+      <div class="htp-rule"><span class="htp-num">2</span><span>Spend exactly <strong>$15</strong>. Options you can't afford gray out.</span></div>
+      <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score by rank.</strong> Most popular pick in each row = 5 pts, next = 4, down to 1. Max score: 25!</span></div>
+    </div>
+
+    <div class="q-banner">
+      <div class="q-label">Today's Prompt</div>
+      <div class="q-text" id="promptText"></div>
+    </div>
+
+    <div class="budget">
+      <span class="budget-lbl">Budget remaining</span>
+      <span class="budget-val ok" id="budgetVal">$15</span>
+    </div>
+
+    <div class="col-hdr">
+      <span></span><span>$5</span><span>$4</span><span>$3</span><span>$2</span><span>$1</span>
+    </div>
+    <div id="gridBody"></div>
+  </div>
+
+  <div class="submit-wrap">
+    <button class="sub-btn" id="subBtn" disabled onclick="submitPicks()">Submit Picks</button>
+    <div class="sub-info" id="subInfo">0 of 5 selected</div>
+  </div>
+</div>
+
+<!-- Already played -->
+<div class="screen" id="alreadyScreen">
+  <div class="hdr">
+    <div class="hdr-row">
+      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
+        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
+      </svg>
+      <span class="hdr-brand">Hivemind</span>
+    </div>
+    <h1>Build Your Team</h1>
+    <div class="sub day-label"></div>
+    <div class="date">No. <span id="aGameNum"></span></div>
+  </div>
+  <div class="already-played-body">
+    <div style="font-size:48px; margin-bottom:16px;">✅</div>
+    <h2>You've already played today!</h2>
+    <p>Scores shift as more people play throughout the day. Results lock tomorrow. Check the live standings!</p>
+    <button class="see-results-btn" onclick="showResultsFromCache()">See Current Results</button>
+  </div>
+</div>
+
+<!-- Results -->
+<div class="screen" id="resultsScreen">
+  <div class="hdr">
+    <div class="hdr-row">
+      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
+        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
+      </svg>
+      <span class="hdr-brand">Hivemind</span>
+    </div>
+    <h1 id="resultsTitle">Nice picks!</h1>
+    <div class="sub day-label"></div>
+    <div class="date">No. <span id="rGameNum"></span></div>
+  </div>
+  <div class="results-body">
+    <div class="score-hero">
+      <div class="score-big" id="scoreBig">0</div>
+      <div class="score-max">out of <span id="scoreMaxLabel">25</span> points</div>
+      <div class="score-rank" id="scoreRank"></div>
+    </div>
+
+    <div style="text-align:center; margin: 8px 0 4px; padding: 8px 16px; background: var(--accent-bg); border-radius: 8px; border: 1px solid rgba(212,168,67,0.2);" id="scoreBanner">
+      <span style="font-size: 13px; color: var(--orange); font-weight: 500;" id="scoreBannerText">Score for now — rankings shift as more people play today</span>
+    </div>
+
+    <div class="player-count" id="playerCount"></div>
+
+    <div class="res-section-title">Your Picks</div>
+    <div id="resBreakdown"></div>
+
+    <div id="percentileBox" style="text-align:center; margin: 20px 0 8px; padding: 20px 16px; background: #fafafa; border-radius: 10px; border: 1px solid var(--border-lt);">
+      <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sec); margin-bottom: 8px;" id="percentileLabel">Your Percentile</div>
+      <div style="font-family: 'Libre Franklin', sans-serif; font-weight: 800; font-size: 36px; line-height: 1;" id="percentileVal">—</div>
+      <div style="font-size: 13px; color: var(--text-sec); margin-top: 6px;" id="percentileDesc"></div>
+    </div>
+
+    <div class="actions" id="resultsActions" style="display:none;">
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ─── State ───
+let db, auth, userId, playerName;
+let selections = Array(5).fill(null);
+let spent = 0;
+let cachedPicks = null; // store my picks for results re-view
+let cachedAllPicks = null;
+
+// ─── Play restriction (localStorage + Firebase) ───
+function hasPlayedLocally() {
+  return localStorage.getItem('hivemind_played_' + TODAY.gameId) === 'true';
+}
+function markPlayedLocally() {
+  localStorage.setItem('hivemind_played_' + TODAY.gameId, 'true');
+}
+
+// ─── Pacific Time helpers ───
+function getPTDate() {
+  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+}
+function getPTDateString() {
+  const d = getPTDate();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function getDayName(dateStr) {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const d = new Date(dateStr + 'T12:00:00');
+  return days[d.getDay()];
+}
+function isGameDayOver() {
+  return getPTDateString() > TODAY.gameId;
+}
+
+// ─── Init ───
+async function init() {
+  // Check Firebase config
+  if (!FIREBASE_CONFIG.apiKey) {
+    showScreen('setupScreen');
+    return;
+  }
+
+  try {
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.firestore();
+    auth = firebase.auth();
+
+    // Anonymous sign-in
+    const cred = await auth.signInAnonymously();
+    userId = cred.user.uid;
+
+    // Use "Player" as default name (no name prompt)
+    playerName = localStorage.getItem('hivemind_name') || 'Player';
+    localStorage.setItem('hivemind_name', playerName);
+
+    setGameNums();
+    setDayLabels();
+
+    // If game day has passed (after midnight PT), show final results
+    if (isGameDayOver()) {
+      const played = hasPlayedLocally() || await hasPlayed();
+      if (played) {
+        await computeAndShowResults(true); // true = final results
+      } else {
+        showScreen('alreadyScreen');
+        document.querySelector('.already-played-body h2').textContent = "Game day is over!";
+        document.querySelector('.already-played-body p').textContent = "Come back when a new game is posted.";
+        document.querySelector('.see-results-btn').style.display = 'none';
+      }
+      return;
+    }
+
+    // Check if already played today (localStorage first, then Firebase)
+    if (hasPlayedLocally()) {
+      showScreen('alreadyScreen');
+      return;
+    }
+    const played = await hasPlayed();
+    if (played) {
+      markPlayedLocally();
+      showScreen('alreadyScreen');
+    } else {
+      launchGame();
+    }
+  } catch (e) {
+    console.error('Firebase init error:', e);
+    showScreen('setupScreen');
+  }
+}
+
+function setGameNums() {
+  document.querySelectorAll('#wGameNum, #gGameNum, #aGameNum, #rGameNum').forEach(el => {
+    el.textContent = TODAY.number;
+  });
+}
+
+function setDayLabels() {
+  const dayName = getDayName(TODAY.gameId);
+  document.querySelectorAll('.day-label').forEach(el => {
+    el.textContent = dayName + "'s Question";
+  });
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+async function hasPlayed() {
+  try {
+    const doc = await db.collection('games').doc(TODAY.gameId)
+      .collection('picks').doc(userId).get();
+    if (doc.exists) {
+      cachedPicks = doc.data().selections;
+      return true;
+    }
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+// ─── Game ───
+function launchGame() {
+  document.getElementById('promptText').textContent = TODAY.prompt;
+  renderGrid();
+  showScreen('gameScreen');
+}
+
+function renderGrid() {
+  const body = document.getElementById('gridBody');
+  body.innerHTML = '';
+  TODAY.rows.forEach((row, ri) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'g-row';
+    rowEl.id = `row-${ri}`;
+
+    const label = document.createElement('div');
+    label.className = 'r-label';
+    label.id = `rlabel-${ri}`;
+    label.innerHTML = `<span>${row.icon}</span>${row.label}`;
+    rowEl.appendChild(label);
+
+    row.items.forEach((item, ci) => {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.id = `c-${ri}-${ci}`;
+      cell.innerHTML = `<span class="c-text">${item}</span><span class="c-cost">$${COSTS[ci]}</span>`;
+      cell.addEventListener('click', () => clickCell(ri, ci));
+      rowEl.appendChild(cell);
+    });
+    body.appendChild(rowEl);
+  });
+}
+
+function clickCell(ri, ci) {
+  const cell = document.getElementById(`c-${ri}-${ci}`);
+  if (cell.classList.contains('dis')) return;
+
+  selections[ri] = selections[ri] === ci ? null : ci;
+  spent = selections.reduce((s, v) => v === null ? s : s + COSTS[v], 0);
+  updateGrid();
+}
+
+function updateGrid() {
+  const remaining = BUDGET - spent;
+  const filled = selections.filter(s => s !== null).length;
+  const empty = 5 - filled;
+
+  TODAY.rows.forEach((row, ri) => {
+    const hasSel = selections[ri] !== null;
+    const label = document.getElementById(`rlabel-${ri}`);
+    label.classList.toggle('done', hasSel);
+
+    row.items.forEach((_, ci) => {
+      const cell = document.getElementById(`c-${ri}-${ci}`);
+      const cost = COSTS[ci];
+      const isSel = selections[ri] === ci;
+
+      cell.classList.remove('sel', 'dis');
+      if (isSel) {
+        cell.classList.add('sel');
+      } else if (hasSel) {
+        cell.classList.add('dis');
+      } else {
+        const futureRem = remaining - cost;
+        const otherEmpty = empty - 1;
+        if (cost > remaining || futureRem < otherEmpty) {
+          cell.classList.add('dis');
+        }
+      }
+    });
+  });
+
+  // Budget display
+  const bv = document.getElementById('budgetVal');
+  bv.textContent = `$${remaining}`;
+  bv.className = 'budget-val ' + (remaining === 0 ? 'done' : remaining <= 3 ? 'warn' : 'ok');
+
+  // Submit button
+  const btn = document.getElementById('subBtn');
+  const info = document.getElementById('subInfo');
+  const ready = filled === 5 && remaining === 0;
+  btn.classList.toggle('ready', ready);
+  btn.disabled = !ready;
+  info.textContent = `${filled} of 5 · $${spent} spent`;
+}
+
+async function submitPicks() {
+  if (selections.some(s => s === null)) return;
+
+  const btn = document.getElementById('subBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  try {
+    await db.collection('games').doc(TODAY.gameId)
+      .collection('picks').doc(userId).set({
+        name: playerName,
+        selections: selections.slice(),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+    cachedPicks = selections.slice();
+    markPlayedLocally();
+    await computeAndShowResults(false);
+  } catch (e) {
+    console.error('Submit error:', e);
+    btn.disabled = false;
+    btn.textContent = 'Submit Picks';
+    alert('Something went wrong — please try again.');
+  }
+}
+
+// ─── Results ───
+async function showResultsFromCache() {
+  await computeAndShowResults(isGameDayOver());
+}
+
+async function computeAndShowResults(isFinal) {
+  // Fetch ALL picks for this game
+  const snap = await db.collection('games').doc(TODAY.gameId)
+    .collection('picks').get();
+
+  const allPicks = [];
+  snap.forEach(doc => allPicks.push({ id: doc.id, ...doc.data() }));
+  cachedAllPicks = allPicks;
+
+  const total = allPicks.length;
+  const myPicks = cachedPicks || selections;
+
+  // Compute popularity per cell
+  const counts = TODAY.rows.map(() => Array(5).fill(0));
+  allPicks.forEach(p => {
+    p.selections.forEach((ci, ri) => {
+      counts[ri][ci]++;
+    });
+  });
+
+  // Rank items in each row by popularity (most popular = 5 pts)
+  // Ties share the lowest rank in the group so a clear winner always beats a tie
+  const rowRanks = counts.map(rowCounts => {
+    const indexed = rowCounts.map((c, i) => ({ idx: i, count: c }));
+    indexed.sort((a, b) => b.count - a.count);
+    const ranks = Array(5).fill(0);
+    let pos = 0;
+    while (pos < indexed.length) {
+      let end = pos + 1;
+      while (end < indexed.length && indexed[end].count === indexed[pos].count) end++;
+      const tiedScore = 5 - (end - 1); // Tied items get the worst rank in the group
+      for (let t = pos; t < end; t++) {
+        ranks[indexed[t].idx] = indexed[t].count > 0 ? tiedScore : 0;
+      }
+      pos = end;
+    }
+    return ranks;
+  });
+
+  // Calculate scores for everyone using rank-based scoring
+  const scores = allPicks.map(p => {
+    let score = 0;
+    p.selections.forEach((ci, ri) => {
+      score += rowRanks[ri][ci];
+    });
+    return { name: p.name, id: p.id, score };
+  });
+  scores.sort((a, b) => b.score - a.score);
+
+  // My score
+  let myScore = 0;
+  const breakdown = [];
+  myPicks.forEach((ci, ri) => {
+    const pts = rowRanks[ri][ci];
+    const pct = Math.round((counts[ri][ci] / total) * 100);
+    myScore += pts;
+
+    // Find most popular in this row
+    let maxIdx = 0;
+    counts[ri].forEach((c, i) => { if (c > counts[ri][maxIdx]) maxIdx = i; });
+    const topPct = Math.round((counts[ri][maxIdx] / total) * 100);
+
+    breakdown.push({
+      category: TODAY.rows[ri].label,
+      icon: TODAY.rows[ri].icon,
+      pick: TODAY.rows[ri].items[ci],
+      pts,
+      pct,
+      topPick: TODAY.rows[ri].items[maxIdx],
+      topPct
+    });
+  });
+
+  // Render results
+  const maxScore = 25;
+  const title = document.getElementById('resultsTitle');
+  if (myScore >= 23) title.textContent = "Hivemind Master!";
+  else if (myScore >= 18) title.textContent = "Great minds think alike!";
+  else if (myScore >= 13) title.textContent = "Not bad!";
+  else title.textContent = "Unique taste!";
+
+  document.getElementById('scoreMaxLabel').textContent = maxScore;
+
+  // Player count
+  document.getElementById('playerCount').innerHTML = `<strong>${total}</strong> player${total !== 1 ? 's' : ''} so far`;
+
+  // Animate score
+  const scoreBig = document.getElementById('scoreBig');
+  scoreBig.textContent = '0';
+  setTimeout(() => animateNumber(scoreBig, myScore), 200);
+
+  // Clear the old rank line (percentile box replaces it)
+  document.getElementById('scoreRank').textContent = '';
+
+  // Breakdown
+  const bd = document.getElementById('resBreakdown');
+  bd.innerHTML = '';
+  breakdown.forEach(item => {
+    const cls = item.pts >= 4 ? 'hi' : item.pts >= 3 ? 'mid' : 'lo';
+    const barColor = item.pts >= 4 ? 'var(--green)' : item.pts >= 3 ? 'var(--orange)' : 'var(--red)';
+    const isTop = item.pick === item.topPick;
+
+    bd.innerHTML += `
+      <div class="res-row">
+        <div class="res-left">
+          <span class="res-cat">${item.icon} ${item.category}</span>
+          <div>
+            <span class="res-pick">${item.pick}</span>
+            ${!isTop ? `<div class="popular-pick">Most popular: <strong>${item.topPick}</strong> (${item.topPct}%)</div>` : `<div class="popular-pick" style="color:var(--green)">Most popular pick!</div>`}
+          </div>
+        </div>
+        <div class="res-right">
+          <div class="pop-bar"><div class="pop-fill" style="width:0%;background:${barColor}" data-w="${item.pts * 20}%"></div></div>
+          <span class="pop-pct ${cls}">${item.pts}/5</span>
+        </div>
+      </div>`;
+  });
+
+  // Percentile
+  const myRankIdx = scores.findIndex(s => s.id === userId);
+  const percentile = myRankIdx >= 0 ? Math.round(((total - myRankIdx) / total) * 100) : 0;
+  const pctEl = document.getElementById('percentileVal');
+  const pctDesc = document.getElementById('percentileDesc');
+  const pctLabel = document.getElementById('percentileLabel');
+  pctLabel.textContent = isFinal ? 'Final Percentile' : 'Your Percentile';
+  pctEl.textContent = percentile + '%';
+  pctEl.style.color = percentile >= 75 ? 'var(--green)' : percentile >= 40 ? 'var(--orange)' : 'var(--red)';
+  if (percentile >= 90) pctDesc.textContent = `Top 10% — better than ${percentile}% of ${total} players`;
+  else if (percentile >= 75) pctDesc.textContent = `Strong showing — better than ${percentile}% of ${total} players`;
+  else if (percentile >= 50) pctDesc.textContent = `Above average — better than ${percentile}% of ${total} players`;
+  else pctDesc.textContent = `Better than ${percentile}% of ${total} players`;
+
+  // Update banner for final vs live results
+  const bannerText = document.getElementById('scoreBannerText');
+  if (isFinal) {
+    bannerText.textContent = "Final score — " + getDayName(TODAY.gameId) + "'s game is complete";
+    bannerText.style.color = 'var(--green)';
+  } else {
+    bannerText.textContent = 'Score for now — rankings shift as more people play today';
+    bannerText.style.color = 'var(--orange)';
+  }
+
+  showScreen('resultsScreen');
+
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.pop-fill').forEach(bar => {
+      bar.style.width = bar.dataset.w;
+    });
+  }, 300);
+}
+
+function animateNumber(el, target) {
+  let current = 0;
+  const step = Math.max(1, Math.floor(target / 25));
+  const interval = setInterval(() => {
+    current += step;
+    if (current >= target) { current = target; clearInterval(interval); }
+    el.textContent = current;
+  }, 30);
+}
+
+function resetGame() {
+  selections = Array(5).fill(null);
+  spent = 0;
+  renderGrid();
+  updateGrid();
+  document.getElementById('subBtn').textContent = 'Submit Picks';
+}
+
+// ─── Share ───
+function shareResults() {
+  if (!cachedPicks || !cachedAllPicks) return;
+
+  const total = cachedAllPicks.length;
+  const counts = TODAY.rows.map(() => Array(5).fill(0));
+  cachedAllPicks.forEach(p => {
+    p.selections.forEach((ci, ri) => { counts[ri][ci]++; });
+  });
+
+  // Rank items in each row by popularity (with tie handling)
+  const shareRanks = counts.map(rowCounts => {
+    const indexed = rowCounts.map((c, i) => ({ idx: i, count: c }));
+    indexed.sort((a, b) => b.count - a.count);
+    const ranks = Array(5).fill(0);
+    let pos = 0;
+    while (pos < indexed.length) {
+      let end = pos + 1;
+      while (end < indexed.length && indexed[end].count === indexed[pos].count) end++;
+      const tiedScore = 5 - (end - 1);
+      for (let t = pos; t < end; t++) {
+        ranks[indexed[t].idx] = indexed[t].count > 0 ? tiedScore : 0;
+      }
+      pos = end;
+    }
+    return ranks;
+  });
+
+  let score = 0;
+  const emojis = cachedPicks.map((ci, ri) => {
+    const pts = shareRanks[ri][ci];
+    score += pts;
+    if (pts >= 4) return '🟩';
+    if (pts >= 3) return '🟨';
+    return '🟥';
+  });
+
+  const text = `🧠 Hivemind: Build Your Team #${TODAY.number}\n\n${emojis.join('')}  ${score}/25\n\nThink you can beat me?`;
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.act-btn.primary');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    });
+  }
+}
+
+// ─── Boot ───
+init();
+</script>
+
+</body>
+</html>
