@@ -580,15 +580,32 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
-  @media (max-width: 420px) {
-    .col-hdr, .g-row {
-      grid-template-columns: 62px repeat(5, 1fr);
+  @media (max-width: 480px) {
+    .col-hdr {
+      grid-template-columns: repeat(5, 1fr);
       gap: 3px;
     }
-    .cell { padding: 10px 3px; font-size: 10px; }
-    .r-label { font-size: 9px; }
+    .col-hdr span:first-child { display: none; }
+    .g-row {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .r-label {
+      grid-column: 1 / -1;
+      font-size: 11px;
+      padding: 4px 0 2px;
+      justify-content: center;
+    }
+    .cell {
+      padding: 10px 4px;
+      font-size: 11px;
+      border-radius: 6px;
+    }
+    .c-cost { font-size: 8px; }
     .hdr h1 { font-size: 20px; }
     .q-text { font-size: 16px; }
+    .game-body { padding: 0 8px 100px; }
   }
 </style>
 </head>
