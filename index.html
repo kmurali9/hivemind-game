@@ -886,6 +886,34 @@ let cachedLock = null;
 // ─── Admin bypass ───
 const isAdmin = new URLSearchParams(window.location.search).get('admin') === '1';
 
+// ─── Analytics tracking ───
+let visitorTracked = false;
+
+function trackEvent(eventName) {
+  try {
+    if (!db || !TODAY) return;
+    db.collection('daily_events').doc(TODAY.gameId).set(
+      { [eventName]: firebase.firestore.FieldValue.increment(1) },
+      { merge: true }
+    );
+  } catch (e) { /* analytics should never block gameplay */ }
+}
+
+function trackUniqueVisitor() {
+  if (visitorTracked || !db || !TODAY || !userId) return;
+  visitorTracked = true;
+  try {
+    const visitorRef = db.collection('daily_events').doc(TODAY.gameId)
+      .collection('visitors').doc(userId);
+    visitorRef.get().then(doc => {
+      if (!doc.exists) {
+        visitorRef.set({ t: firebase.firestore.FieldValue.serverTimestamp() });
+        trackEvent('unique_visitors');
+      }
+    });
+  } catch (e) { /* silent */ }
+}
+
 // ─── Play restriction (localStorage + Firebase) ───
 function hasPlayedLocally() {
   if (isAdmin) return false;
@@ -931,6 +959,10 @@ async function init() {
     // Anonymous sign-in
     const cred = await auth.signInAnonymously();
     userId = cred.user.uid;
+
+    // Track page view + unique visitor
+    trackEvent('page_views');
+    trackUniqueVisitor();
 
     // Use "Player" as default name (no name prompt)
     playerName = localStorage.getItem('hivemind_name') || 'Player';
@@ -1081,6 +1113,7 @@ async function safeStartGame() {
     showScreen('alreadyScreen');
     return;
   }
+  trackEvent('game_starts');
   launchGame();
 }
 
@@ -1222,6 +1255,7 @@ async function submitPicks() {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
 
+    trackEvent('submissions');
     cachedPicks = selections.slice();
     cachedLock = lockedRow;
     markPlayedLocally();
@@ -1448,6 +1482,7 @@ async function computeAndShowResults(isFinal) {
     actions.innerHTML = '';
   }
 
+  trackEvent('results_views');
   showScreen('resultsScreen');
 
   // Animate bars
@@ -1487,6 +1522,7 @@ function resetGame() {
 // ─── Share ───
 function shareResults() {
   if (!cachedPicks || !cachedAllPicks) return;
+  trackEvent('shares');
 
   const total = cachedAllPicks.length;
   const counts = TODAY.rows.map(() => Array(5).fill(0));
