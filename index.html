@@ -1256,9 +1256,11 @@ async function computeAndShowResults(isFinal) {
       </div>`;
   });
 
-  // Percentile
-  const myRankIdx = scores.findIndex(s => s.id === userId);
-  const percentile = myRankIdx >= 0 ? Math.round(((total - myRankIdx) / total) * 100) : 0;
+  // Percentile (tie-aware: count how many scored strictly less than you)
+  const myScoreObj = scores.find(s => s.id === userId);
+  const myFinalScore = myScoreObj ? myScoreObj.score : 0;
+  const belowMe = scores.filter(s => s.score < myFinalScore).length;
+  const percentile = total > 0 ? Math.round((belowMe / total) * 100) : 0;
   const pctEl = document.getElementById('percentileVal');
   const pctDesc = document.getElementById('percentileDesc');
   const pctLabel = document.getElementById('percentileLabel');
