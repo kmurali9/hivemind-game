@@ -881,8 +881,12 @@ let cachedPicks = null;
 let cachedAllPicks = null;
 let cachedLock = null;
 
+// ─── Admin bypass ───
+const isAdmin = new URLSearchParams(window.location.search).get('admin') === '1';
+
 // ─── Play restriction (localStorage + Firebase) ───
 function hasPlayedLocally() {
+  if (isAdmin) return false;
   return localStorage.getItem('hivemind_played_' + TODAY.gameId) === 'true';
 }
 function markPlayedLocally() {
