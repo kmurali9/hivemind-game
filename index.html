@@ -747,8 +747,8 @@ async function loadTodaysPrompt() {
   <div class="welcome">
     <div class="welcome-icon">🧠</div>
     <h2>Think Like the Crowd</h2>
-    <p>Pick one item from each row. You have $15. The more popular your picks, the higher your score. Can you predict what everyone else will choose?</p>
-    <p style="font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 28px;">🔒 Use <em>It's a Lock</em> on one pick you're sure about — +3 if it's the #1 answer, −3 if it's not!</p>
+    <p>Pick one item from each row. You have $15 but can't afford all the best picks — choose wisely! The more popular your picks, the higher your score.</p>
+    <p style="font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 28px;">🔒 Hold any pick to lock it in — +3 if it's the #1 answer, −3 if it's not!</p>
     <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
 </div>
@@ -773,10 +773,10 @@ async function loadTodaysPrompt() {
       <button class="htp-btn" onclick="document.getElementById('htpPanel').classList.toggle('show')">How to play</button>
     </div>
     <div class="htp-panel" id="htpPanel">
-      <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Each column costs $5 → $1.</span></div>
-      <div class="htp-rule"><span class="htp-num">2</span><span>Spend exactly <strong>$15</strong>. Options you can't afford gray out.</span></div>
+      <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Items cost $5 → $1 (best to worst).</span></div>
+      <div class="htp-rule"><span class="htp-num">2</span><span>You have <strong>$15</strong> — not enough for all the best picks, so choose wisely!</span></div>
       <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> by picking the most popular answer. The more people who chose the same thing, the more points you get!</span></div>
-      <div class="htp-rule"><span class="htp-num">🔒</span><span><strong>It's a Lock</strong> — feeling confident? Lock one pick for a bonus. If it's the #1 most popular answer, <strong>+3 points</strong>. If not, <strong>−3 points</strong>. Use it once!</span></div>
+      <div class="htp-rule"><span class="htp-num">🔒</span><span><strong>Lock it in</strong> — hold any selected pick to lock it. If it's the #1 answer, <strong>+3 points</strong>. If not, <strong>−3 points</strong>. Hold again to unlock.</span></div>
     </div>
 
     <div class="q-banner">
@@ -790,8 +790,7 @@ async function loadTodaysPrompt() {
     </div>
 
     <div class="lock-wrap">
-      <button class="lock-btn" id="lockBtn" onclick="toggleLockMode()">🔒 It's a Lock</button>
-      <div class="lock-hint" id="lockHint">Use once — pick a cell you're sure everyone will choose. +3 if right, −3 if wrong!</div>
+      <div class="lock-hint" id="lockHint">Hold any selected pick to lock it. +3 if #1, −3 if not!</div>
     </div>
 
     <div class="col-hdr">
@@ -878,7 +877,6 @@ let db, auth, userId, playerName;
 let selections = Array(5).fill(null);
 let spent = 0;
 let lockedRow = null;       // which row (0-4) has the lock, or null
-let lockMode = false;       // true when user is choosing which cell to lock
 let cachedPicks = null;
 let cachedAllPicks = null;
 let cachedLock = null;
@@ -914,13 +912,64 @@ function trackUniqueVisitor() {
   } catch (e) { /* silent */ }
 }
 
-// ─── Play restriction (localStorage + Firebase) ───
+// ─── Play restriction (localStorage + cookie + Firebase) ───
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 86400000);
+  document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+}
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+
 function hasPlayedLocally() {
   if (isAdmin) return false;
-  return localStorage.getItem('hivemind_played_' + TODAY.gameId) === 'true';
+  const key = 'hivemind_played_' + TODAY.gameId;
+  // Check localStorage
+  if (localStorage.getItem(key) === 'true') return true;
+  // Check cookie
+  if (getCookie(key) === 'true') return true;
+  // Check sessionStorage (survives in-page navigations)
+  if (sessionStorage.getItem(key) === 'true') return true;
+  // Check IndexedDB-backed played list
+  const played = getPlayedGames();
+  if (played.includes(TODAY.gameId)) return true;
+  return false;
 }
 function markPlayedLocally() {
-  localStorage.setItem('hivemind_played_' + TODAY.gameId, 'true');
+  const key = 'hivemind_played_' + TODAY.gameId;
+  localStorage.setItem(key, 'true');
+  sessionStorage.setItem(key, 'true');
+  setCookie(key, 'true', 2);
+  addPlayedGame(TODAY.gameId);
+}
+
+// Persistent played-games list in cookie (survives localStorage clears)
+function getPlayedGames() {
+  try {
+    return JSON.parse(getCookie('hivemind_played_games') || '[]');
+  } catch { return []; }
+}
+function addPlayedGame(gameId) {
+  const games = getPlayedGames();
+  if (!games.includes(gameId)) {
+    games.push(gameId);
+    // Keep last 30 days only to avoid cookie size limits
+    while (games.length > 30) games.shift();
+    setCookie('hivemind_played_games', JSON.stringify(games), 30);
+  }
+}
+
+// Device fingerprint — persists across anonymous auth resets
+function getDeviceId() {
+  let did = localStorage.getItem('hivemind_device_id') || getCookie('hivemind_device_id');
+  if (!did) {
+    did = 'dev_' + Math.random().toString(36).substr(2, 12) + Date.now().toString(36);
+    localStorage.setItem('hivemind_device_id', did);
+  }
+  setCookie('hivemind_device_id', did, 365);
+  return did;
 }
 
 // ─── Pacific Time helpers ───
@@ -1021,10 +1070,23 @@ function showScreen(id) {
 async function hasPlayed() {
   if (isAdmin) return false;
   try {
+    // Check by userId first
     const doc = await db.collection('games').doc(TODAY.gameId)
       .collection('picks').doc(userId).get();
     if (doc.exists) {
       cachedPicks = doc.data().selections;
+      cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+      return true;
+    }
+    // Check by device ID (catches new anonymous UIDs on same device)
+    const deviceId = getDeviceId();
+    const byDevice = await db.collection('games').doc(TODAY.gameId)
+      .collection('picks').where('deviceId', '==', deviceId).limit(1).get();
+    if (!byDevice.empty) {
+      const d = byDevice.docs[0].data();
+      cachedPicks = d.selections;
+      cachedLock = d.lockedRow != null ? d.lockedRow : null;
+      markPlayedLocally();
       return true;
     }
     return false;
@@ -1143,53 +1205,51 @@ function renderGrid() {
       cell.id = `c-${ri}-${ci}`;
       cell.innerHTML = `<span class="c-text">${item}</span><span class="c-cost">$${COSTS[ci]}</span>`;
       cell.addEventListener('click', () => clickCell(ri, ci));
+      // Long-press to lock
+      let pressTimer = null;
+      const startPress = (e) => {
+        if (selections[ri] !== ci) return; // only lock selected cells
+        pressTimer = setTimeout(() => {
+          pressTimer = null;
+          toggleLock(ri, ci);
+        }, 500);
+      };
+      const endPress = () => { if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; } };
+      cell.addEventListener('touchstart', startPress, { passive: true });
+      cell.addEventListener('touchend', endPress);
+      cell.addEventListener('touchcancel', endPress);
+      cell.addEventListener('mousedown', startPress);
+      cell.addEventListener('mouseup', endPress);
+      cell.addEventListener('mouseleave', endPress);
       rowEl.appendChild(cell);
     });
     body.appendChild(rowEl);
   });
 }
 
-function toggleLockMode() {
-  const btn = document.getElementById('lockBtn');
+function toggleLock(ri, ci) {
   const hint = document.getElementById('lockHint');
-  if (lockedRow !== null) return; // already used
-
-  lockMode = !lockMode;
-  btn.classList.toggle('active', lockMode);
-  if (lockMode) {
-    hint.textContent = 'Now tap a selected cell to lock it in!';
-    hint.style.color = 'var(--accent)';
-  } else {
-    hint.textContent = 'Use once — pick a cell you\'re sure everyone will choose. +3 if right, −3 if wrong!';
+  if (lockedRow === ri) {
+    // Unlock
+    lockedRow = null;
+    hint.textContent = 'Hold any selected pick to lock it. +3 if #1, −3 if not!';
     hint.style.color = '';
+  } else {
+    // Lock this cell (replaces any existing lock)
+    lockedRow = ri;
+    hint.textContent = '🔒 Locked: ' + TODAY.rows[ri].items[ci] + ' — hold again to unlock';
+    hint.style.color = 'var(--accent)';
   }
+  updateGrid();
 }
 
 function clickCell(ri, ci) {
   const cell = document.getElementById(`c-${ri}-${ci}`);
   if (cell.classList.contains('dis')) return;
 
-  // If in lock mode, lock the tapped selected cell
-  if (lockMode && selections[ri] === ci) {
-    lockedRow = ri;
-    lockMode = false;
-    const btn = document.getElementById('lockBtn');
-    const hint = document.getElementById('lockHint');
-    btn.classList.remove('active');
-    btn.classList.add('used');
-    btn.textContent = '🔒 Locked: ' + TODAY.rows[ri].items[ci];
-    hint.textContent = '+3 if most popular, −3 if not. No takebacks!';
-    hint.style.color = 'var(--accent)';
-    updateGrid();
-    return;
-  }
-
-  // Can't deselect a locked cell
-  if (lockedRow === ri && selections[ri] === ci) return;
-  // If this row is locked, can't change the selection
-  if (lockedRow === ri) return;
-
   selections[ri] = selections[ri] === ci ? null : ci;
+  // If deselecting a locked row, unlock it
+  if (selections[ri] === null && lockedRow === ri) lockedRow = null;
   spent = selections.reduce((s, v) => v === null ? s : s + COSTS[v], 0);
   updateGrid();
 }
@@ -1233,7 +1293,7 @@ function updateGrid() {
   // Submit button
   const btn = document.getElementById('subBtn');
   const info = document.getElementById('subInfo');
-  const ready = filled === 5 && remaining === 0;
+  const ready = filled === 5;
   btn.classList.toggle('ready', ready);
   btn.disabled = !ready;
   info.textContent = `${filled} of 5 · $${spent} spent`;
@@ -1241,6 +1301,9 @@ function updateGrid() {
 
 async function submitPicks() {
   if (selections.some(s => s === null)) return;
+
+  // Mark played IMMEDIATELY to prevent double-submit on refresh
+  markPlayedLocally();
 
   const btn = document.getElementById('subBtn');
   btn.disabled = true;
@@ -1252,13 +1315,13 @@ async function submitPicks() {
         name: playerName,
         selections: selections.slice(),
         lockedRow: lockedRow,
+        deviceId: getDeviceId(),
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
 
     trackEvent('submissions');
     cachedPicks = selections.slice();
     cachedLock = lockedRow;
-    markPlayedLocally();
     localStorage.setItem('hivemind_picks_' + TODAY.gameId, JSON.stringify(cachedPicks));
     localStorage.setItem('hivemind_lock_' + TODAY.gameId, JSON.stringify(lockedRow));
     await computeAndShowResults(false);
@@ -1451,21 +1514,24 @@ async function computeAndShowResults(isFinal) {
       </div>`;
   });
 
-  // Percentile (tie-aware: count how many scored strictly less than you)
+  // Percentile (midpoint method: (below + 0.5 * tied) / total — stable with ties and small groups)
   const myScoreObj = scores.find(s => s.id === userId);
-  const myFinalScore = myScoreObj ? myScoreObj.score : 0;
+  const myFinalScore = myScoreObj ? myScoreObj.score : myScore;
   const belowMe = scores.filter(s => s.score < myFinalScore).length;
-  const percentile = total > 0 ? Math.round((belowMe / total) * 100) : 0;
+  const sameAsMe = scores.filter(s => s.score === myFinalScore).length;
+  const percentile = total <= 1 ? 100 : Math.round(((belowMe + 0.5 * (sameAsMe - 1)) / (total - 1)) * 100);
   const pctEl = document.getElementById('percentileVal');
   const pctDesc = document.getElementById('percentileDesc');
   const pctLabel = document.getElementById('percentileLabel');
   pctLabel.textContent = isFinal ? 'Final Percentile' : 'Your Percentile';
   pctEl.textContent = percentile + '%';
   pctEl.style.color = percentile >= 75 ? 'var(--green)' : percentile >= 40 ? 'var(--orange)' : 'var(--red)';
-  if (percentile >= 90) pctDesc.textContent = `Top 10% — better than ${percentile}% of ${total} players`;
-  else if (percentile >= 75) pctDesc.textContent = `Strong showing — better than ${percentile}% of ${total} players`;
-  else if (percentile >= 50) pctDesc.textContent = `Above average — better than ${percentile}% of ${total} players`;
-  else pctDesc.textContent = `Better than ${percentile}% of ${total} players`;
+  const rank = scores.findIndex(s => s.id === userId) + 1;
+  if (total <= 1) pctDesc.textContent = 'More players needed for ranking';
+  else if (percentile >= 90) pctDesc.textContent = `Top ${100 - percentile}% — #${rank} of ${total} players`;
+  else if (percentile >= 75) pctDesc.textContent = `Strong showing — #${rank} of ${total} players`;
+  else if (percentile >= 50) pctDesc.textContent = `Above average — #${rank} of ${total} players`;
+  else pctDesc.textContent = `#${rank} of ${total} players`;
 
   // Update banner for final vs live results
   const bannerText = document.getElementById('scoreBannerText');
@@ -1507,15 +1573,11 @@ function resetGame() {
   selections = Array(5).fill(null);
   spent = 0;
   lockedRow = null;
-  lockMode = false;
   renderGrid();
   updateGrid();
   document.getElementById('subBtn').textContent = 'Submit Picks';
-  const btn = document.getElementById('lockBtn');
-  btn.className = 'lock-btn';
-  btn.textContent = '🔒 It\'s a Lock';
   const hint = document.getElementById('lockHint');
-  hint.textContent = 'Use once — pick a cell you\'re sure everyone will choose. +3 if right, −3 if wrong!';
+  hint.textContent = 'Hold any selected pick to lock it. +3 if #1, −3 if not!';
   hint.style.color = '';
 }
 

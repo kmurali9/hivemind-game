@@ -42,8 +42,8 @@
         "icon": "🍕",
         "items": [
           "Ice Cream Pint",
-          "Hot Cheetos",
           "McDonald's Fries",
+          "Hot Cheetos",
           "Instant Ramen",
           "Frozen Pizza"
         ]
@@ -92,11 +92,11 @@
         "label": "Medic",
         "icon": "🩺",
         "items": [
-          "Sandra Oh",
-          "Dr. House",
           "Meredith Grey",
-          "Doc McStuffins",
-          "Dr. Strange"
+          "Sandra Oh",
+          "Dr. Strange",
+          "Dr. House",
+          "Doc McStuffins"
         ]
       },
       {
@@ -104,10 +104,10 @@
         "icon": "😂",
         "items": [
           "Kevin Hart",
-          "Awkwafina",
+          "Ryan Reynolds",
           "Jack Black",
-          "Tiffany Haddish",
-          "Ryan Reynolds"
+          "Awkwafina",
+          "Tiffany Haddish"
         ]
       },
       {
@@ -132,10 +132,10 @@
         "label": "Never Responds",
         "icon": "👻",
         "items": [
-          "Zendaya",
-          "Rihanna",
-          "Frank Ocean",
           "Beyoncé",
+          "Rihanna",
+          "Zendaya",
+          "Frank Ocean",
           "Keanu Reeves"
         ]
       },
@@ -177,10 +177,10 @@
         "icon": "👍",
         "items": [
           "Your Dad",
+          "Travis Kelce",
           "Timothée",
           "Bad Bunny",
-          "Billie Eilish",
-          "Travis Kelce"
+          "Billie Eilish"
         ]
       }
     ]
@@ -216,8 +216,8 @@
         "label": "3 AM Desperation",
         "icon": "🌙",
         "items": [
-          "Taco Bell",
           "McDonald's",
+          "Taco Bell",
           "Waffle House",
           "Jack in the Box",
           "Denny's"
@@ -279,9 +279,9 @@
         "icon": "🍽️",
         "items": [
           "Mac & Cheese",
-          "Cranberry Sauce",
           "Stuffing",
-          "Sweet Potatoes",
+          "Mashed Potatoes",
+          "Cranberry Sauce",
           "Green Bean Bake"
         ]
       },
@@ -289,20 +289,20 @@
         "label": "Escape Plan",
         "icon": "🚪",
         "items": [
+          "Food Coma Nap",
           "Walk the Dog",
           "Black Friday Prep",
-          "Dishes Volunteer",
           "Kids Table Vibes",
-          "Food Coma Nap"
+          "Dishes Volunteer"
         ]
       },
       {
         "label": "Peacemaker Food",
         "icon": "🕊️",
         "items": [
+          "Mashed Potatoes",
           "Pumpkin Pie",
           "Rolls & Butter",
-          "Mashed Potatoes",
           "Gravy Boat",
           "Leftover Plate"
         ]
@@ -319,10 +319,10 @@
         "icon": "😈",
         "items": [
           "Omarosa",
-          "Tiffany Pollard",
           "NeNe Leakes",
-          "Spencer Pratt",
-          "Bethenny Frankel"
+          "Tiffany Pollard",
+          "Bethenny Frankel",
+          "Spencer Pratt"
         ]
       },
       {
@@ -415,17 +415,17 @@
         "items": [
           "Breaking Bad",
           "Game of Thrones",
+          "The Last of Us",
           "Ozark",
-          "Yellowjackets",
-          "The Last of Us"
+          "Yellowjackets"
         ]
       },
       {
         "label": "Sun Comfort",
         "icon": "😌",
         "items": [
-          "Gilmore Girls",
           "Parks and Rec",
+          "Gilmore Girls",
           "New Girl",
           "Modern Family",
           "Selling Sunset"
@@ -442,11 +442,11 @@
         "label": "Breaking Point",
         "icon": "💢",
         "items": [
-          "Reply All Email",
           "Stolen Lunch",
-          "Loud Chewer",
+          "Reply All Email",
+          "No Raise Again",
           "CC'd the Boss",
-          "No Raise Again"
+          "Loud Chewer"
         ]
       },
       {
@@ -454,10 +454,10 @@
         "icon": "🎵",
         "items": [
           "Bad Guy - Billie",
-          "Villain - K/DA",
           "Toxic - Britney",
           "Power - Kanye",
-          "Run This Town"
+          "Run This Town",
+          "Villain - K/DA"
         ]
       },
       {
@@ -537,9 +537,9 @@
         "label": "Rebound App",
         "icon": "📲",
         "items": [
+          "Tinder",
           "Hinge",
           "Bumble",
-          "Tinder",
           "Raya",
           "LinkedIn (Chaos)"
         ]
@@ -548,11 +548,11 @@
         "label": "Villain Era Song",
         "icon": "🖤",
         "items": [
-          "Best Thing I Never",
           "Thank U Next",
           "Irreplaceable",
-          "Good as Hell",
-          "Since U Been Gone"
+          "Best Thing I Never",
+          "Since U Been Gone",
+          "Good as Hell"
         ]
       }
     ]
@@ -566,11 +566,11 @@
         "label": "Wake Up Song",
         "icon": "⏰",
         "items": [
-          "Good Morning",
+          "Here Comes the Sun",
           "Lovely Day",
+          "Good Morning",
           "Best Day of Life",
-          "Walking on Sun",
-          "Here Comes the Sun"
+          "Walking on Sun"
         ]
       },
       {
@@ -611,8 +611,8 @@
         "icon": "📱",
         "items": [
           "TikTok",
-          "Twitter/X",
           "Instagram",
+          "Twitter/X",
           "Email (Psycho)",
           "Wordle"
         ]
@@ -662,8 +662,8 @@
         "icon": "🍷",
         "items": [
           "Jennifer Coolidge",
-          "Kris Jenner",
           "Martha Stewart",
+          "Kris Jenner",
           "Drew Barrymore",
           "Cher"
         ]
@@ -764,9 +764,9 @@
         "icon": "🎵",
         "items": [
           "Lose Yourself",
+          "Till I Collapse",
           "Stronger - Kanye",
           "Eye of the Tiger",
-          "Till I Collapse",
           "HUMBLE."
         ]
       },
@@ -786,9 +786,9 @@
         "icon": "🥤",
         "items": [
           "Chicken & Rice",
+          "Chipotle Bowl",
           "Protein Shake",
           "Greek Yogurt",
-          "Chipotle Bowl",
           "Costco Chicken"
         ]
       },
@@ -825,11 +825,11 @@
         "label": "Drunk Uncle Bop",
         "icon": "🕺",
         "items": [
-          "Shout",
           "Sweet Caroline",
+          "Shout",
+          "September",
           "YMCA",
-          "Cotton Eye Joe",
-          "September"
+          "Cotton Eye Joe"
         ]
       },
       {
@@ -847,11 +847,11 @@
         "label": "Clear the Floor",
         "icon": "🏃",
         "items": [
-          "Macarena",
-          "Chicken Dance",
-          "Electric Slide",
           "Cha Cha Slide",
-          "Cupid Shuffle"
+          "Electric Slide",
+          "Macarena",
+          "Cupid Shuffle",
+          "Chicken Dance"
         ]
       },
       {
@@ -859,8 +859,8 @@
         "icon": "🔥",
         "items": [
           "Mr. Brightside",
-          "Bohemian Rhapsody",
           "Don't Stop Believin",
+          "Bohemian Rhapsody",
           "Livin on a Prayer",
           "Sweet Home Alabama"
         ]
@@ -938,11 +938,11 @@
         "label": "Delay Snack",
         "icon": "🍿",
         "items": [
+          "Cinnabon",
           "Overpriced Sushi",
           "$9 Water Bottle",
-          "Cinnabon",
-          "Trail Mix",
-          "Airport Bar Wings"
+          "Airport Bar Wings",
+          "Trail Mix"
         ]
       },
       {
@@ -971,11 +971,11 @@
         "label": "Power Move",
         "icon": "💪",
         "items": [
+          "First Class Bump",
           "Lounge Access",
           "Pre-Boarded",
           "Overhead Bin Win",
-          "Exit Row Flex",
-          "First Class Bump"
+          "Exit Row Flex"
         ]
       },
       {
@@ -1000,8 +1000,8 @@
         "label": "Point Guard",
         "icon": "🏀",
         "items": [
-          "Magic Johnson",
           "Steph Curry",
+          "Magic Johnson",
           "Chris Paul",
           "Isiah Thomas",
           "Steve Nash"
@@ -1034,10 +1034,10 @@
         "icon": "💪",
         "items": [
           "Tim Duncan",
+          "Giannis",
           "Kevin Garnett",
           "Charles Barkley",
-          "Karl Malone",
-          "Giannis"
+          "Karl Malone"
         ]
       },
       {
@@ -1158,10 +1158,10 @@
         "icon": "🛋️",
         "items": [
           "Weighted Blanket",
-          "Grandma's Quilt",
-          "Snuggie",
           "Heated Blanket",
-          "Stolen Hoodie"
+          "Grandma's Quilt",
+          "Stolen Hoodie",
+          "Snuggie"
         ]
       },
       {
@@ -1187,10 +1187,10 @@
         "icon": "🎤",
         "items": [
           "Nikki Glaser",
-          "Jeff Ross",
           "Kevin Hart",
-          "Tiffany Haddish",
-          "John Mulaney"
+          "Jeff Ross",
+          "John Mulaney",
+          "Tiffany Haddish"
         ]
       },
       {
@@ -1343,11 +1343,11 @@
         "label": "Crowd Killer",
         "icon": "💀",
         "items": [
+          "I Will Always Love",
           "My Heart Will Go On",
           "Total Eclipse",
-          "I Will Always Love",
-          "Creep - Radiohead",
-          "Hallelujah"
+          "Hallelujah",
+          "Creep - Radiohead"
         ]
       },
       {
@@ -1478,9 +1478,9 @@
         "label": "Sport to Watch",
         "icon": "📺",
         "items": [
+          "Super Bowl",
           "March Madness",
           "World Cup Final",
-          "Super Bowl",
           "NBA Playoffs",
           "Olympics Opening"
         ]
@@ -1569,11 +1569,11 @@
         "label": "2000s Classic",
         "icon": "📀",
         "items": [
-          "Fergalicious",
           "Hey Ya!",
           "Crazy in Love",
-          "In Da Club",
-          "Yeah! - Usher"
+          "Fergalicious",
+          "Yeah! - Usher",
+          "In Da Club"
         ]
       },
       {
@@ -1902,9 +1902,9 @@
         "icon": "🤖",
         "items": [
           "Baby Yoda",
+          "Chewbacca",
           "R2-D2",
           "BB-8",
-          "Chewbacca",
           "K-2SO"
         ]
       },
@@ -2116,10 +2116,10 @@
         "label": "Champion Show",
         "icon": "🏆",
         "items": [
-          "Squid Game",
           "Stranger Things",
-          "Ted Lasso",
+          "Squid Game",
           "The Last of Us",
+          "Ted Lasso",
           "House of Dragon"
         ]
       },
@@ -2129,9 +2129,9 @@
         "items": [
           "Peacock",
           "Paramount+",
-          "Apple TV+",
           "Discovery+",
-          "Tubi"
+          "Tubi",
+          "Apple TV+"
         ]
       },
       {
@@ -2212,10 +2212,10 @@
         "icon": "🥓",
         "items": [
           "Extra Bacon",
-          "Avocado Toast",
-          "Fruit Cup (Why)",
           "Hash Browns",
-          "Biscuits & Gravy"
+          "Biscuits & Gravy",
+          "Avocado Toast",
+          "Fruit Cup (Why)"
         ]
       },
       {
@@ -2240,10 +2240,10 @@
         "label": "Gift Tier",
         "icon": "🎁",
         "items": [
-          "Flowers Last Min",
           "Spa Gift Card",
-          "Homemade Card",
           "Brunch Reserv",
+          "Flowers Last Min",
+          "Homemade Card",
           "Forgot (RIP)"
         ]
       },
@@ -2264,8 +2264,8 @@
         "items": [
           "Cheesecake Factory",
           "That Fancy Place",
-          "Her Kitchen Again",
           "Olive Garden",
+          "Her Kitchen Again",
           "Cracker Barrel"
         ]
       },
@@ -2521,11 +2521,11 @@
         "label": "Hot Take",
         "icon": "🔥",
         "items": [
-          "Epcot is Best",
-          "Hollywood Studios",
-          "Magic Kingdom",
           "Genie+ is a Scam",
-          "Universal Better"
+          "Magic Kingdom",
+          "Epcot is Best",
+          "Universal Better",
+          "Hollywood Studios"
         ]
       },
       {
@@ -2583,10 +2583,10 @@
         "label": "Most Iconic Real",
         "icon": "👑",
         "items": [
-          "Apple Martin",
           "North West",
-          "X AE A-XII",
           "Blue Ivy",
+          "X AE A-XII",
+          "Apple Martin",
           "Stormi Webster"
         ]
       },
@@ -2674,10 +2674,10 @@
         "label": "Entry Level",
         "icon": "🔍",
         "items": [
-          "Bermuda Triangle",
           "Area 51",
-          "Bigfoot Maybe",
+          "Bermuda Triangle",
           "Mandela Effect",
+          "Bigfoot Maybe",
           "Mattress Firm???"
         ]
       },
@@ -3068,10 +3068,10 @@
         "label": "Video Game",
         "icon": "🎮",
         "items": [
-          "Club Penguin",
+          "Mario Kart",
           "Wii Sports",
           "Minecraft OG",
-          "Mario Kart",
+          "Club Penguin",
           "Webkinz"
         ]
       },
@@ -3400,10 +3400,10 @@
         "label": "Documentary Night",
         "icon": "🎬",
         "items": [
-          "Making a Murderer",
           "Tiger King",
-          "The Staircase",
+          "Making a Murderer",
           "Don't F With Cats",
+          "The Staircase",
           "Jinx"
         ]
       }
@@ -3421,8 +3421,8 @@
           "Celsius",
           "Red Bull",
           "Monster Ultra",
-          "Ghost Energy",
-          "Alani Nu"
+          "Alani Nu",
+          "Ghost Energy"
         ]
       },
       {
@@ -3936,9 +3936,9 @@
         "label": "Muscle",
         "icon": "💪",
         "items": [
+          "John Wick",
           "Luke Hobbs",
           "Black Widow",
-          "John Wick",
           "Mike Ehrmantraut",
           "Gamora"
         ]
@@ -3947,11 +3947,11 @@
         "label": "Getaway Driver",
         "icon": "🏎️",
         "items": [
-          "Baby Driver",
           "Dom Toretto",
+          "Baby Driver",
+          "Furiosa",
           "Jason Bourne",
-          "Han Seoul-Oh",
-          "Furiosa"
+          "Han Seoul-Oh"
         ]
       },
       {
@@ -4163,10 +4163,10 @@
         "icon": "💥",
         "items": [
           "Zendaya",
-          "Oscar Isaac",
           "Margot Robbie",
-          "John Boyega",
-          "Florence Pugh"
+          "Oscar Isaac",
+          "Florence Pugh",
+          "John Boyega"
         ]
       },
       {
@@ -4175,8 +4175,8 @@
         "items": [
           "Pedro Pascal",
           "Cate Blanchett",
-          "Javier Bardem",
           "Viola Davis",
+          "Javier Bardem",
           "Daniel Craig"
         ]
       },
@@ -4472,8 +4472,8 @@
         "label": "Gift Tier",
         "icon": "🎁",
         "items": [
-          "Tie (Again)",
           "Grill Accessories",
+          "Tie (Again)",
           "Golf Stuff",
           "World's Best Mug",
           "Literally a Card"
@@ -5115,10 +5115,10 @@
         "icon": "🏠",
         "items": [
           "Leslie Knope",
-          "Phil Dunphy",
-          "Lorelai Gilmore",
           "Ted Lasso",
-          "Mr. Rogers"
+          "Mr. Rogers",
+          "Phil Dunphy",
+          "Lorelai Gilmore"
         ]
       },
       {
@@ -5136,10 +5136,10 @@
         "label": "Job There",
         "icon": "💼",
         "items": [
-          "Paddy's Pub Staff",
           "Dunder Mifflin",
-          "Sacred Heart Doc",
           "Central Perk Job",
+          "Paddy's Pub Staff",
+          "Sacred Heart Doc",
           "Bluth Co. Yikes"
         ]
       }
@@ -5279,8 +5279,8 @@
         "icon": "🎤",
         "items": [
           "Taylor Swift",
-          "Bad Bunny",
           "Drake",
+          "Bad Bunny",
           "The Weeknd",
           "SZA"
         ]
@@ -5570,9 +5570,9 @@
         "label": "Car Window Down",
         "icon": "🚗",
         "items": [
-          "Shut Up and Dance",
-          "Flowers - Miley",
           "Blinding Lights",
+          "Flowers - Miley",
+          "Shut Up and Dance",
           "Levitating - Dua",
           "Good as Hell"
         ]
