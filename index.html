@@ -264,6 +264,50 @@
   .c-text { display: block; margin-bottom: 1px; }
   .c-cost { display: block; font-size: 9px; color: var(--text-sec); font-weight: 600; }
 
+  /* Lock */
+  .cell.sel.locked {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(212,168,67,0.35);
+  }
+  .cell.sel.locked .c-cost { color: rgba(255,255,255,0.6); }
+  .lock-wrap {
+    text-align: center;
+    margin: 10px 0 4px;
+  }
+  .lock-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--text-sec);
+    transition: all 0.15s;
+  }
+  .lock-btn:hover { background: #f5f5f5; }
+  .lock-btn.active {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .lock-btn.used {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .lock-hint {
+    font-size: 11px;
+    color: var(--text-sec);
+    margin-top: 4px;
+    text-align: center;
+  }
+
   /* Submit (sticky) */
   .submit-wrap {
     position: fixed;
@@ -743,6 +787,11 @@ async function loadTodaysPrompt() {
       <span class="budget-val ok" id="budgetVal">$15</span>
     </div>
 
+    <div class="lock-wrap">
+      <button class="lock-btn" id="lockBtn" onclick="toggleLockMode()">🔒 It's a Lock</button>
+      <div class="lock-hint" id="lockHint">Use once — pick a cell you're sure everyone will choose. +3 if right, −3 if wrong!</div>
+    </div>
+
     <div class="col-hdr">
       <span></span><span>$5</span><span>$4</span><span>$3</span><span>$2</span><span>$1</span>
     </div>
@@ -827,8 +876,11 @@ async function loadTodaysPrompt() {
 let db, auth, userId, playerName;
 let selections = Array(5).fill(null);
 let spent = 0;
-let cachedPicks = null; // store my picks for results re-view
+let lockedRow = null;       // which row (0-4) has the lock, or null
+let lockMode = false;       // true when user is choosing which cell to lock
+let cachedPicks = null;
 let cachedAllPicks = null;
+let cachedLock = null;
 
 // ─── Play restriction (localStorage + Firebase) ───
 function hasPlayedLocally() {
@@ -950,14 +1002,19 @@ async function showYesterdayFinalResults() {
   TODAY = YESTERDAY;
 
   const yPicks = localStorage.getItem('hivemind_picks_' + YESTERDAY.gameId);
+  const yLock = localStorage.getItem('hivemind_lock_' + YESTERDAY.gameId);
   if (yPicks) {
     cachedPicks = JSON.parse(yPicks);
+    cachedLock = yLock ? JSON.parse(yLock) : null;
   } else {
     // Try to fetch from Firebase
     try {
       const doc = await db.collection('games').doc(YESTERDAY.gameId)
         .collection('picks').doc(userId).get();
-      if (doc.exists) cachedPicks = doc.data().selections;
+      if (doc.exists) {
+        cachedPicks = doc.data().selections;
+        cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+      }
     } catch (e) {}
   }
 
@@ -1053,9 +1110,45 @@ function renderGrid() {
   });
 }
 
+function toggleLockMode() {
+  const btn = document.getElementById('lockBtn');
+  const hint = document.getElementById('lockHint');
+  if (lockedRow !== null) return; // already used
+
+  lockMode = !lockMode;
+  btn.classList.toggle('active', lockMode);
+  if (lockMode) {
+    hint.textContent = 'Now tap a selected cell to lock it in!';
+    hint.style.color = 'var(--accent)';
+  } else {
+    hint.textContent = 'Use once — pick a cell you\'re sure everyone will choose. +3 if right, −3 if wrong!';
+    hint.style.color = '';
+  }
+}
+
 function clickCell(ri, ci) {
   const cell = document.getElementById(`c-${ri}-${ci}`);
   if (cell.classList.contains('dis')) return;
+
+  // If in lock mode, lock the tapped selected cell
+  if (lockMode && selections[ri] === ci) {
+    lockedRow = ri;
+    lockMode = false;
+    const btn = document.getElementById('lockBtn');
+    const hint = document.getElementById('lockHint');
+    btn.classList.remove('active');
+    btn.classList.add('used');
+    btn.textContent = '🔒 Locked: ' + TODAY.rows[ri].items[ci];
+    hint.textContent = '+3 if most popular, −3 if not. No takebacks!';
+    hint.style.color = 'var(--accent)';
+    updateGrid();
+    return;
+  }
+
+  // Can't deselect a locked cell
+  if (lockedRow === ri && selections[ri] === ci) return;
+  // If this row is locked, can't change the selection
+  if (lockedRow === ri) return;
 
   selections[ri] = selections[ri] === ci ? null : ci;
   spent = selections.reduce((s, v) => v === null ? s : s + COSTS[v], 0);
@@ -1077,9 +1170,10 @@ function updateGrid() {
       const cost = COSTS[ci];
       const isSel = selections[ri] === ci;
 
-      cell.classList.remove('sel', 'dis');
+      cell.classList.remove('sel', 'dis', 'locked');
       if (isSel) {
         cell.classList.add('sel');
+        if (lockedRow === ri) cell.classList.add('locked');
       } else if (hasSel) {
         cell.classList.add('dis');
       } else {
@@ -1118,12 +1212,15 @@ async function submitPicks() {
       .collection('picks').doc(userId).set({
         name: playerName,
         selections: selections.slice(),
+        lockedRow: lockedRow,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
 
     cachedPicks = selections.slice();
+    cachedLock = lockedRow;
     markPlayedLocally();
     localStorage.setItem('hivemind_picks_' + TODAY.gameId, JSON.stringify(cachedPicks));
+    localStorage.setItem('hivemind_lock_' + TODAY.gameId, JSON.stringify(lockedRow));
     await computeAndShowResults(false);
   } catch (e) {
     console.error('Submit error:', e);
@@ -1149,6 +1246,7 @@ async function computeAndShowResults(isFinal) {
 
   const total = allPicks.length;
   const myPicks = cachedPicks || selections;
+  const myLock = cachedLock !== undefined ? cachedLock : lockedRow;
 
   // Compute popularity per cell
   const counts = TODAY.rows.map(() => Array(5).fill(0));
@@ -1177,28 +1275,43 @@ async function computeAndShowResults(isFinal) {
     return ranks;
   });
 
-  // Calculate scores for everyone using rank-based scoring
+  // Find most popular item index per row
+  const topIdxPerRow = counts.map(rowCounts => {
+    let maxIdx = 0;
+    rowCounts.forEach((c, i) => { if (c > rowCounts[maxIdx]) maxIdx = i; });
+    return maxIdx;
+  });
+
+  // Calculate scores for everyone using rank-based scoring + lock bonus
   const scores = allPicks.map(p => {
     let score = 0;
     p.selections.forEach((ci, ri) => {
       score += rowRanks[ri][ci];
     });
+    // Lock bonus/penalty
+    if (p.lockedRow != null) {
+      const lockCi = p.selections[p.lockedRow];
+      if (lockCi === topIdxPerRow[p.lockedRow]) {
+        score += 3;
+      } else {
+        score -= 3;
+      }
+    }
     return { name: p.name, id: p.id, score };
   });
   scores.sort((a, b) => b.score - a.score);
 
   // My score
   let myScore = 0;
+  let lockBonus = 0;
   const breakdown = [];
   myPicks.forEach((ci, ri) => {
     const pts = rowRanks[ri][ci];
     const pct = Math.round((counts[ri][ci] / total) * 100);
     myScore += pts;
 
-    // Find most popular in this row
-    let maxIdx = 0;
-    counts[ri].forEach((c, i) => { if (c > counts[ri][maxIdx]) maxIdx = i; });
-    const topPct = Math.round((counts[ri][maxIdx] / total) * 100);
+    const topPct = Math.round((counts[ri][topIdxPerRow[ri]] / total) * 100);
+    const isLocked = myLock === ri;
 
     breakdown.push({
       category: TODAY.rows[ri].label,
@@ -1206,16 +1319,29 @@ async function computeAndShowResults(isFinal) {
       pick: TODAY.rows[ri].items[ci],
       pts,
       pct,
-      topPick: TODAY.rows[ri].items[maxIdx],
-      topPct
+      topPick: TODAY.rows[ri].items[topIdxPerRow[ri]],
+      topPct,
+      isLocked,
+      lockHit: isLocked && ci === topIdxPerRow[ri]
     });
   });
 
+  // Apply lock bonus/penalty to my score
+  if (myLock != null) {
+    const lockCi = myPicks[myLock];
+    if (lockCi === topIdxPerRow[myLock]) {
+      lockBonus = 3;
+    } else {
+      lockBonus = -3;
+    }
+    myScore += lockBonus;
+  }
+
   // Render results
-  const maxScore = 25;
+  const maxScore = myLock != null ? 28 : 25;
   const title = document.getElementById('resultsTitle');
-  if (myScore >= 23) title.textContent = "Hivemind Master!";
-  else if (myScore >= 18) title.textContent = "Great minds think alike!";
+  if (myScore >= 26) title.textContent = "Hivemind Master!";
+  else if (myScore >= 20) title.textContent = "Great minds think alike!";
   else if (myScore >= 13) title.textContent = "Not bad!";
   else title.textContent = "Unique taste!";
 
@@ -1239,13 +1365,18 @@ async function computeAndShowResults(isFinal) {
     const cls = item.pts >= 4 ? 'hi' : item.pts >= 3 ? 'mid' : 'lo';
     const barColor = item.pts >= 4 ? 'var(--green)' : item.pts >= 3 ? 'var(--orange)' : 'var(--red)';
     const isTop = item.pick === item.topPick;
+    const lockTag = item.isLocked
+      ? (item.lockHit
+        ? `<span style="font-size:11px; color:var(--green); font-weight:600;"> 🔒 +3</span>`
+        : `<span style="font-size:11px; color:var(--red); font-weight:600;"> 🔒 −3</span>`)
+      : '';
 
     bd.innerHTML += `
       <div class="res-row">
         <div class="res-left">
           <span class="res-cat">${item.icon} ${item.category}</span>
           <div>
-            <span class="res-pick">${item.pick}</span>
+            <span class="res-pick">${item.pick}${lockTag}</span>
             ${!isTop ? `<div class="popular-pick">Most popular: <strong>${item.topPick}</strong> (${item.topPct}%)</div>` : `<div class="popular-pick" style="color:var(--green)">Most popular pick!</div>`}
           </div>
         </div>
@@ -1305,9 +1436,17 @@ function animateNumber(el, target) {
 function resetGame() {
   selections = Array(5).fill(null);
   spent = 0;
+  lockedRow = null;
+  lockMode = false;
   renderGrid();
   updateGrid();
   document.getElementById('subBtn').textContent = 'Submit Picks';
+  const btn = document.getElementById('lockBtn');
+  btn.className = 'lock-btn';
+  btn.textContent = '🔒 It\'s a Lock';
+  const hint = document.getElementById('lockHint');
+  hint.textContent = 'Use once — pick a cell you\'re sure everyone will choose. +3 if right, −3 if wrong!';
+  hint.style.color = '';
 }
 
 // ─── Share ───
@@ -1339,15 +1478,28 @@ function shareResults() {
   });
 
   let score = 0;
+  const shareLock = cachedLock != null ? cachedLock : lockedRow;
+  const topShareIdx = counts.map(rowCounts => {
+    let maxIdx = 0;
+    rowCounts.forEach((c, i) => { if (c > rowCounts[maxIdx]) maxIdx = i; });
+    return maxIdx;
+  });
+
   const emojis = cachedPicks.map((ci, ri) => {
     const pts = shareRanks[ri][ci];
     score += pts;
-    if (pts >= 4) return '🟩';
-    if (pts >= 3) return '🟨';
-    return '🟥';
+    const base = pts >= 4 ? '🟩' : pts >= 3 ? '🟨' : '🟥';
+    if (shareLock === ri) return '🔒' + base;
+    return base;
   });
 
-  const text = `🧠 Hivemind: Build Your Team #${TODAY.number}\n\n${emojis.join('')}  ${score}/25\n\nThink you can beat me?`;
+  // Apply lock bonus to share score
+  if (shareLock != null) {
+    score += cachedPicks[shareLock] === topShareIdx[shareLock] ? 3 : -3;
+  }
+  const maxShare = shareLock != null ? 28 : 25;
+
+  const text = `🧠 Hivemind #${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}\n\nhttps://kmurali9.github.io/hivemind-game/`;
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text).then(() => {
