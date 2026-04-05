@@ -748,6 +748,7 @@ async function loadTodaysPrompt() {
     <div class="welcome-icon">🧠</div>
     <h2>Think Like the Crowd</h2>
     <p>Pick one item from each row. You have $15. The more popular your picks, the higher your score. Can you predict what everyone else will choose?</p>
+    <p style="font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 28px;">🔒 Use <em>It's a Lock</em> on one pick you're sure about — +3 if it's the #1 answer, −3 if it's not!</p>
     <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
 </div>
@@ -775,6 +776,7 @@ async function loadTodaysPrompt() {
       <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Each column costs $5 → $1.</span></div>
       <div class="htp-rule"><span class="htp-num">2</span><span>Spend exactly <strong>$15</strong>. Options you can't afford gray out.</span></div>
       <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> by picking the most popular answer. The more people who chose the same thing, the more points you get!</span></div>
+      <div class="htp-rule"><span class="htp-num">🔒</span><span><strong>It's a Lock</strong> — feeling confident? Lock one pick for a bonus. If it's the #1 most popular answer, <strong>+3 points</strong>. If not, <strong>−3 points</strong>. Use it once!</span></div>
     </div>
 
     <div class="q-banner">
@@ -1409,7 +1411,7 @@ async function computeAndShowResults(isFinal) {
         </div>
         <div class="res-right">
           <div class="pop-bar"><div class="pop-fill" style="width:0%;background:${barColor}" data-w="${item.pts * 20}%"></div></div>
-          <span class="pop-pct ${cls}">${item.pts}/5</span>
+          <span class="pop-pct ${cls}">${item.isLocked ? (item.pts + (item.lockHit ? 3 : -3)) : item.pts}/5</span>
         </div>
       </div>`;
   });
