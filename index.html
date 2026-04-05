@@ -748,7 +748,7 @@ async function loadTodaysPrompt() {
     <div class="welcome-icon">🧠</div>
     <h2>Think Like the Crowd</h2>
     <p>Pick one item from each row. You have $15 but can't afford all the best picks — choose wisely! The more popular your picks, the higher your score.</p>
-    <p style="font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 28px;">🔒 Hold any pick to lock it in — +3 if it's the #1 answer, −3 if it's not!</p>
+    <p style="font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 28px;">🔒 Tap any pick twice to lock it in — +3 if it's the #1 answer, −3 if it's not!</p>
     <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
 </div>
@@ -776,7 +776,7 @@ async function loadTodaysPrompt() {
       <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Items cost $5 → $1 (best to worst).</span></div>
       <div class="htp-rule"><span class="htp-num">2</span><span>You have <strong>$15</strong> — not enough for all the best picks, so choose wisely!</span></div>
       <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> by picking the most popular answer. The more people who chose the same thing, the more points you get!</span></div>
-      <div class="htp-rule"><span class="htp-num">🔒</span><span><strong>Lock it in</strong> — hold any selected pick to lock it. If it's the #1 answer, <strong>+3 points</strong>. If not, <strong>−3 points</strong>. Hold again to unlock.</span></div>
+      <div class="htp-rule"><span class="htp-num">🔒</span><span><strong>Lock it in</strong> — tap any selected pick again to lock it. If it's the #1 answer, <strong>+3 points</strong>. If not, <strong>−3 points</strong>. Tap a third time to undo.</span></div>
     </div>
 
     <div class="q-banner">
@@ -790,7 +790,7 @@ async function loadTodaysPrompt() {
     </div>
 
     <div class="lock-wrap">
-      <div class="lock-hint" id="lockHint">Hold any selected pick to lock it. +3 if #1, −3 if not!</div>
+      <div class="lock-hint" id="lockHint">Tap a pick to select, tap again to lock it in!</div>
     </div>
 
     <div class="col-hdr">
@@ -1205,51 +1205,40 @@ function renderGrid() {
       cell.id = `c-${ri}-${ci}`;
       cell.innerHTML = `<span class="c-text">${item}</span><span class="c-cost">$${COSTS[ci]}</span>`;
       cell.addEventListener('click', () => clickCell(ri, ci));
-      // Long-press to lock
-      let pressTimer = null;
-      const startPress = (e) => {
-        if (selections[ri] !== ci) return; // only lock selected cells
-        pressTimer = setTimeout(() => {
-          pressTimer = null;
-          toggleLock(ri, ci);
-        }, 500);
-      };
-      const endPress = () => { if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; } };
-      cell.addEventListener('touchstart', startPress, { passive: true });
-      cell.addEventListener('touchend', endPress);
-      cell.addEventListener('touchcancel', endPress);
-      cell.addEventListener('mousedown', startPress);
-      cell.addEventListener('mouseup', endPress);
-      cell.addEventListener('mouseleave', endPress);
       rowEl.appendChild(cell);
     });
     body.appendChild(rowEl);
   });
 }
 
-function toggleLock(ri, ci) {
-  const hint = document.getElementById('lockHint');
-  if (lockedRow === ri) {
-    // Unlock
-    lockedRow = null;
-    hint.textContent = 'Hold any selected pick to lock it. +3 if #1, −3 if not!';
-    hint.style.color = '';
-  } else {
-    // Lock this cell (replaces any existing lock)
-    lockedRow = ri;
-    hint.textContent = '🔒 Locked: ' + TODAY.rows[ri].items[ci] + ' — hold again to unlock';
-    hint.style.color = 'var(--accent)';
-  }
-  updateGrid();
-}
-
 function clickCell(ri, ci) {
   const cell = document.getElementById(`c-${ri}-${ci}`);
   if (cell.classList.contains('dis')) return;
+  const hint = document.getElementById('lockHint');
 
-  selections[ri] = selections[ri] === ci ? null : ci;
-  // If deselecting a locked row, unlock it
-  if (selections[ri] === null && lockedRow === ri) lockedRow = null;
+  if (selections[ri] === ci && lockedRow === ri) {
+    // State 3: locked → deselect
+    lockedRow = null;
+    selections[ri] = null;
+    hint.textContent = 'Tap a pick to select, tap again to lock it in!';
+    hint.style.color = '';
+  } else if (selections[ri] === ci) {
+    // State 2: selected → lock it
+    // If another row is already locked, unlock it first
+    if (lockedRow !== null) {
+      const prevLockHint = lockedRow;
+      lockedRow = null;
+    }
+    lockedRow = ri;
+    hint.textContent = '🔒 Locked: ' + TODAY.rows[ri].items[ci] + ' — tap again to undo';
+    hint.style.color = 'var(--accent)';
+  } else {
+    // State 1: unselected → select (or switch selection in this row)
+    selections[ri] = ci;
+    // If this row was locked with a different item, unlock it
+    if (lockedRow === ri) lockedRow = null;
+  }
+
   spent = selections.reduce((s, v) => v === null ? s : s + COSTS[v], 0);
   updateGrid();
 }
@@ -1577,7 +1566,7 @@ function resetGame() {
   updateGrid();
   document.getElementById('subBtn').textContent = 'Submit Picks';
   const hint = document.getElementById('lockHint');
-  hint.textContent = 'Hold any selected pick to lock it. +3 if #1, −3 if not!';
+  hint.textContent = 'Tap a pick to select, tap again to lock it in!';
   hint.style.color = '';
 }
 

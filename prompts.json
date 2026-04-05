@@ -19,11 +19,11 @@
         "label": "Late Night App",
         "icon": "📱",
         "items": [
-          "Instagram",
+          "BeReal",
           "Snapchat",
-          "Tinder",
+          "Signal",
           "Uber",
-          "DoorDash"
+          "Spotify"
         ]
       },
       {
@@ -43,7 +43,7 @@
         "items": [
           "Ice Cream Pint",
           "McDonald's Fries",
-          "Hot Cheetos",
+          "Takis",
           "Instant Ramen",
           "Frozen Pizza"
         ]
@@ -71,9 +71,9 @@
         "icon": "👑",
         "items": [
           "The Rock",
-          "Beyoncé",
+          "Michelle Obama",
           "Keanu Reeves",
-          "Rihanna",
+          "Scarlett Johansson",
           "Pedro Pascal"
         ]
       },
@@ -81,7 +81,7 @@
         "label": "Weapons Expert",
         "icon": "🔫",
         "items": [
-          "John Wick",
+          "Rambo",
           "Daryl Dixon",
           "Katniss",
           "Lara Croft",
@@ -103,10 +103,10 @@
         "label": "Comic Relief",
         "icon": "😂",
         "items": [
-          "Kevin Hart",
+          "Seth Rogen",
           "Ryan Reynolds",
           "Jack Black",
-          "Awkwafina",
+          "Rebel Wilson",
           "Tiffany Haddish"
         ]
       },
@@ -118,7 +118,7 @@
           "Your Ex",
           "That One Coworker",
           "Martin Shkreli",
-          "Guy Fieri"
+          "Gary Vee"
         ]
       }
     ]
@@ -132,11 +132,11 @@
         "label": "Never Responds",
         "icon": "👻",
         "items": [
-          "Beyoncé",
-          "Rihanna",
-          "Zendaya",
-          "Frank Ocean",
-          "Keanu Reeves"
+          "Sade",
+          "André 3000",
+          "Daniel Day-Lewis",
+          "D'Angelo",
+          "Sky Ferreira"
         ]
       },
       {
@@ -144,10 +144,10 @@
         "icon": "💀",
         "items": [
           "Pete Davidson",
-          "Snoop Dogg",
+          "Nick Cannon",
           "Cardi B",
           "Lil Nas X",
-          "Kevin Hart"
+          "Druski"
         ]
       },
       {
@@ -165,11 +165,11 @@
         "label": "Voice Notes Only",
         "icon": "🎙️",
         "items": [
-          "Joe Rogan",
+          "Boosie Badazz",
           "Oprah",
           "DJ Khaled",
-          "Lizzo",
-          "Doja Cat"
+          "Meghan Trainor",
+          "Saweetie"
         ]
       },
       {
@@ -178,8 +178,8 @@
         "items": [
           "Your Dad",
           "Travis Kelce",
-          "Timothée",
-          "Bad Bunny",
+          "Zayn Malik",
+          "Tyler the Creator",
           "Billie Eilish"
         ]
       }
@@ -300,7 +300,7 @@
         "label": "Peacemaker Food",
         "icon": "🕊️",
         "items": [
-          "Mashed Potatoes",
+          "Sweet Potato Pie",
           "Pumpkin Pie",
           "Rolls & Butter",
           "Gravy Boat",
@@ -329,8 +329,8 @@
         "label": "Fan Favorite",
         "icon": "❤️",
         "items": [
-          "Snoop Dogg",
-          "Guy Fieri",
+          "Steve Harvey",
+          "Mr. Beast",
           "Tabitha Brown",
           "Bob Ross Energy",
           "Flavor Flav"
@@ -340,7 +340,7 @@
         "label": "Chaos Agent",
         "icon": "🌪️",
         "items": [
-          "Kanye",
+          "Amanda Bynes",
           "Gary Busey",
           "Tila Tequila",
           "Gemma Collins",
@@ -351,10 +351,10 @@
         "label": "Confessional MVP",
         "icon": "🎤",
         "items": [
-          "Cardi B",
-          "Nicki Minaj",
-          "Gordon Ramsay",
-          "Kim K",
+          "Joseline Hernandez",
+          "Kenya Moore",
+          "Phaedra Parks",
+          "Sonja Morgan",
           "Teresa Giudice"
         ]
       },
@@ -362,7 +362,7 @@
         "label": "First Eliminated",
         "icon": "🚪",
         "items": [
-          "Jake Paul",
+          "Colton Underwood",
           "James Corden",
           "Jared Leto",
           "Ellen",
@@ -402,7 +402,7 @@
         "label": "Sat Afternoon",
         "icon": "🛋️",
         "items": [
-          "Stranger Things",
+          "Only Murders",
           "Ted Lasso",
           "Succession",
           "The Bear",
@@ -428,7 +428,7 @@
           "Gilmore Girls",
           "New Girl",
           "Modern Family",
-          "Selling Sunset"
+          "Heartstopper"
         ]
       }
     ]
@@ -454,7 +454,7 @@
         "icon": "🎵",
         "items": [
           "Bad Guy - Billie",
-          "Toxic - Britney",
+          "Smooth Criminal",
           "Power - Kanye",
           "Run This Town",
           "Villain - K/DA"
@@ -551,8 +551,8 @@
           "Thank U Next",
           "Irreplaceable",
           "Best Thing I Never",
-          "Since U Been Gone",
-          "Good as Hell"
+          "Survivor - Destiny",
+          "Truth Hurts"
         ]
       }
     ]
@@ -581,7 +581,7 @@
           "Oat Milk Coffee",
           "Pressed Juice",
           "Stanley Cup Water",
-          "Celsius"
+          "Liquid IV"
         ]
       },
       {
@@ -590,7 +590,7 @@
         "items": [
           "Call Her Daddy",
           "Joe Rogan",
-          "Crime Junkie",
+          "Huberman Lab",
           "SmartLess",
           "On Purpose"
         ]
@@ -672,8 +672,8 @@
         "label": "Uninvited Crasher",
         "icon": "🚫",
         "items": [
-          "James Corden",
-          "DJ Khaled",
+          "Piers Morgan",
+          "Andrew Tate",
           "Logan Paul",
           "Dr. Oz",
           "Gwyneth Paltrow"
@@ -716,7 +716,7 @@
           "Beyoncé",
           "Ryan Gosling",
           "Mindy Kaling",
-          "John Mulaney"
+          "BJ Novak"
         ]
       },
       {
@@ -961,7 +961,7 @@
         "icon": "📺",
         "items": [
           "Downloaded Office",
-          "Ted Lasso",
+          "Fleabag",
           "Love Island",
           "Comfort Movie",
           "Plane Wifi Netflix"
@@ -1064,7 +1064,7 @@
         "items": [
           "Bad Blood",
           "Sorry Not Sorry",
-          "Best Thing I Never",
+          "Formation",
           "You Oughta Know",
           "Karma - Taylor"
         ]
@@ -1087,8 +1087,8 @@
           "Rihanna",
           "Keke Palmer",
           "Ice Spice Unbothered",
-          "Zendaya",
-          "SZA"
+          "Kerry Washington",
+          "Megan Fox"
         ]
       },
       {
@@ -1110,7 +1110,7 @@
           "Wrote a Hit Song",
           "Got Promoted",
           "Better Relationship",
-          "Hot Girl Summer"
+          "Glow Up Complete"
         ]
       }
     ]
@@ -1124,9 +1124,9 @@
         "label": "Main Show",
         "icon": "📺",
         "items": [
-          "Succession",
-          "The Bear",
-          "Abbott Elementary",
+          "White Lotus",
+          "Beef",
+          "Hacks",
           "Severance",
           "Shogun"
         ]
@@ -1190,7 +1190,7 @@
           "Kevin Hart",
           "Jeff Ross",
           "John Mulaney",
-          "Tiffany Haddish"
+          "Ali Wong"
         ]
       },
       {
@@ -1200,7 +1200,7 @@
           "Tom Brady",
           "Justin Bieber",
           "Kim K",
-          "Drake",
+          "Ben Affleck",
           "Mark Zuckerberg"
         ]
       },
@@ -1208,11 +1208,11 @@
         "label": "Surprise Guest",
         "icon": "😲",
         "items": [
-          "Snoop Dogg",
-          "Martha Stewart",
-          "Shaq",
+          "Tracy Morgan",
+          "Tina Fey",
+          "Conan O'Brien",
           "Betty White Energy",
-          "Pete Davidson"
+          "Will Ferrell"
         ]
       },
       {
@@ -1231,7 +1231,7 @@
         "icon": "🎵",
         "items": [
           "Gonna Fly Now",
-          "Eye of the Tiger",
+          "Thunderstruck",
           "Back in Black",
           "Crazy Train",
           "Imperial March"
@@ -1270,7 +1270,7 @@
         "label": "Outfit Crime",
         "icon": "👔",
         "items": [
-          "Cargo Shorts",
+          "Crocs Unironic",
           "Toe Shoes",
           "Fedora",
           "Graphic Tee Date",
@@ -1347,7 +1347,7 @@
           "My Heart Will Go On",
           "Total Eclipse",
           "Hallelujah",
-          "Creep - Radiohead"
+          "Unchained Melody"
         ]
       },
       {
@@ -1372,9 +1372,9 @@
         "label": "First Relapse App",
         "icon": "📱",
         "items": [
-          "TikTok",
-          "Twitter/X",
-          "Instagram",
+          "Threads",
+          "Discord",
+          "Pinterest",
           "Reddit",
           "YouTube Shorts"
         ]
@@ -1416,7 +1416,7 @@
         "label": "Surrender Song",
         "icon": "🏳️",
         "items": [
-          "Toxic - Britney",
+          "Rehab - Amy Wine",
           "Bad Habit",
           "I Can't Quit You",
           "Addicted - Avicii",
@@ -1543,7 +1543,7 @@
           "Nap at 2pm",
           "Netflix Second Mon",
           "Long Lunch Walk",
-          "Online Shopping",
+          "Amazon Browsing",
           "Laundry Mid-Call"
         ]
       }
@@ -1656,7 +1656,7 @@
           "Vague Posting",
           "Ratio Hunter",
           "Quote Tweet Dunks",
-          "Main Character",
+          "Clout Chaser",
           "Read Receipt On"
         ]
       },
@@ -1718,7 +1718,7 @@
           "$18 Tacos",
           "Overpriced Pizza",
           "Açaí Bowl",
-          "Turkey Leg",
+          "Loaded Nachos",
           "Loaded Fries"
         ]
       },
@@ -1758,8 +1758,8 @@
           "One TikTok",
           "A Netflix Doc",
           "Friend Makes Bank",
-          "LinkedIn Post",
-          "Mercury Retrograde"
+          "A Podcast Episode",
+          "A Fortune Cookie"
         ]
       },
       {
@@ -1852,7 +1852,7 @@
         "items": [
           "Vine App",
           "Flappy Bird",
-          "Club Penguin",
+          "Stumbleupon",
           "Google+",
           "AIM Away Messages"
         ]
@@ -1955,7 +1955,7 @@
           "Gasolina",
           "Despacito",
           "La Bamba",
-          "Livin La Vida Loca",
+          "Suavemente",
           "Bailando"
         ]
       },
@@ -1977,7 +1977,7 @@
           "One More Shot",
           "Ate Too Much",
           "Sunburn",
-          "Lost My Phone",
+          "Tequila Headache",
           "Karaoke Video"
         ]
       }
@@ -2118,8 +2118,8 @@
         "items": [
           "Stranger Things",
           "Squid Game",
-          "The Last of Us",
-          "Ted Lasso",
+          "Reacher",
+          "Wednesday",
           "House of Dragon"
         ]
       },
@@ -2181,7 +2181,7 @@
           "Mimosa Pitcher",
           "Bloody Mary",
           "Espresso Martini",
-          "Just Coffee",
+          "Cold Brew",
           "Water (Judging)"
         ]
       },
@@ -2350,7 +2350,7 @@
           "I Spy Extreme",
           "20 Questions Loop",
           "Silent Treatment",
-          "Are We There Yet"
+          "Slug Bug Wars"
         ]
       }
     ]
@@ -2739,7 +2739,7 @@
           "Unwashed Dishes",
           "Ate My Leftovers",
           "Empty Milk Back",
-          "Burns Everything",
+          "Stinks Up Kitchen",
           "Hogs the Fridge"
         ]
       },
@@ -2773,7 +2773,7 @@
           "ALL CAPS WARNING",
           "Labeled Everything",
           "Chore Chart",
-          "Venmo Request"
+          "Guilt Trip Text"
         ]
       },
       {
@@ -3430,7 +3430,7 @@
         "icon": "😐",
         "items": [
           "Bang",
-          "Reign",
+          "ZOA",
           "Rockstar",
           "C4 Energy",
           "3D Energy"
@@ -3527,7 +3527,7 @@
           "I'm Done Planning",
           "Next Time Solo",
           "Just Send Venmo",
-          "New Friend Group",
+          "Friendship Test",
           "This Was a Mistake"
         ]
       }
@@ -3607,7 +3607,7 @@
           "Hot Girl Summer",
           "Kiss Me More",
           "About Damn Time",
-          "Cruel Summer",
+          "Espresso - Sabrina",
           "Good as Hell"
         ]
       },
@@ -3615,7 +3615,7 @@
         "label": "Outfit Vibe",
         "icon": "👙",
         "items": [
-          "Matching Set",
+          "Co-ord Set",
           "That Sundress",
           "Bikini Confidence",
           "Linen Everything",
@@ -3650,8 +3650,8 @@
         "items": [
           "Iced Coffee IV",
           "Frozen Margs",
-          "White Claw",
-          "Açaí Bowl",
+          "Aperol Spritz",
+          "Smoothie Bowl",
           "Main Char Delusion"
         ]
       }
@@ -3701,7 +3701,7 @@
         "items": [
           "Speaker Phone",
           "Clips Nails",
-          "Essential Oils",
+          "Diffuser Blasting",
           "Eats Loud",
           "Decorates Too Much"
         ]
@@ -3801,7 +3801,7 @@
         "label": "Revenge Fantasy",
         "icon": "😈",
         "items": [
-          "Passive Note",
+          "Windshield Note",
           "Wait Them Out",
           "Box Them In",
           "Photo for Reddit",
@@ -3874,7 +3874,7 @@
         "label": "Workout Secret",
         "icon": "🏋️",
         "items": [
-          "Eye of the Tiger",
+          "Pump It - BEP",
           "Stronger - Kelly",
           "Hollaback Girl",
           "Promiscuous",
@@ -3918,7 +3918,7 @@
           "Danny Ocean",
           "Thomas Shelby",
           "Annalise Keating",
-          "Walter White"
+          "Moriarty"
         ]
       },
       {
@@ -3987,11 +3987,11 @@
         "label": "Comfort Show",
         "icon": "📺",
         "items": [
-          "The Office",
-          "Friends",
-          "Parks and Rec",
-          "Bob's Burgers",
-          "New Girl"
+          "Frasier",
+          "Gravity Falls",
+          "Community",
+          "Arrested Develop",
+          "How I Met Your Mom"
         ]
       },
       {
@@ -4010,7 +4010,7 @@
         "icon": "🍝",
         "items": [
           "Comfort Pasta",
-          "Rotisserie Chicken",
+          "Mac and Cheese Box",
           "Soup and Bread",
           "Cereal for Dinner",
           "Entire Cheese Board"
@@ -4173,7 +4173,7 @@
         "label": "Villain",
         "icon": "😈",
         "items": [
-          "Pedro Pascal",
+          "Austin Butler",
           "Cate Blanchett",
           "Viola Davis",
           "Javier Bardem",
@@ -4196,9 +4196,9 @@
         "icon": "😮",
         "items": [
           "The Rock Somehow",
-          "Dolly Parton",
+          "Morgan Freeman",
           "Keanu Always",
-          "Snoop Dogg",
+          "Danny DeVito",
           "Your Mom (Twist)"
         ]
       },
@@ -4301,7 +4301,7 @@
           "Crop Top Sunburn",
           "Flower Crown Era",
           "All White (Why)",
-          "Forgot Sunscreen"
+          "No Hat Mistake"
         ]
       },
       {
@@ -4538,7 +4538,7 @@
           "Twitter Ratio",
           "Reddit Front Page",
           "Instagram Explore",
-          "YouTube Shorts"
+          "Threads Blowup"
         ]
       },
       {
@@ -4644,7 +4644,7 @@
           "Sunburn Realized",
           "Left Something",
           "Traffic Home",
-          "Planning Next Trip"
+          "Worth It Though"
         ]
       }
     ]
@@ -4785,8 +4785,8 @@
           "Beach Trip",
           "Pool Day",
           "Road Trip",
-          "Outdoor Concert",
-          "Rooftop Drinks"
+          "Music Festival",
+          "Lake Day"
         ]
       },
       {
@@ -4857,7 +4857,7 @@
         "items": [
           "White Linen",
           "Flowy Sundress",
-          "Matching Set",
+          "Linen Two-Piece",
           "Vintage Vibes",
           "Didn't Change"
         ]
@@ -4972,7 +4972,7 @@
           "Social Household",
           "Flexible Clean",
           "Spiritual Home",
-          "Good Vibes Only"
+          "Drama-Free Zone"
         ]
       },
       {
@@ -4980,7 +4980,7 @@
         "icon": "🔍",
         "items": [
           "It's Tiny",
-          "Party House",
+          "Rager Central",
           "Never Cleans",
           "Sage at 6 AM",
           "No Complaints Pls"
@@ -5041,7 +5041,7 @@
         "label": "Platform",
         "icon": "🛒",
         "items": [
-          "Amazon Prime",
+          "Amazon Cart",
           "Shein Haul",
           "Target Drive Up",
           "Zara Online",
@@ -5094,7 +5094,7 @@
         "items": [
           "Stars Hollow",
           "Pawnee Indiana",
-          "Schitt's Creek",
+          "Cicely Alaska",
           "Greendale Campus",
           "Letterkenny"
         ]
@@ -5115,7 +5115,7 @@
         "icon": "🏠",
         "items": [
           "Leslie Knope",
-          "Ted Lasso",
+          "Bob Belcher",
           "Mr. Rogers",
           "Phil Dunphy",
           "Lorelai Gilmore"
@@ -5239,7 +5239,7 @@
         "icon": "🍽️",
         "items": [
           "Too Expensive Here",
-          "No One Agrees",
+          "Can't Decide Where",
           "Kids Menu Only",
           "Waited 2 Hours",
           "Wrong Yelp Review"
@@ -5278,10 +5278,10 @@
         "label": "Top Artist",
         "icon": "🎤",
         "items": [
-          "Taylor Swift",
+          "Sabrina Carpenter",
           "Drake",
-          "Bad Bunny",
-          "The Weeknd",
+          "Ariana Grande",
+          "Chappell Roan",
           "SZA"
         ]
       },
@@ -5552,7 +5552,7 @@
           "Closer - Chain",
           "Shape of You",
           "Havana - Camila",
-          "Despacito"
+          "Lean On - MajLaz"
         ]
       },
       {
@@ -5574,7 +5574,7 @@
           "Flowers - Miley",
           "Shut Up and Dance",
           "Levitating - Dua",
-          "Good as Hell"
+          "Juice - Lizzo"
         ]
       }
     ]
