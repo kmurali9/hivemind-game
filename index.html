@@ -987,6 +987,7 @@ function showScreen(id) {
 }
 
 async function hasPlayed() {
+  if (isAdmin) return false;
   try {
     const doc = await db.collection('games').doc(TODAY.gameId)
       .collection('picks').doc(userId).get();
