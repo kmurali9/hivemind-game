@@ -635,22 +635,27 @@ const FIREBASE_CONFIG = {
 // │  Loaded automatically from prompts.json by date.      │
 // └──────────────────────────────────────────────────────┘
 let TODAY = null;
+let YESTERDAY = null;
+let ALL_PROMPTS = [];
 
 const COSTS = [5, 4, 3, 2, 1];
 const BUDGET = 15;
 
 async function loadTodaysPrompt() {
   const res = await fetch('prompts.json');
-  const prompts = await res.json();
+  ALL_PROMPTS = await res.json();
   // Get today's date in Pacific Time
   const ptDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
   const todayStr = ptDate.getFullYear() + '-' + String(ptDate.getMonth() + 1).padStart(2, '0') + '-' + String(ptDate.getDate()).padStart(2, '0');
   // Find today's prompt, or the most recent past prompt
-  TODAY = prompts.find(p => p.gameId === todayStr);
+  TODAY = ALL_PROMPTS.find(p => p.gameId === todayStr);
   if (!TODAY) {
-    const past = prompts.filter(p => p.gameId <= todayStr).sort((a, b) => b.gameId.localeCompare(a.gameId));
-    TODAY = past[0] || prompts[0];
+    const past = ALL_PROMPTS.filter(p => p.gameId <= todayStr).sort((a, b) => b.gameId.localeCompare(a.gameId));
+    TODAY = past[0] || ALL_PROMPTS[0];
   }
+  // Find yesterday's prompt (most recent before today)
+  const pastGames = ALL_PROMPTS.filter(p => p.gameId < TODAY.gameId).sort((a, b) => b.gameId.localeCompare(a.gameId));
+  YESTERDAY = pastGames[0] || null;
 }
 </script>
 
@@ -699,7 +704,7 @@ async function loadTodaysPrompt() {
     <div class="welcome-icon">🧠</div>
     <h2>Think Like the Crowd</h2>
     <p>Pick one item from each row. You have $15. The more popular your picks, the higher your score. Can you predict what everyone else will choose?</p>
-    <button class="start-btn ready" onclick="launchGame()">Let's Go</button>
+    <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
 </div>
 
@@ -725,7 +730,7 @@ async function loadTodaysPrompt() {
     <div class="htp-panel" id="htpPanel">
       <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Each column costs $5 → $1.</span></div>
       <div class="htp-rule"><span class="htp-num">2</span><span>Spend exactly <strong>$15</strong>. Options you can't afford gray out.</span></div>
-      <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score by rank.</strong> Most popular pick in each row = 5 pts, next = 4, down to 1. Max score: 25!</span></div>
+      <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> by picking the most popular answer. The more people who chose the same thing, the more points you get!</span></div>
     </div>
 
     <div class="q-banner">
@@ -810,7 +815,8 @@ async function loadTodaysPrompt() {
       <div style="font-size: 13px; color: var(--text-sec); margin-top: 6px;" id="percentileDesc"></div>
     </div>
 
-    <div class="actions" id="resultsActions" style="display:none;">
+    <div class="actions" id="resultsActions">
+      <button class="act-btn primary" onclick="shareResults()">Share Results</button>
     </div>
   </div>
 </div>
@@ -876,18 +882,15 @@ async function init() {
     setGameNums();
     setDayLabels();
 
-    // If game day has passed (after midnight PT), show final results
-    if (isGameDayOver()) {
-      const played = hasPlayedLocally() || await hasPlayed();
-      if (played) {
-        await computeAndShowResults(true); // true = final results
-      } else {
-        showScreen('alreadyScreen');
-        document.querySelector('.already-played-body h2').textContent = "Game day is over!";
-        document.querySelector('.already-played-body p').textContent = "Come back when a new game is posted.";
-        document.querySelector('.see-results-btn').style.display = 'none';
+    // Check if user played yesterday but hasn't seen final results
+    if (YESTERDAY) {
+      const seenFinal = localStorage.getItem('hivemind_seen_final_' + YESTERDAY.gameId) === 'true';
+      const playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true';
+      if (playedYesterday && !seenFinal) {
+        // Show yesterday's final results first, with a button to continue to today
+        await showYesterdayFinalResults();
+        return;
       }
-      return;
     }
 
     // Check if already played today (localStorage first, then Firebase)
@@ -900,7 +903,7 @@ async function init() {
       markPlayedLocally();
       showScreen('alreadyScreen');
     } else {
-      launchGame();
+      showScreen('welcomeScreen');
     }
   } catch (e) {
     console.error('Firebase init error:', e);
@@ -940,7 +943,84 @@ async function hasPlayed() {
   }
 }
 
+// ─── Yesterday's Final Results ───
+async function showYesterdayFinalResults() {
+  // Temporarily swap TODAY to yesterday's game to compute results
+  const savedToday = TODAY;
+  TODAY = YESTERDAY;
+
+  const yPicks = localStorage.getItem('hivemind_picks_' + YESTERDAY.gameId);
+  if (yPicks) {
+    cachedPicks = JSON.parse(yPicks);
+  } else {
+    // Try to fetch from Firebase
+    try {
+      const doc = await db.collection('games').doc(YESTERDAY.gameId)
+        .collection('picks').doc(userId).get();
+      if (doc.exists) cachedPicks = doc.data().selections;
+    } catch (e) {}
+  }
+
+  if (!cachedPicks) {
+    // Can't show results without picks, skip to today
+    localStorage.setItem('hivemind_seen_final_' + YESTERDAY.gameId, 'true');
+    TODAY = savedToday;
+    setGameNums();
+    setDayLabels();
+    showScreen('welcomeScreen');
+    return;
+  }
+
+  setGameNums();
+  setDayLabels();
+  await computeAndShowResults(true); // true = final
+
+  // Replace actions with "Play Today's Game" button
+  const actions = document.getElementById('resultsActions');
+  actions.style.display = 'flex';
+  actions.innerHTML = `
+    <button class="act-btn primary" onclick="shareResults()">Share</button>
+    <button class="act-btn" onclick="continueToToday()">Play Today's Game →</button>
+  `;
+
+  localStorage.setItem('hivemind_seen_final_' + YESTERDAY.gameId, 'true');
+
+  // Store savedToday for later
+  window._savedToday = savedToday;
+}
+
+function continueToToday() {
+  TODAY = window._savedToday;
+  cachedPicks = null;
+  cachedAllPicks = null;
+  selections = Array(5).fill(null);
+  spent = 0;
+  setGameNums();
+  setDayLabels();
+
+  if (hasPlayedLocally()) {
+    showScreen('alreadyScreen');
+  } else {
+    showScreen('welcomeScreen');
+  }
+}
+
 // ─── Game ───
+async function safeStartGame() {
+  // Double-check play restriction before launching
+  if (hasPlayedLocally()) {
+    showScreen('alreadyScreen');
+    return;
+  }
+  const played = await hasPlayed();
+  if (played) {
+    markPlayedLocally();
+    showScreen('alreadyScreen');
+    return;
+  }
+  launchGame();
+}
+
 function launchGame() {
   document.getElementById('promptText').textContent = TODAY.prompt;
   renderGrid();
@@ -1043,6 +1123,7 @@ async function submitPicks() {
 
     cachedPicks = selections.slice();
     markPlayedLocally();
+    localStorage.setItem('hivemind_picks_' + TODAY.gameId, JSON.stringify(cachedPicks));
     await computeAndShowResults(false);
   } catch (e) {
     console.error('Submit error:', e);
