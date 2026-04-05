@@ -19,11 +19,11 @@
         "label": "Late Night App",
         "icon": "📱",
         "items": [
-          "BeReal",
+          "Instagram",
           "Snapchat",
-          "Signal",
+          "Tinder",
           "Uber",
-          "Spotify"
+          "DoorDash"
         ]
       },
       {
@@ -42,8 +42,8 @@
         "icon": "🍕",
         "items": [
           "Ice Cream Pint",
+          "Hot Cheetos",
           "McDonald's Fries",
-          "Takis",
           "Instant Ramen",
           "Frozen Pizza"
         ]
@@ -71,9 +71,9 @@
         "icon": "👑",
         "items": [
           "The Rock",
-          "Michelle Obama",
+          "Beyoncé",
           "Keanu Reeves",
-          "Scarlett Johansson",
+          "Rihanna",
           "Pedro Pascal"
         ]
       },
@@ -81,7 +81,7 @@
         "label": "Weapons Expert",
         "icon": "🔫",
         "items": [
-          "Rambo",
+          "John Wick",
           "Daryl Dixon",
           "Katniss",
           "Lara Croft",
@@ -92,22 +92,22 @@
         "label": "Medic",
         "icon": "🩺",
         "items": [
-          "Meredith Grey",
           "Sandra Oh",
-          "Dr. Strange",
           "Dr. House",
-          "Doc McStuffins"
+          "Meredith Grey",
+          "Doc McStuffins",
+          "Dr. Strange"
         ]
       },
       {
         "label": "Comic Relief",
         "icon": "😂",
         "items": [
-          "Seth Rogen",
-          "Ryan Reynolds",
+          "Kevin Hart",
+          "Awkwafina",
           "Jack Black",
-          "Rebel Wilson",
-          "Tiffany Haddish"
+          "Tiffany Haddish",
+          "Ryan Reynolds"
         ]
       },
       {
@@ -118,7 +118,7 @@
           "Your Ex",
           "That One Coworker",
           "Martin Shkreli",
-          "Gary Vee"
+          "Guy Fieri"
         ]
       }
     ]
