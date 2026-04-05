@@ -5,8 +5,19 @@ A daily puzzle game (like Wordle) where players pick one item from each row and 
 
 ## Content rules
 - **Family friendly** — all prompts, categories, and items must be appropriate for all ages. No sexual, explicit, or drug-related content. Think NYT Games audience.
-- **Pop culture is great** — lean into memes, trending topics, funny debates, and cultural moments. Just keep it clean.
+- **Be FUNNY** — every prompt should make someone laugh or say "ooh that's a good one." Irreverent, opinionated, meme-aware. Not corporate or generic.
 - **Keep items short** — under ~20 characters so they fit in the grid cells on mobile.
+
+## Timeliness and cultural relevance
+- **This is critical.** Prompts should feel like they were written TODAY, not 6 months ago.
+- **Tie into what's happening in the real world** — big movie/TV releases (new Game of Thrones season, Marvel movie opening weekend), sports moments (NBA Finals, Super Bowl week, March Madness), award shows, viral moments, holidays, seasonal events.
+- **When generating prompts, search the web** for what's coming up in that date range — premieres, playoffs, album drops, cultural events — and weave them in. At least 2-3 prompts per week should be tied to something timely.
+- **Examples of great timely prompts:**
+  - NBA Finals week: "Draft Your All-Time Starting Five"
+  - New season of a hit show drops: "Cast Your Dream [Show] Alliance"
+  - Summer kicks off: "Build Your Perfect Beach Day Cooler"
+  - Oscar week: "Build Your Snub Revenge Ballot"
+- **Evergreen prompts are fine for filler** (food debates, workplace humor, etc.) but the magic is in the timely ones.
 
 ## Technical rules
 - This is a single `index.html` file + `prompts.json`. Keep it that way — no build tools, no frameworks.
