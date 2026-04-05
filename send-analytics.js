@@ -172,14 +172,16 @@ function computeScores(prompt, picks) {
     else distribution['<10']++;
   });
 
-  // Per-row stats
+  // Per-row stats (keep in $5→$1 order, not sorted by popularity)
   const rowStats = prompt.rows.map((row, ri) => {
+    const maxCount = Math.max(...counts[ri]);
     const items = row.items.map((name, ci) => ({
       name,
+      cost: 5 - ci,
       count: counts[ri][ci],
-      pct: total > 0 ? Math.round((counts[ri][ci] / total) * 100) : 0
+      pct: total > 0 ? Math.round((counts[ri][ci] / total) * 100) : 0,
+      isTop: counts[ri][ci] === maxCount && counts[ri][ci] > 0
     }));
-    items.sort((a, b) => b.count - a.count);
     return { label: row.label, icon: row.icon, items };
   });
 
@@ -231,22 +233,28 @@ function buildEmail(dateStr, prompt, events, prevEvents, picks, scoreData) {
     </tr>`;
   }).join('');
 
+  // Build pick popularity table (same format as analytics-view.html)
+  const thStyle = 'padding:8px 10px; font-size:11px; font-weight:600; text-align:left; background:#1a1a1a; color:#fff;';
+  const thPickStyle = 'padding:8px 6px; font-size:11px; font-weight:600; text-align:center; background:#1a1a1a; color:#fff; border-left:2px solid #333;';
+  const tableHeader = `<tr>
+    <th style="${thStyle}">Row</th>
+    <th style="${thStyle}">$5 Item</th><th style="${thPickStyle}">Picks</th>
+    <th style="${thStyle}">$4 Item</th><th style="${thPickStyle}">Picks</th>
+    <th style="${thStyle}">$3 Item</th><th style="${thPickStyle}">Picks</th>
+    <th style="${thStyle}">$2 Item</th><th style="${thPickStyle}">Picks</th>
+    <th style="${thStyle}">$1 Item</th><th style="${thPickStyle}">Picks</th>
+  </tr>`;
+
   const rowStatsHtml = scoreData.rowStats.map(row => {
-    const itemBars = row.items.map((item, i) => {
-      const barW = Math.max(item.pct, 2);
-      const color = i === 0 ? '#3a8a5c' : i === 1 ? '#c4841d' : '#ddd';
-      return `<div style="display:flex; align-items:center; gap:8px; margin:3px 0;">
-        <span style="font-size:12px; width:120px; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${item.name}</span>
-        <div style="flex:1; background:#f0f0f0; border-radius:3px; height:14px;">
-          <div style="width:${barW}%; background:${color}; height:100%; border-radius:3px;"></div>
-        </div>
-        <span style="font-size:12px; font-weight:600; width:36px; text-align:right;">${item.pct}%</span>
-      </div>`;
+    const cells = row.items.map(item => {
+      const bg = item.count === 0 ? '#f9f9f9' : item.isTop ? '#e8f5ee' : '#fff';
+      const badge = item.isTop ? ' <span style="background:#3a8a5c;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;">TOP</span>' : '';
+      const tdItem = `<td style="padding:6px 10px; font-size:12px; font-weight:500; background:${bg}; border-bottom:1px solid #eee;"><span style="color:#999;font-size:10px;">$${item.cost}</span> ${item.name}${badge}</td>`;
+      const countColor = item.count === 0 ? '#ccc' : item.isTop ? '#3a8a5c' : '#1a1a1a';
+      const tdPicks = `<td style="padding:6px 8px; font-size:13px; font-weight:700; text-align:center; background:${bg}; border-bottom:1px solid #eee; border-left:2px solid #e0e0e0; border-right:2px solid #e0e0e0;"><span style="color:${countColor};">${item.count}</span> <span style="color:#999;font-size:10px;">(${item.pct}%)</span></td>`;
+      return tdItem + tdPicks;
     }).join('');
-    return `<div style="margin-bottom:16px;">
-      <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#999; margin-bottom:4px;">${row.icon} ${row.label}</div>
-      ${itemBars}
-    </div>`;
+    return `<tr><td style="padding:6px 10px; font-size:12px; font-weight:700; white-space:nowrap; border-bottom:1px solid #eee;">${row.icon} ${row.label}</td>${cells}</tr>`;
   }).join('');
 
   return `
@@ -286,7 +294,7 @@ function buildEmail(dateStr, prompt, events, prevEvents, picks, scoreData) {
 
       <div style="margin-bottom:20px;">
         <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:#999; margin-bottom:8px; border-bottom:1px solid #eee; padding-bottom:6px;">Pick Popularity</div>
-        ${total > 0 ? rowStatsHtml : '<div style="font-size:13px; color:#999; text-align:center; padding:12px;">No picks yet</div>'}
+        ${total > 0 ? `<table style="width:100%; border-collapse:collapse;">${tableHeader}${rowStatsHtml}</table>` : '<div style="font-size:13px; color:#999; text-align:center; padding:12px;">No picks yet</div>'}
       </div>
 
       <div style="margin-bottom:20px;">

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>Hivemind — Game #2 Results</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; background: #fff; }
+  h1 { font-size: 24px; margin-bottom: 4px; }
+  h2 { font-size: 14px; color: #999; font-weight: 500; margin-bottom: 24px; }
+  table { border-collapse: collapse; width: 100%; }
+  th { background: #1a1a1a; color: #fff; padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; }
+  td { padding: 10px 16px; border-bottom: 1px solid #eee; font-size: 14px; }
+  tr:hover td { background: #f8f8f8; }
+  .row-label { font-weight: 700; white-space: nowrap; }
+  .item { font-weight: 500; }
+  .votes { font-weight: 700; font-variant-numeric: tabular-nums; text-align: center; border-right: 3px solid #ddd; padding-right: 20px; }
+  .bar { height: 18px; border-radius: 3px; min-width: 2px; display: inline-block; vertical-align: middle; margin-right: 6px; }
+  .top { background: #3a8a5c; color: white; }
+  .mid { background: #c4841d; color: white; }
+  .low { background: #e0e0e0; }
+  .zero { background: #f5f5f5; color: #ccc; }
+  .pct { color: #999; font-size: 12px; }
+  .top-badge { background: #3a8a5c; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; margin-left: 6px; }
+  .cost { font-size: 11px; color: #999; font-weight: 600; }
+</style>
+</head><body>
+<h1>Game #2 — Draft Your Zombie Apocalypse Squad</h1>
+<h2>17 players &middot; April 5, 2026</h2>
+<table>
+<tr>
+  <th>Row</th>
+  <th>$5 Item</th><th style="text-align:center">Picks</th>
+  <th>$4 Item</th><th style="text-align:center">Picks</th>
+  <th>$3 Item</th><th style="text-align:center">Picks</th>
+  <th>$2 Item</th><th style="text-align:center">Picks</th>
+  <th>$1 Item</th><th style="text-align:center">Picks</th>
+</tr>
+<script>
+const rows = [
+  { label: "👑 Leader", items: [
+    {name: "The Rock", votes: 1},
+    {name: "Michelle Obama", votes: 3},
+    {name: "Keanu Reeves", votes: 7},
+    {name: "Scarlett Johansson", votes: 1},
+    {name: "Pedro Pascal", votes: 5}
+  ]},
+  { label: "🔫 Weapons Expert", items: [
+    {name: "Rambo", votes: 5},
+    {name: "Daryl Dixon", votes: 5},
+    {name: "Katniss", votes: 4},
+    {name: "Lara Croft", votes: 2},
+    {name: "Michonne", votes: 1}
+  ]},
+  { label: "🩺 Medic", items: [
+    {name: "Meredith Grey", votes: 2},
+    {name: "Sandra Oh", votes: 8},
+    {name: "Dr. Strange", votes: 7},
+    {name: "Dr. House", votes: 0},
+    {name: "Doc McStuffins", votes: 0}
+  ]},
+  { label: "😂 Comic Relief", items: [
+    {name: "Seth Rogen", votes: 5},
+    {name: "Ryan Reynolds", votes: 2},
+    {name: "Jack Black", votes: 2},
+    {name: "Rebel Wilson", votes: 6},
+    {name: "Tiffany Haddish", votes: 2}
+  ]},
+  { label: "💀 First to Go", items: [
+    {name: "Jake Paul", votes: 0},
+    {name: "Your Ex", votes: 0},
+    {name: "That One Coworker", votes: 5},
+    {name: "Martin Shkreli", votes: 4},
+    {name: "Gary Vee", votes: 8}
+  ]}
+];
+
+const total = 17;
+const costs = ["$5","$4","$3","$2","$1"];
+
+rows.forEach(row => {
+  const maxVotes = Math.max(...row.items.map(i => i.votes));
+  let html = `<tr><td class="row-label">${row.label}</td>`;
+  row.items.forEach((item, i) => {
+    const pct = Math.round(item.votes / total * 100);
+    const barW = Math.max(pct, 2);
+    const isTop = item.votes === maxVotes && item.votes > 0;
+    const cls = item.votes === 0 ? 'zero' : isTop ? 'top' : item.votes >= 4 ? 'mid' : 'low';
+    const badge = isTop ? '<span class="top-badge">#1</span>' : '';
+    html += `<td class="item"><span class="cost">${costs[i]}</span> ${item.name}${badge}</td>`;
+    html += `<td class="votes"><span class="bar ${cls}" style="width:${barW * 2}px"></span>${item.votes} <span class="pct">(${pct}%)</span></td>`;
+  });
+  html += '</tr>';
+  document.write(html);
+});
+</script>
+</table>
+
+<div style="margin-top: 32px; padding: 16px; background: #faf5e8; border-radius: 8px; border: 1px solid rgba(212,168,67,0.2);">
+  <strong style="font-size: 13px;">Lock Usage:</strong>
+  <span style="font-size: 13px; color: #666;"> 7 of 17 players (41%) used the lock. Most locked: Leader (4 locks)</span>
+</div>
+</body></html>
