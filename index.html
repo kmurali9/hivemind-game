@@ -1231,6 +1231,30 @@ async function submitPicks() {
 
 // ─── Results ───
 async function showResultsFromCache() {
+  // Load picks from localStorage or Firebase if not already cached
+  if (!cachedPicks) {
+    const stored = localStorage.getItem('hivemind_picks_' + TODAY.gameId);
+    if (stored) {
+      cachedPicks = JSON.parse(stored);
+    } else {
+      try {
+        const doc = await db.collection('games').doc(TODAY.gameId)
+          .collection('picks').doc(userId).get();
+        if (doc.exists) {
+          cachedPicks = doc.data().selections;
+          cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+        }
+      } catch (e) {}
+    }
+  }
+  if (cachedLock == null) {
+    const storedLock = localStorage.getItem('hivemind_lock_' + TODAY.gameId);
+    if (storedLock) cachedLock = JSON.parse(storedLock);
+  }
+  if (!cachedPicks) {
+    alert('Could not load your picks. Please try again.');
+    return;
+  }
   await computeAndShowResults(isGameDayOver());
 }
 
