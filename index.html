@@ -864,8 +864,7 @@ async function loadTodaysPrompt() {
       <div style="font-size: 13px; color: var(--text-sec); margin-top: 6px;" id="percentileDesc"></div>
     </div>
 
-    <div class="actions" id="resultsActions">
-      <button class="act-btn primary" onclick="shareResults()">Share Results</button>
+    <div class="actions" id="resultsActions" style="display:none;">
     </div>
   </div>
 </div>
@@ -1405,12 +1404,17 @@ async function computeAndShowResults(isFinal) {
 
   // Update banner for final vs live results
   const bannerText = document.getElementById('scoreBannerText');
+  const actions = document.getElementById('resultsActions');
   if (isFinal) {
     bannerText.textContent = "Final score — " + getDayName(TODAY.gameId) + "'s game is complete";
     bannerText.style.color = 'var(--green)';
+    actions.style.display = 'flex';
+    actions.innerHTML = '<button class="act-btn primary" onclick="shareResults()">Share Results</button>';
   } else {
     bannerText.textContent = 'Score for now — rankings shift as more people play today';
     bannerText.style.color = 'var(--orange)';
+    actions.style.display = 'none';
+    actions.innerHTML = '';
   }
 
   showScreen('resultsScreen');
@@ -1501,7 +1505,10 @@ function shareResults() {
 
   const text = `🧠 Hivemind #${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}\n\nhttps://kmurali9.github.io/hivemind-game/`;
 
-  if (navigator.clipboard) {
+  // Use native share sheet on mobile, clipboard on desktop
+  if (navigator.share) {
+    navigator.share({ text }).catch(() => {});
+  } else if (navigator.clipboard) {
     navigator.clipboard.writeText(text).then(() => {
       const btn = document.querySelector('.act-btn.primary');
       const orig = btn.textContent;

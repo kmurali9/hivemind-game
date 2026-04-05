@@ -74,13 +74,13 @@
   {
     "gameId": "2026-04-10",
     "number": 7,
-    "prompt": "Pick Your Netflix & Chill Lineup",
+    "prompt": "Build Your Ultimate Binge Watch Weekend",
     "rows": [
-      { "label": "First Date Vibes", "icon": "🦋", "items": ["The Office", "Friends", "New Girl", "Brooklyn Nine-Nine", "Schitt's Creek"] },
-      { "label": "Married Energy", "icon": "💍", "items": ["Ozark", "Breaking Bad", "Succession", "The Bear", "Yellowjackets"] },
-      { "label": "Nobody's Watching", "icon": "😏", "items": ["Love Island", "Too Hot to Handle", "Bridgerton", "YOU", "365 Days"] },
-      { "label": "Background Noise", "icon": "🔊", "items": ["Great British Bake", "Planet Earth", "Selling Sunset", "Queer Eye", "Bob's Burgers"] },
-      { "label": "Red Flag Pick", "icon": "🚩", "items": ["True Crime Docs", "Dahmer", "Making a Murderer", "Don't F**k With Cats", "Mindhunter"] }
+      { "label": "Friday Night", "icon": "🍿", "items": ["The Office", "Friends", "Seinfeld", "Brooklyn Nine-Nine", "Schitt's Creek"] },
+      { "label": "Sat Morning", "icon": "☀️", "items": ["Great British Bake", "Planet Earth", "Queer Eye", "Nailed It!", "Bob's Burgers"] },
+      { "label": "Sat Afternoon", "icon": "🛋️", "items": ["Stranger Things", "Ted Lasso", "Succession", "The Bear", "Abbott Elementary"] },
+      { "label": "Sat Night", "icon": "🌙", "items": ["Breaking Bad", "Game of Thrones", "Ozark", "Yellowjackets", "The Last of Us"] },
+      { "label": "Sun Comfort", "icon": "😌", "items": ["Gilmore Girls", "Parks and Rec", "New Girl", "Modern Family", "Selling Sunset"] }
     ]
   },
   {
