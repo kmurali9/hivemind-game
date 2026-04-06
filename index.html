@@ -971,6 +971,30 @@ function getDeviceId() {
   return did;
 }
 
+// Browser fingerprint — survives localStorage/cookie clears
+function getBrowserFingerprint() {
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillText('hivemind-fp', 2, 2);
+    const data = canvas.toDataURL();
+    const ua = navigator.userAgent;
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const screen = window.screen.width + 'x' + window.screen.height;
+    const str = data + '|' + ua + '|' + tz + '|' + screen + '|' + navigator.language;
+    // Simple hash
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const c = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + c;
+      hash |= 0;
+    }
+    return 'fp_' + Math.abs(hash).toString(36);
+  } catch (e) { return null; }
+}
+
 // ─── Pacific Time helpers ───
 function getPTDate() {
   return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
@@ -1090,8 +1114,9 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
 }
 
-async function hasPlayed() {
+async function hasPlayed(retries) {
   if (isAdmin) return false;
+  if (retries === undefined) retries = 2;
   try {
     // Check by userId first
     const doc = await db.collection('games').doc(TODAY.gameId)
@@ -1119,9 +1144,34 @@ async function hasPlayed() {
       markPlayedLocally();
       return true;
     }
+    // Check by browser fingerprint (survives localStorage/cookie clears)
+    const fp = getBrowserFingerprint();
+    if (fp) {
+      const fpDoc = await db.collection('games').doc(TODAY.gameId)
+        .collection('devices').doc(fp).get();
+      if (fpDoc.exists) {
+        const pickUserId = fpDoc.data().userId;
+        if (pickUserId) {
+          const pickDoc = await db.collection('games').doc(TODAY.gameId)
+            .collection('picks').doc(pickUserId).get();
+          if (pickDoc.exists) {
+            cachedPicks = pickDoc.data().selections;
+            cachedLock = pickDoc.data().lockedRow != null ? pickDoc.data().lockedRow : null;
+          }
+        }
+        markPlayedLocally();
+        return true;
+      }
+    }
     return false;
   } catch (e) {
-    return false;
+    console.error('hasPlayed check failed (retries left: ' + retries + '):', e);
+    if (retries > 0) {
+      await new Promise(r => setTimeout(r, 1000));
+      return hasPlayed(retries - 1);
+    }
+    // After all retries exhausted, fail safe: block play to prevent duplicate submissions
+    return true;
   }
 }
 
@@ -1344,8 +1394,20 @@ async function submitPicks() {
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
       } catch (deviceErr) {
-        // Device doc may already exist — that's fine, pick was already saved
         console.log('Device doc write skipped (may already exist)');
+      }
+      // Also write browser fingerprint as a second device lock
+      const fp = getBrowserFingerprint();
+      if (fp) {
+        try {
+          await db.collection('games').doc(TODAY.gameId).collection('devices').doc(fp).set({
+            userId: userId,
+            deviceId: deviceId,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        } catch (fpErr) {
+          console.log('Fingerprint doc write skipped');
+        }
       }
     }
 
