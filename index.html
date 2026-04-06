@@ -1023,7 +1023,24 @@ async function init() {
     // Check if user played yesterday but hasn't seen final results
     if (YESTERDAY) {
       const seenFinal = localStorage.getItem('hivemind_seen_final_' + YESTERDAY.gameId) === 'true';
-      const playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true';
+      let playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true'
+        || getCookie('hivemind_played_' + YESTERDAY.gameId) === 'true'
+        || getPlayedGames().includes(YESTERDAY.gameId);
+      // Firebase fallback: check device doc or user pick doc
+      if (!playedYesterday && !seenFinal) {
+        try {
+          const yDoc = await db.collection('games').doc(YESTERDAY.gameId)
+            .collection('picks').doc(userId).get();
+          if (yDoc.exists) {
+            playedYesterday = true;
+          } else {
+            const deviceId = getDeviceId();
+            const yDevice = await db.collection('games').doc(YESTERDAY.gameId)
+              .collection('devices').doc(deviceId).get();
+            if (yDevice.exists) playedYesterday = true;
+          }
+        } catch (e) { /* silent */ }
+      }
       if (playedYesterday && !seenFinal) {
         // Show yesterday's final results first, with a button to continue to today
         await showYesterdayFinalResults();
