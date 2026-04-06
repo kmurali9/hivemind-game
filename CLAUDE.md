@@ -1,7 +1,14 @@
 # Hivemind — Project Rules
 
+## Key links
+- **Game:** https://kmurali9.github.io/hivemind-game/
+- **Admin test:** https://kmurali9.github.io/hivemind-game/?admin=1
+- **GitHub repo:** https://github.com/kmurali9/hivemind-game
+- **Firebase console:** https://console.firebase.google.com/project/hivemind-game-ab3f1
+- **Firestore data:** https://console.firebase.google.com/project/hivemind-game-ab3f1/firestore
+
 ## What this is
-A daily puzzle game (like Wordle) where players pick one item from each row and score points based on how popular their picks are. Live at https://kmurali9.github.io/hivemind-game/
+A daily puzzle game (like Wordle) where players pick one item from each row and score points based on how popular their picks are.
 
 ## Content rules
 - **Family friendly** — all prompts, categories, and items must be appropriate for all ages. No sexual, explicit, or drug-related content. Think NYT Games audience.
