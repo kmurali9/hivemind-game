@@ -32,6 +32,7 @@ A daily puzzle game (like Wordle) where players pick one item from each row and 
 - Firebase handles auth (anonymous) and storing picks. Never expose or change the Firebase config without asking.
 - Always push to GitHub after changes — the site auto-deploys from the `main` branch.
 - `prompts.json` is fetched with a cache-busting parameter (`?v=timestamp`) to avoid stale CDN cache on GitHub Pages.
+- **Deploy timing:** Changes to `index.html`, `prompts.json`, or `firestore.rules` should be pushed before 9am PT or after midnight PT when possible. Mid-day pushes risk users getting different versions due to CDN caching. If a mid-day push is unavoidable, avoid touching the submit flow, scoring logic, or today's prompt data.
 
 ## Play restriction — CRITICAL
 This is the #1 most important system to protect. Streaks, leaderboards, and all retention features depend on it. If it breaks, the game is meaningless.
