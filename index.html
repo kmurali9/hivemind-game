@@ -687,7 +687,7 @@ const COSTS = [5, 4, 3, 2, 1];
 const BUDGET = 15;
 
 async function loadTodaysPrompt() {
-  const res = await fetch('prompts.json');
+  const res = await fetch('prompts.json?v=' + Date.now());
   ALL_PROMPTS = await res.json();
   // Get today's date in Pacific Time
   const ptDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
