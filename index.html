@@ -748,9 +748,9 @@ async function loadTodaysPrompt() {
     <div class="welcome-icon">🧠</div>
     <h2>Think Like the Crowd</h2>
     <p>Pick one item from each row. You have up to $15 to spend — choose wisely! The more popular your picks, the higher your score.</p>
-    <div style="margin: 16px auto 28px; padding: 14px 20px; background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 12px; max-width: 320px;">
-      <div style="font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px;">🔒 Lock It In!</div>
-      <div style="font-size: 13px; color: var(--text-sec); line-height: 1.4;">Tap any pick twice to lock it. <strong style="color: var(--green);">+3 points</strong> if it's the #1 answer, <strong style="color: var(--red);">−3 points</strong> if it's not!</div>
+    <div style="margin: 16px auto 28px; padding: 16px 20px; background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 12px; max-width: 320px;">
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 6px;">🎲 Double Down</div>
+      <div style="font-size: 13px; color: var(--text-sec); line-height: 1.5;">Feeling confident? Tap any pick twice to double down. <strong style="color: var(--green);">+3 bonus</strong> if it's the #1 answer, <strong style="color: var(--red);">−3 penalty</strong> if it's not!</div>
     </div>
     <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
@@ -779,7 +779,7 @@ async function loadTodaysPrompt() {
       <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Items cost $5 → $1 (best to worst).</span></div>
       <div class="htp-rule"><span class="htp-num">2</span><span>You have <strong>$15</strong> — not enough for all the best picks, so choose wisely!</span></div>
       <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> by picking the most popular answer. The more people who chose the same thing, the more points you get!</span></div>
-      <div class="htp-rule"><span class="htp-num">🔒</span><span><strong>Lock it in</strong> — tap any selected pick again to lock it. If it's the #1 answer, <strong>+3 points</strong>. If not, <strong>−3 points</strong>. Tap a third time to undo.</span></div>
+      <div class="htp-rule"><span class="htp-num">🎲</span><span><strong>Double Down</strong> — feeling confident? Tap any pick again to double down. If it's the #1 answer, <strong>+3 bonus</strong>. If not, <strong>−3 penalty</strong>. Tap a third time to undo.</span></div>
     </div>
 
     <div class="q-banner">
@@ -793,7 +793,7 @@ async function loadTodaysPrompt() {
     </div>
 
     <div class="lock-wrap">
-      <div class="lock-hint" id="lockHint">Tap a pick to select, tap again to lock it in!</div>
+      <div class="lock-hint" id="lockHint">🎲 Feeling confident? Tap any pick again to double down!</div>
     </div>
 
     <div class="col-hdr">
@@ -1230,17 +1230,15 @@ function clickCell(ri, ci) {
     // State 3: locked → deselect
     lockedRow = null;
     selections[ri] = null;
-    hint.textContent = 'Tap a pick to select, tap again to lock it in!';
+    hint.textContent = '🎲 Feeling confident? Tap any pick again to double down!';
     hint.style.color = '';
   } else if (selections[ri] === ci) {
-    // State 2: selected → lock it
-    // If another row is already locked, unlock it first
+    // State 2: selected → double down
     if (lockedRow !== null) {
-      const prevLockHint = lockedRow;
       lockedRow = null;
     }
     lockedRow = ri;
-    hint.textContent = '🔒 Locked: ' + TODAY.rows[ri].items[ci] + ' — tap again to undo';
+    hint.textContent = '🎲 Doubled down on ' + TODAY.rows[ri].items[ci] + '! Tap again to undo.';
     hint.style.color = 'var(--accent)';
   } else {
     // State 1: unselected → select (or switch selection in this row)
@@ -1514,8 +1512,8 @@ async function computeAndShowResults(isFinal) {
     const isTop = item.pick === item.topPick;
     const lockTag = item.isLocked
       ? (item.lockHit
-        ? `<span style="font-size:11px; color:var(--green); font-weight:600;"> 🔒 +3</span>`
-        : `<span style="font-size:11px; color:var(--red); font-weight:600;"> 🔒 −3</span>`)
+        ? `<span style="font-size:11px; color:var(--green); font-weight:600;"> 🎲 +3</span>`
+        : `<span style="font-size:11px; color:var(--red); font-weight:600;"> 🎲 −3</span>`)
       : '';
 
     bd.innerHTML += `
@@ -1597,7 +1595,7 @@ function resetGame() {
   updateGrid();
   document.getElementById('subBtn').textContent = 'Submit Picks';
   const hint = document.getElementById('lockHint');
-  hint.textContent = 'Tap a pick to select, tap again to lock it in!';
+  hint.textContent = '🎲 Feeling confident? Tap any pick again to double down!';
   hint.style.color = '';
 }
 
@@ -1642,7 +1640,7 @@ function shareResults() {
     const pts = shareRanks[ri][ci];
     score += pts;
     const base = pts >= 4 ? '🟩' : pts >= 3 ? '🟨' : '🟥';
-    if (shareLock === ri) return '🔒' + base;
+    if (shareLock === ri) return '🎲' + base;
     return base;
   });
 
