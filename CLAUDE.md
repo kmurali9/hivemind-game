@@ -58,7 +58,7 @@ This is the #1 most important system to protect. Streaks, leaderboards, and all 
 - There is no auto-generation pipeline — when running low, generate more manually.
 - Weekly preview email goes out Sundays at 9am PT showing Mon–Sun ahead.
 - Low-stock alert emails on Mondays if under 2 weeks of prompts remain.
-- **NEVER edit prompts for dates that have already been played.** Firebase stores column indices (0-4), not item names. Changing items at a position breaks results display for everyone who already played. Only edit prompts with future gameId dates.
+- **NEVER edit prompts for today or any past date.** Firebase stores column indices (0-4), not item names. Changing items at a position breaks results for anyone who already played. GitHub Pages can cache for 10+ minutes, so even "quick" edits cause some users to play different versions of the same game. Only edit prompts with gameId dates that are TOMORROW or later.
 - Item ordering matters: $5 (index 0) should be the most desirable/popular option, $1 (index 4) the least. This creates the budget tension that makes the game fun.
 
 ## User preferences

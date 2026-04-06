@@ -134,8 +134,8 @@
         "items": [
           "Zendaya",
           "Rihanna",
-          "Beyoncé",
           "Frank Ocean",
+          "Beyoncé",
           "Keanu Reeves"
         ]
       },
@@ -143,11 +143,11 @@
         "label": "Sends Memes 24/7",
         "icon": "💀",
         "items": [
-          "Snoop Dogg",
           "Pete Davidson",
-          "Kevin Hart",
+          "Snoop Dogg",
           "Cardi B",
-          "Lil Nas X"
+          "Lil Nas X",
+          "Kevin Hart"
         ]
       },
       {
@@ -156,18 +156,18 @@
         "items": [
           "Kanye",
           "Nicki Minaj",
-          "50 Cent",
+          "Azealia Banks",
           "Wendy Williams",
-          "Chrissy Teigen"
+          "50 Cent"
         ]
       },
       {
         "label": "Voice Notes Only",
         "icon": "🎙️",
         "items": [
-          "DJ Khaled",
           "Joe Rogan",
           "Oprah",
+          "DJ Khaled",
           "Lizzo",
           "Doja Cat"
         ]
