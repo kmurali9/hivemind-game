@@ -1336,12 +1336,17 @@ async function submitPicks() {
       deviceId: deviceId,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-    // Write device lock (skip if admin since it may already exist)
+    // Write device lock (best-effort — don't let it block the submission)
     if (!isAdmin) {
-      await db.collection('games').doc(TODAY.gameId).collection('devices').doc(deviceId).set({
-        userId: userId,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
+      try {
+        await db.collection('games').doc(TODAY.gameId).collection('devices').doc(deviceId).set({
+          userId: userId,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (deviceErr) {
+        // Device doc may already exist — that's fine, pick was already saved
+        console.log('Device doc write skipped (may already exist)');
+      }
     }
 
     trackEvent('submissions');
