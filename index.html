@@ -1400,8 +1400,10 @@ async function showResultsFromCache() {
     if (storedLock) cachedLock = JSON.parse(storedLock);
   }
   if (!cachedPicks) {
-    alert('Could not load your picks. Please try again.');
-    return;
+    // Can't find picks — show results anyway without personal highlights
+    // Better than an error for users whose session expired
+    cachedPicks = [0, 0, 0, 0, 0]; // default picks, won't match anything meaningful
+    cachedLock = null;
   }
   await computeAndShowResults(isGameDayOver());
 }
