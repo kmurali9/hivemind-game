@@ -312,61 +312,61 @@
   {
     "gameId": "2026-04-09",
     "number": 6,
-    "prompt": "Build Your Reality TV All-Stars Season",
+    "prompt": "Build Your Masters Sunday Dream Group",
     "rows": [
       {
-        "label": "Main Villain",
-        "icon": "😈",
+        "label": "Playing Partner",
+        "icon": "⛳",
         "items": [
-          "Omarosa",
-          "Tiffany Pollard",
-          "NeNe Leakes",
-          "Spencer Pratt",
-          "Bethenny Frankel"
+          "Tiger Woods",
+          "Rory McIlroy",
+          "Scottie Scheffler",
+          "Jordan Spieth",
+          "Bryson DeChambeau"
         ]
       },
       {
-        "label": "Fan Favorite",
-        "icon": "❤️",
+        "label": "Caddie Energy",
+        "icon": "🎒",
         "items": [
-          "Snoop Dogg",
-          "Guy Fieri",
-          "Tabitha Brown",
-          "Bob Ross Energy",
-          "Flavor Flav"
+          "Hype Man",
+          "Silent Strategist",
+          "Snack Provider",
+          "Vibes Only",
+          "Your Mom"
         ]
       },
       {
-        "label": "Chaos Agent",
-        "icon": "🌪️",
+        "label": "19th Hole Drink",
+        "icon": "🍹",
         "items": [
-          "Kanye",
-          "Gary Busey",
-          "Gemma Collins",
-          "Johnny Bananas",
-          "Tiffany Haddish"
+          "Azalea Cocktail",
+          "Cold Beer",
+          "Arnold Palmer",
+          "Sweet Tea",
+          "Just Water"
         ]
       },
       {
-        "label": "Confessional MVP",
-        "icon": "🎤",
+        "label": "Green Jacket Fit",
+        "icon": "🧥",
         "items": [
-          "Cardi B",
-          "Nicki Minaj",
-          "Gordon Ramsay",
-          "Kim K",
-          "Teresa Giudice"
+          "Classic Look",
+          "Tiger Red",
+          "Loud Plaid",
+          "All White Bold",
+          "Hawaiian Shirt"
         ]
       },
       {
-        "label": "First Eliminated",
-        "icon": "🚪",
+        "label": "Amen Corner Take",
+        "icon": "🔥",
         "items": [
-          "Jake Paul",
-          "James Corden",
-          "Jared Leto",
-          "Ellen",
-          "Dr. Phil"
+          "Most Beautiful Hole",
+          "Most Stressful Hole",
+          "Would Triple Bogey",
+          "Could Birdie It",
+          "Never Heard of It"
         ]
       }
     ]
@@ -374,61 +374,61 @@
   {
     "gameId": "2026-04-10",
     "number": 7,
-    "prompt": "Build Your Ultimate Binge Watch Weekend",
+    "prompt": "Build Your Coachella Survival Kit",
     "rows": [
       {
-        "label": "Friday Night",
-        "icon": "🍿",
+        "label": "Must-See Act",
+        "icon": "🎤",
         "items": [
-          "The Office",
-          "Friends",
-          "Seinfeld",
-          "Brooklyn Nine-Nine",
-          "Schitt's Creek"
+          "Sabrina Carpenter",
+          "Justin Bieber",
+          "Karol G",
+          "Charli XCX",
+          "Megan Thee"
         ]
       },
       {
-        "label": "Sat Morning",
-        "icon": "☀️",
+        "label": "Festival Fit",
+        "icon": "👗",
         "items": [
-          "Great British Bake",
-          "Planet Earth",
-          "Queer Eye",
-          "Nailed It!",
-          "Bob's Burgers"
+          "Crochet Top",
+          "Vintage Band Tee",
+          "Full Glitter",
+          "Cowboy Boots",
+          "Cargo Everything"
         ]
       },
       {
-        "label": "Sat Afternoon",
-        "icon": "🛋️",
+        "label": "Survival Item",
+        "icon": "🎒",
         "items": [
-          "Stranger Things",
-          "Ted Lasso",
-          "Succession",
-          "The Bear",
-          "Abbott Elementary"
+          "Portable Charger",
+          "Sunscreen SPF 100",
+          "Earplugs (Smart)",
+          "Baby Wipes",
+          "Cash (No Signal)"
         ]
       },
       {
-        "label": "Sat Night",
-        "icon": "🌙",
+        "label": "Food Move",
+        "icon": "🍕",
         "items": [
-          "Breaking Bad",
-          "Game of Thrones",
-          "The Last of Us",
-          "Ozark",
-          "Yellowjackets"
+          "$22 Pizza",
+          "Spicy Mango",
+          "Acai Bowl",
+          "Loaded Fries",
+          "Just Vibes"
         ]
       },
       {
-        "label": "Sun Comfort",
-        "icon": "😌",
+        "label": "Post Strategy",
+        "icon": "📱",
         "items": [
-          "Parks and Rec",
-          "Gilmore Girls",
-          "New Girl",
-          "Modern Family",
-          "Selling Sunset"
+          "Golden Hour Pic",
+          "Story Dump",
+          "Ferris Wheel Shot",
+          "Crowd Video",
+          "No Phone Zone"
         ]
       }
     ]
@@ -746,61 +746,61 @@
   {
     "gameId": "2026-04-16",
     "number": 13,
-    "prompt": "Assemble Your Gym Bro Cinematic Universe",
+    "prompt": "Cast Your TV Comeback Dream Season",
     "rows": [
       {
-        "label": "Pre-Workout",
-        "icon": "⚡",
+        "label": "Must Watch Now",
+        "icon": "📺",
         "items": [
-          "C4 Original",
-          "Ghost Legend",
-          "Bucked Up",
-          "Total War",
+          "Euphoria S3",
+          "The Boys S5",
+          "The Testaments",
+          "Malcolm Reboot",
+          "Beef S2"
+        ]
+      },
+      {
+        "label": "Binge Fuel",
+        "icon": "🍿",
+        "items": [
+          "Popcorn Bucket",
+          "Delivery Pizza",
+          "Wine + Cheese",
+          "Candy Stash",
           "Just Coffee"
         ]
       },
       {
-        "label": "Gym Anthem",
-        "icon": "🎵",
+        "label": "Watch With",
+        "icon": "👥",
         "items": [
-          "Lose Yourself",
-          "Stronger - Kanye",
-          "Eye of the Tiger",
-          "Till I Collapse",
-          "HUMBLE."
+          "Best Friend",
+          "Significant Other",
+          "The Group Chat",
+          "Solo (Peace)",
+          "Your Mom"
         ]
       },
       {
-        "label": "Gym Nemesis",
-        "icon": "😤",
+        "label": "Hot Take",
+        "icon": "🔥",
         "items": [
-          "Curl in Squat Rack",
-          "Mirror Selfie Guy",
-          "Loud Grunter",
-          "Bench Hogger",
-          "Unsolicited Tips"
+          "Better Than S1",
+          "Overhyped",
+          "Cried Already",
+          "Binged in One Day",
+          "Mid But Watching"
         ]
       },
       {
-        "label": "Protein Source",
-        "icon": "🥤",
+        "label": "Second Screen",
+        "icon": "📱",
         "items": [
-          "Chicken & Rice",
-          "Chipotle Bowl",
-          "Protein Shake",
-          "Greek Yogurt",
-          "Costco Chicken"
-        ]
-      },
-      {
-        "label": "Rest Day Cope",
-        "icon": "😩",
-        "items": [
-          "Active Recovery",
-          "Still Goes Anyway",
-          "YouTube Form Vids",
-          "Mirror Flexing",
-          "Buys More Gear"
+          "Reddit Live",
+          "Twitter Takes",
+          "Group Text",
+          "TikTok Edits",
+          "Phone Down"
         ]
       }
     ]
@@ -1180,61 +1180,61 @@
   {
     "gameId": "2026-04-23",
     "number": 20,
-    "prompt": "Draft Your Celebrity Roast Panel",
+    "prompt": "Build Your NFL Draft Night War Room",
     "rows": [
       {
-        "label": "Host",
-        "icon": "🎤",
+        "label": "Dream Pick",
+        "icon": "🏈",
         "items": [
-          "Nikki Glaser",
-          "Jeff Ross",
-          "Kevin Hart",
-          "Tiffany Haddish",
-          "John Mulaney"
+          "Franchise QB",
+          "Shutdown Corner",
+          "Pass Rusher",
+          "WR1 Speed",
+          "O-Line Anchor"
         ]
       },
       {
-        "label": "Roast Target",
-        "icon": "🎯",
+        "label": "Draft Snack",
+        "icon": "🍕",
         "items": [
-          "Tom Brady",
-          "Justin Bieber",
-          "Kim K",
-          "Drake",
-          "Mark Zuckerberg"
+          "Wings",
+          "Pizza Stack",
+          "Nachos Loaded",
+          "Sliders",
+          "Cheese Dip"
         ]
       },
       {
-        "label": "Surprise Guest",
-        "icon": "😲",
+        "label": "If They Bust",
+        "icon": "😤",
         "items": [
-          "Snoop Dogg",
-          "Martha Stewart",
-          "Shaq",
-          "Dolly Parton",
-          "Pete Davidson"
+          "Fire the GM",
+          "Burn the Jersey",
+          "Trust the Process",
+          "Blame the Mock",
+          "Switch Teams"
         ]
       },
       {
-        "label": "Topic Off Limits",
-        "icon": "🚫",
+        "label": "Watch With",
+        "icon": "📺",
         "items": [
-          "The Kids",
-          "The Surgeries",
-          "The Exes",
-          "The DMs",
-          "The Tax Returns"
+          "Die-Hard Crew",
+          "Fantasy League",
+          "Dad (Yelling)",
+          "Bar Full of Fans",
+          "Solo (Anxiety)"
         ]
       },
       {
-        "label": "Walk-On Song",
-        "icon": "🎵",
+        "label": "Hot Take",
+        "icon": "🔥",
         "items": [
-          "Gonna Fly Now",
-          "Eye of the Tiger",
-          "Back in Black",
-          "Crazy Train",
-          "Imperial March"
+          "Steal of Draft",
+          "Massive Reach",
+          "Wrong Position",
+          "Trust Me Bro",
+          "Who???"
         ]
       }
     ]
@@ -1242,61 +1242,61 @@
   {
     "gameId": "2026-04-24",
     "number": 21,
-    "prompt": "Draft Your NFL Draft War Room",
+    "prompt": "Cast Your Music Biopic Dream Lineup",
     "rows": [
       {
-        "label": "Draft Snack",
-        "icon": "🍕",
+        "label": "Lead Role",
+        "icon": "🎤",
         "items": [
-          "Buffalo Wings",
-          "Pizza Stack",
-          "Nachos Supreme",
-          "Sub Sandwich",
-          "Bucket of Beer"
+          "Michael Jackson",
+          "Prince",
+          "Whitney Houston",
+          "Freddie Mercury",
+          "Dolly Parton"
         ]
       },
       {
-        "label": "Fan Reaction",
-        "icon": "😤",
+        "label": "Director",
+        "icon": "🎬",
         "items": [
-          "Boooo",
-          "In Goodell We Don't",
-          "Trust the Process",
-          "Who Is That?!",
-          "We Got Fleeced"
+          "Spike Lee",
+          "Ava DuVernay",
+          "Jordan Peele",
+          "Greta Gerwig",
+          "Ryan Coogler"
         ]
       },
       {
-        "label": "GM Energy",
-        "icon": "🧠",
+        "label": "Scene Stealer",
+        "icon": "⭐",
         "items": [
-          "Trade Up Chaos",
-          "Best Player Avail",
-          "Reach Pick (Pain)",
-          "Stole Our Guy",
-          "Mock Draft Right!"
+          "The Vocal Coach",
+          "Shady Manager",
+          "Rival Artist",
+          "The First Love",
+          "The Comeback"
         ]
       },
       {
-        "label": "Overreaction",
-        "icon": "📱",
+        "label": "Soundtrack Must",
+        "icon": "🎵",
         "items": [
-          "Super Bowl Bound",
-          "Franchise Ruined",
-          "Fire Everyone",
-          "Best Draft Ever",
-          "Moving to Canada"
+          "Thriller",
+          "Purple Rain",
+          "I Will Always Love",
+          "Bohemian Rhapsody",
+          "9 to 5"
         ]
       },
       {
-        "label": "Day 2 Cope",
-        "icon": "😅",
+        "label": "Oscar Moment",
+        "icon": "🏆",
         "items": [
-          "Hidden Gem Trust",
-          "YouTube Highlights",
-          "He Was My Sleeper",
-          "Comp Is Young Tom",
-          "Who Needs Round 1"
+          "Final Concert",
+          "Mirror Breakdown",
+          "First Big Hit",
+          "Family Scene",
+          "Standing Ovation"
         ]
       }
     ]
@@ -1676,61 +1676,61 @@
   {
     "gameId": "2026-05-01",
     "number": 28,
-    "prompt": "Build Your Kentucky Derby Day Starter Pack",
+    "prompt": "Build Your Devil Wears Prada Reboot Squad",
     "rows": [
       {
-        "label": "Hat Game",
-        "icon": "🎩",
+        "label": "Your Boss",
+        "icon": "👠",
         "items": [
-          "Giant Fancy Hat",
-          "Fascinator Vibes",
-          "Baseball Cap (Boo)",
-          "Borrowed It",
-          "DIY Dollar Store"
+          "Miranda Energy",
+          "Cool But Scary",
+          "Passive-Aggro",
+          "Absent Always",
+          "Micromanager"
         ]
       },
       {
-        "label": "Mint Julep Take",
-        "icon": "🍹",
+        "label": "Office Fit",
+        "icon": "👗",
         "items": [
-          "Classic Recipe",
-          "Too Much Bourbon",
-          "Just Give Me Rosé",
-          "Made It Wrong",
-          "Straight Bourbon"
+          "Full Designer",
+          "Business Casual",
+          "Statement Piece",
+          "All Black",
+          "Jeans (Brave)"
         ]
       },
       {
-        "label": "Bet Strategy",
-        "icon": "🐴",
+        "label": "Survival Item",
+        "icon": "☕",
         "items": [
-          "Picked the Name",
-          "Jockey's Colors",
-          "Gut Feeling",
-          "Did Real Research",
-          "Bet on All of Them"
+          "Iced Latte",
+          "AirPods In",
+          "Backup Outfit",
+          "Desk Snacks",
+          "Updated Resume"
         ]
       },
       {
-        "label": "Watch Party Vibe",
-        "icon": "📺",
+        "label": "Work Bestie",
+        "icon": "💅",
         "items": [
-          "Fancy Garden Party",
-          "Sports Bar Chaos",
-          "Couch in Pajamas",
-          "Only the 2 Minutes",
-          "What Channel?"
+          "Emily (Icon)",
+          "The Gossip",
+          "The Hype Woman",
+          "The Realist",
+          "The Intern"
         ]
       },
       {
-        "label": "Post-Race",
-        "icon": "🏆",
+        "label": "Quit Fantasy",
+        "icon": "🎤",
         "items": [
-          "I Called It!",
-          "Rigged Clearly",
-          "What's a Furlong",
-          "Already Forgot Name",
-          "When's the Next One"
+          "Mic Drop Email",
+          "Two Weeks Notice",
+          "Ghost the Job",
+          "Get Promoted",
+          "Start a Blog"
         ]
       }
     ]
@@ -1738,61 +1738,61 @@
   {
     "gameId": "2026-05-02",
     "number": 29,
-    "prompt": "Build Your Delusional Career Pivot Plan",
+    "prompt": "Build Your Kentucky Derby Day Starter Pack",
     "rows": [
       {
-        "label": "New Career",
-        "icon": "💼",
+        "label": "Hat Choice",
+        "icon": "🎩",
         "items": [
-          "Podcast Host",
-          "Dog Influencer",
-          "Etsy Empire",
-          "Life Coach",
-          "Day Trader"
+          "Massive Derby Hat",
+          "Fascinator",
+          "Cowboy Hat",
+          "Baseball Cap",
+          "No Hat (Bold)"
         ]
       },
       {
-        "label": "Inspiration",
-        "icon": "💡",
+        "label": "Drink",
+        "icon": "🥃",
         "items": [
-          "One TikTok",
-          "A Netflix Doc",
-          "Friend Makes Bank",
-          "LinkedIn Post",
-          "Mercury Retrograde"
+          "Mint Julep",
+          "Bourbon Neat",
+          "Rosé All Day",
+          "Beer (Casual)",
+          "Water (Respect)"
         ]
       },
       {
-        "label": "Investment",
-        "icon": "💸",
+        "label": "Bet Strategy",
+        "icon": "🐎",
         "items": [
-          "Ring Light",
-          "Udemy Course",
-          "Business Cards",
-          "LLC Filing",
-          "Vision Board"
+          "Favorite to Win",
+          "Long Shot Yolo",
+          "Name I Like",
+          "Jockey's Colors",
+          "Ask a Stranger"
         ]
       },
       {
-        "label": "Support System",
-        "icon": "🫡",
+        "label": "Watch From",
+        "icon": "📺",
         "items": [
-          "Mom Believes You",
-          "Partner Concerned",
-          "Friends Polite",
-          "Cat Indifferent",
-          "Therapist Curious"
+          "Churchill Downs",
+          "Sports Bar",
+          "House Party",
+          "Backyard BBQ",
+          "Phone at Brunch"
         ]
       },
       {
-        "label": "Backup Plan",
-        "icon": "🔙",
+        "label": "Post-Race Move",
+        "icon": "🎉",
         "items": [
-          "Old Job Begging",
-          "Grad School App",
-          "Moving Home",
-          "Van Life Maybe",
-          "Just Vibes"
+          "Collect Winnings",
+          "Double Down Next",
+          "Blame the Horse",
+          "Nap It Off",
+          "Swear Off Betting"
         ]
       }
     ]
@@ -3722,61 +3722,61 @@
   {
     "gameId": "2026-06-03",
     "number": 61,
-    "prompt": "Build Your Main Character Red Carpet Fit",
+    "prompt": "Build Your NBA Finals Watch Party",
     "rows": [
       {
-        "label": "Designer Pick",
-        "icon": "👗",
+        "label": "GOAT Debate",
+        "icon": "🏀",
         "items": [
-          "Versace",
-          "Valentino",
-          "Balenciaga",
-          "Gucci",
-          "Thrift Flip Chaos"
+          "MJ No Question",
+          "LeBron's Resume",
+          "Kobe Forever",
+          "Steph Changed It",
+          "Duncan Quietly"
         ]
       },
       {
-        "label": "Celeb Inspo",
-        "icon": "✨",
+        "label": "Watch Setup",
+        "icon": "📺",
         "items": [
-          "Zendaya Moment",
-          "Rihanna Met Gala",
-          "Billy Porter Serve",
-          "Harry Styles Era",
-          "Lady Gaga Meat"
+          "Big Screen + Sound",
+          "Sports Bar",
+          "Projector Outside",
+          "Phone Stream",
+          "Radio (Old School)"
         ]
       },
       {
-        "label": "Accessory",
-        "icon": "💎",
+        "label": "Game Snack",
+        "icon": "🍗",
         "items": [
-          "Statement Necklace",
-          "Tiny Sunglasses",
-          "Feather Boa",
-          "Platform Boots",
-          "One Long Glove"
+          "Wings (Classic)",
+          "Pizza Stack",
+          "Nachos Supreme",
+          "Sliders",
+          "Popcorn (Budget)"
         ]
       },
       {
-        "label": "Red Carpet Pose",
-        "icon": "📸",
+        "label": "If Your Team Loses",
+        "icon": "😤",
         "items": [
-          "Over Shoulder Look",
-          "Power Stance",
-          "Spin and Smile",
-          "Not Looking Camera",
-          "Peace Sign Chaos"
+          "Ref's Fault",
+          "Wait Till Next Year",
+          "Turn It Off",
+          "Rage Text Group",
+          "Bandwagon Hop"
         ]
       },
       {
-        "label": "After Party",
-        "icon": "🥂",
+        "label": "Bold Prediction",
+        "icon": "🔥",
         "items": [
-          "Vanity Fair Party",
-          "In-N-Out Run",
-          "Pajama Change",
-          "Lost My Shoes",
-          "Went Home at 9"
+          "Sweep Incoming",
+          "Game 7 Classic",
+          "Triple Double",
+          "Buzzer Beater",
+          "Biggest Upset"
         ]
       }
     ]
@@ -3846,61 +3846,61 @@
   {
     "gameId": "2026-06-05",
     "number": 63,
-    "prompt": "Draft Your Guilty Pleasure Music Confessional",
+    "prompt": "Build Your 80s Nostalgia Reboot Squad",
     "rows": [
       {
-        "label": "Shower Anthem",
-        "icon": "🚿",
+        "label": "Must Reboot",
+        "icon": "📺",
         "items": [
-          "Bohemian Rhapsody",
-          "I Will Survive",
-          "Dancing Queen",
-          "Since U Been Gone",
-          "Livin on a Prayer"
+          "He-Man",
+          "Thundercats",
+          "Voltron",
+          "G.I. Joe",
+          "Inspector Gadget"
         ]
       },
       {
-        "label": "Car Sing Along",
-        "icon": "🚗",
+        "label": "Lead Actor",
+        "icon": "🎬",
         "items": [
-          "Toxic - Britney",
-          "All Star - Smash",
-          "Party in the USA",
-          "Call Me Maybe",
-          "Bye Bye Bye"
+          "Chris Hemsworth",
+          "Idris Elba",
+          "Oscar Isaac",
+          "John Boyega",
+          "Dev Patel"
         ]
       },
       {
-        "label": "Workout Secret",
-        "icon": "🏋️",
+        "label": "Villain",
+        "icon": "😈",
         "items": [
-          "Shake It Off",
-          "Fergalicious",
-          "Hollaback Girl",
-          "Buttons - PCD",
-          "Stronger - Britney"
+          "Skeletor",
+          "Mumm-Ra",
+          "Cobra Commander",
+          "Shredder",
+          "Dr. Claw"
         ]
       },
       {
-        "label": "Would Never Admit",
-        "icon": "🤫",
+        "label": "Soundtrack",
+        "icon": "🎵",
         "items": [
-          "One Direction",
-          "Jonas Brothers",
-          "Nickelback",
-          "Creed",
-          "Imagine Dragons"
+          "Synth Heavy",
+          "Rock Anthem",
+          "Hip Hop Remix",
+          "Orchestral Epic",
+          "Original Theme"
         ]
       },
       {
-        "label": "Karaoke After 3",
-        "icon": "🍻",
+        "label": "Merch Buy",
+        "icon": "🛍️",
         "items": [
-          "My Heart Will Go On",
-          "Total Eclipse",
-          "I Want It That Way",
-          "Barbie Girl",
-          "What Is Love"
+          "Action Figure",
+          "Vintage Tee",
+          "Poster Print",
+          "Lunchbox",
+          "Nothing (Lies)"
         ]
       }
     ]
@@ -3970,61 +3970,61 @@
   {
     "gameId": "2026-06-07",
     "number": 65,
-    "prompt": "Build Your Sunday Scaries Emergency Kit",
+    "prompt": "Build Your Tony Awards Dream Night",
     "rows": [
       {
-        "label": "Dread Song",
-        "icon": "🎵",
+        "label": "Must-See Show",
+        "icon": "🎭",
         "items": [
-          "Everybody Hurts",
-          "Sunday Morning",
-          "Creep - Radiohead",
-          "Mad World",
-          "Breathe Me - Sia"
+          "Hamilton",
+          "Wicked",
+          "Dear Evan Hansen",
+          "The Outsiders",
+          "Merrily We Roll"
         ]
       },
       {
-        "label": "Comfort Show",
-        "icon": "📺",
+        "label": "Host Pick",
+        "icon": "🎤",
         "items": [
-          "The Office",
-          "Friends",
-          "Parks and Rec",
-          "Bob's Burgers",
-          "New Girl"
+          "Ariana DeBose",
+          "Hugh Jackman",
+          "Billy Porter",
+          "Tina Fey",
+          "Wayne Brady"
         ]
       },
       {
-        "label": "Panic Ritual",
-        "icon": "😰",
+        "label": "Red Carpet Fit",
+        "icon": "👗",
         "items": [
-          "Meal Prep Attempt",
-          "Outfit Planning",
-          "Alarm Set x5",
-          "Laundry Sprint",
-          "To-Do List Rewrite"
+          "Full Glam Gown",
+          "Sharp Tuxedo",
+          "Statement Color",
+          "Vintage Vibes",
+          "Jeans (Legend)"
         ]
       },
       {
-        "label": "Coping Meal",
-        "icon": "🍝",
+        "label": "Snack Setup",
+        "icon": "🍿",
         "items": [
-          "Comfort Pasta",
-          "Rotisserie Chicken",
-          "Soup and Bread",
-          "Cereal for Dinner",
-          "Entire Cheese Board"
+          "Fancy Cheese",
+          "Champagne Toast",
+          "Takeout Sushi",
+          "Movie Theater Mix",
+          "Cereal (Honest)"
         ]
       },
       {
-        "label": "Lie You Tell",
-        "icon": "🤥",
+        "label": "Hot Take",
+        "icon": "🔥",
         "items": [
-          "I Love My Job",
-          "Monday's Great",
-          "I'm Productive",
-          "I'll Sleep Early",
-          "This Week Is Diff"
+          "Robbed Again",
+          "Deserved Every Win",
+          "Never Heard of It",
+          "Broadway is Back",
+          "Should've Been Me"
         ]
       }
     ]
@@ -4652,61 +4652,61 @@
   {
     "gameId": "2026-06-18",
     "number": 76,
-    "prompt": "Build Your World Cup Knockout Round Panic Kit",
+    "prompt": "Build Your U.S. Open Golf Watch Party",
     "rows": [
       {
-        "label": "Stress Level",
-        "icon": "😰",
+        "label": "Pick to Win",
+        "icon": "⛳",
         "items": [
-          "Can't Watch",
-          "Pacing the Room",
-          "Stress Eating",
-          "Yelling at TV",
-          "Eerily Calm"
+          "Scottie Scheffler",
+          "Rory McIlroy",
+          "Xander Schauffele",
+          "Jon Rahm",
+          "Brooks Koepka"
         ]
       },
       {
-        "label": "Penalty Kick Vibe",
-        "icon": "⚽",
-        "items": [
-          "Eyes Covered",
-          "Confident Somehow",
-          "Texting Group Chat",
-          "Standing Up Now",
-          "Already Celebrating"
-        ]
-      },
-      {
-        "label": "If USA Wins",
-        "icon": "🇺🇸",
-        "items": [
-          "Soccer Country Now",
-          "USA USA USA",
-          "Told You So",
-          "Called In Sick",
-          "Jersey Never Off"
-        ]
-      },
-      {
-        "label": "If USA Loses",
-        "icon": "😭",
-        "items": [
-          "Soccer Is Boring",
-          "Never Cared",
-          "Blame the Ref",
-          "Back to Football",
-          "See You in 2030"
-        ]
-      },
-      {
-        "label": "Bar Scene",
+        "label": "Watch Drink",
         "icon": "🍺",
         "items": [
-          "Packed at 10 AM",
-          "Stranger High Fives",
-          "Someone Crying",
-          "Spilled Beer Cheer",
-          "Left Before OT"
+          "Cold Beer",
+          "Arnold Palmer",
+          "Whiskey Neat",
+          "Iced Tea",
+          "Bloody Mary"
+        ]
+      },
+      {
+        "label": "Hot Take",
+        "icon": "🔥",
+        "items": [
+          "Too Easy Course",
+          "Impossible Setup",
+          "Upset Coming",
+          "Wire to Wire",
+          "Weather Chaos"
+        ]
+      },
+      {
+        "label": "Golf Style",
+        "icon": "👕",
+        "items": [
+          "Polo + Slacks",
+          "Full Plaid",
+          "Bucket Hat Vibes",
+          "Athleisure",
+          "Cargo Shorts Dad"
+        ]
+      },
+      {
+        "label": "If You Played",
+        "icon": "😬",
+        "items": [
+          "Triple Every Hole",
+          "Lost 12 Balls",
+          "One Good Shot",
+          "Quit at 9",
+          "Never Again"
         ]
       }
     ]
@@ -4714,61 +4714,61 @@
   {
     "gameId": "2026-06-19",
     "number": 77,
-    "prompt": "Build Your Juneteenth Celebration Starter Pack",
+    "prompt": "Build Your Toy Story 5 Opening Day Plan",
     "rows": [
       {
-        "label": "Cookout Must",
-        "icon": "🍖",
+        "label": "Fave Character",
+        "icon": "🤠",
         "items": [
-          "Ribs and Brisket",
-          "Mac and Cheese",
-          "Collard Greens",
-          "Cornbread",
-          "Peach Cobbler"
+          "Woody",
+          "Buzz Lightyear",
+          "Jessie",
+          "Rex",
+          "Forky"
         ]
       },
       {
-        "label": "Music Vibes",
-        "icon": "🎵",
+        "label": "Theater Snack",
+        "icon": "🍿",
         "items": [
-          "Stevie Wonder",
-          "Beyoncé",
-          "Kendrick Lamar",
-          "Earth Wind & Fire",
-          "Erykah Badu"
+          "Large Popcorn",
+          "Nachos + Cheese",
+          "Sour Candy",
+          "Pretzel Bites",
+          "Smuggled Snacks"
         ]
       },
       {
-        "label": "Activity",
-        "icon": "🎉",
+        "label": "Watch With",
+        "icon": "👥",
         "items": [
-          "Block Party",
-          "Community Fest",
-          "Museum Visit",
-          "Art Market",
-          "Live Music Show"
+          "The Whole Family",
+          "Best Friend",
+          "Date Night",
+          "Solo (No Shame)",
+          "Kids (Excuse)"
         ]
       },
       {
-        "label": "Share With",
-        "icon": "👨‍👩‍👧‍👦",
+        "label": "Cry Moment",
+        "icon": "😢",
         "items": [
-          "Whole Family",
-          "Best Friends",
-          "Community",
-          "Neighborhood",
-          "The Group Chat"
+          "When Woody Talks",
+          "Toy Gets Left",
+          "Andy Flashback",
+          "End Credits",
+          "Before It Starts"
         ]
       },
       {
-        "label": "Dessert Tier",
-        "icon": "🍰",
+        "label": "Hot Take",
+        "icon": "🔥",
         "items": [
-          "Banana Pudding",
-          "Sweet Potato Pie",
-          "Red Velvet Cake",
-          "Pound Cake",
-          "Lemon Bars"
+          "Best One Yet",
+          "Should've Stopped",
+          "Forky is GOAT",
+          "Tears Guaranteed",
+          "Toys Beat Tech"
         ]
       }
     ]
@@ -4962,61 +4962,61 @@
   {
     "gameId": "2026-06-23",
     "number": 81,
-    "prompt": "Build Your World Cup Semifinal Survival Guide",
+    "prompt": "Build Your World Cup Group Stage Chaos Kit",
     "rows": [
       {
-        "label": "Watch Location",
+        "label": "Team to Watch",
+        "icon": "⚽",
+        "items": [
+          "USA (Host!)",
+          "Brazil",
+          "Argentina",
+          "France",
+          "Underdog Pick"
+        ]
+      },
+      {
+        "label": "Watch Spot",
         "icon": "📺",
         "items": [
-          "Fan Zone Outdoor",
-          "Sports Bar Packed",
-          "Living Room Shrine",
-          "Office Streaming",
-          "Phone Under Desk"
+          "Packed Sports Bar",
+          "Fan Zone Live",
+          "Backyard Projector",
+          "Office (Sneaky)",
+          "Phone at Work"
         ]
       },
       {
-        "label": "Stress Snack",
-        "icon": "🍿",
+        "label": "Game Snack",
+        "icon": "🍕",
         "items": [
-          "Nails (My Own)",
-          "Pizza Nervous",
-          "Beer After Beer",
-          "Can't Eat Too Tense",
-          "Chips Stress Munch"
+          "Pizza + Wings",
+          "Street Tacos",
+          "Full Spread",
+          "Chips + Guac",
+          "Too Nervous"
         ]
       },
       {
-        "label": "Superstition",
-        "icon": "🤞",
+        "label": "If USA Loses",
+        "icon": "😤",
         "items": [
-          "Lucky Jersey",
-          "Same Seat",
-          "Don't Say It",
-          "Phone Face Down",
-          "Rally Cap"
+          "Ref Was Bought",
+          "Soccer is Boring",
+          "Switch to Baseball",
+          "Support Mexico",
+          "Cry in Peace"
         ]
       },
       {
-        "label": "If Fave Wins",
-        "icon": "🎉",
+        "label": "Bold Take",
+        "icon": "🔥",
         "items": [
-          "Tears of Joy",
-          "Text Everyone",
-          "Bought More Merch",
-          "Calling In Sick",
-          "Planning the Trip"
-        ]
-      },
-      {
-        "label": "If Fave Loses",
-        "icon": "💔",
-        "items": [
-          "Turn Off Phone",
-          "Blame the Ref",
-          "Sport Is Stupid",
-          "Silent Car Ride",
-          "At Least We Tried"
+          "USA Wins It All",
+          "Group of Death Exit",
+          "Messi Last Dance",
+          "Host Curse Real",
+          "Best World Cup"
         ]
       }
     ]
@@ -5272,61 +5272,61 @@
   {
     "gameId": "2026-06-28",
     "number": 86,
-    "prompt": "Build Your World Cup Final Watch Party Draft",
+    "prompt": "Build Your Wimbledon Dream Draw",
     "rows": [
       {
-        "label": "Watch Location",
-        "icon": "🏟️",
+        "label": "Men's Pick",
+        "icon": "🎾",
         "items": [
-          "Stadium (Dream)",
-          "Giant Screen Plaza",
-          "Sports Bar Packed",
-          "Home Projector",
-          "Streaming at Work"
+          "Carlos Alcaraz",
+          "Novak Djokovic",
+          "Jannik Sinner",
+          "Daniil Medvedev",
+          "Holger Rune"
         ]
       },
       {
-        "label": "Pre-Game Ritual",
-        "icon": "🤞",
+        "label": "Women's Pick",
+        "icon": "🎾",
         "items": [
-          "Lucky Jersey On",
-          "Same Seat as Semis",
-          "Rally Playlist",
-          "Face Paint Full",
-          "Group Chat Hype"
+          "Iga Swiatek",
+          "Coco Gauff",
+          "Aryna Sabalenka",
+          "Elena Rybakina",
+          "Jessica Pegula"
         ]
       },
       {
-        "label": "Halftime Move",
-        "icon": "⏰",
+        "label": "Snack",
+        "icon": "🍓",
         "items": [
-          "Snack Refill Run",
-          "Check Other Scores",
-          "Bathroom Sprint",
-          "Hot Take Texting",
-          "Deep Breathing"
+          "Strawberries+Cream",
+          "Pimm's Cup",
+          "Scones + Tea",
+          "Fish and Chips",
+          "Just Champagne"
         ]
       },
       {
-        "label": "Final Whistle If Win",
-        "icon": "🎉",
+        "label": "Fashion",
+        "icon": "👔",
         "items": [
-          "Tears Streaming",
-          "Hug a Stranger",
-          "Scream Outside",
-          "Called My Mom",
-          "Bought a Ticket"
+          "All White Classic",
+          "Royal Box Vibes",
+          "Linen Suit",
+          "Sundress + Hat",
+          "Tennis Skirt"
         ]
       },
       {
-        "label": "Final Whistle If Loss",
-        "icon": "💔",
+        "label": "Hot Take",
+        "icon": "🔥",
         "items": [
-          "Silent Treatment",
-          "Blame the Ref",
-          "Turn It Off",
-          "2030 Is Our Year",
-          "Sport Is Dumb"
+          "Alcaraz Dynasty",
+          "Djokovic Not Done",
+          "American Wins",
+          "Five Set Final",
+          "Rain Delays Only"
         ]
       }
     ]
