@@ -23,8 +23,28 @@ A daily puzzle game (like Wordle) where players pick one item from each row and 
 - This is a single `index.html` file + `prompts.json`. Keep it that way — no build tools, no frameworks.
 - Prompts load from `prompts.json` by today's date (Pacific Time). Never hardcode a prompt in index.html.
 - Firebase handles auth (anonymous) and storing picks. Never expose or change the Firebase config without asking.
-- Play restriction: one play per day per user (localStorage + Firebase). The `?admin=1` URL param bypasses this for testing.
 - Always push to GitHub after changes — the site auto-deploys from the `main` branch.
+- `prompts.json` is fetched with a cache-busting parameter (`?v=timestamp`) to avoid stale CDN cache on GitHub Pages.
+
+## Play restriction — CRITICAL
+This is the #1 most important system to protect. Streaks, leaderboards, and all retention features depend on it. If it breaks, the game is meaningless.
+
+**How it works (4 layers):**
+1. **Client-side** — localStorage + cookies + sessionStorage + played-games cookie list. Checked on page load and before "Let's Go" click.
+2. **Firebase device doc** — on submit, a `games/{gameId}/devices/{deviceId}` doc is written alongside the pick. On next visit, this doc is checked with a simple read (not a query). This catches users who get a new anonymous UID.
+3. **Firestore security rules** — `picks/{userId}` is create-only (no update/delete). Same UID cannot submit twice. `devices/{deviceId}` is also create-only.
+4. **Admin bypass** — `?admin=1` URL param skips all client checks and allows updating own pick doc. Never share this link publicly.
+
+**Known limitation:** If a user clears ALL browser data (localStorage + cookies + IndexedDB), they get a new device ID and new anonymous UID. The device doc check won't catch them. This is the Wordle-level tradeoff — accepted for now.
+
+**After every code change to index.html, verify:**
+- `markPlayedLocally()` is still called BEFORE the Firebase write in `submitPicks()`
+- `hasPlayedLocally()` still checks localStorage, cookies, sessionStorage, and played-games cookie
+- `hasPlayed()` still checks Firebase `picks/{userId}` AND `devices/{deviceId}`
+- The batch write in `submitPicks()` still writes BOTH `picks/{userId}` AND `devices/{deviceId}`
+- Firestore rules (`firestore.rules`) still enforce create-only on both collections
+
+**Daily monitoring:** A scheduled task runs at 10:30am PT checking yesterday's data for duplicate device IDs, missing device docs, and other anomalies. If issues are found, an alert email is sent to Krishna immediately.
 
 ## Prompt generation
 - Prompts are pre-generated in bulk (currently 90 days through Jul 2, 2026).
