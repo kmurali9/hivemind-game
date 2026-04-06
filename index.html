@@ -1574,7 +1574,7 @@ async function computeAndShowResults(isFinal) {
   const myScoreObj = scores.find(s => s.id === userId);
   const myFinalScore = myScoreObj ? myScoreObj.score : myScore;
   const belowMe = scores.filter(s => s.score < myFinalScore).length;
-  const sameAsMe = scores.filter(s => s.score === myFinalScore).length;
+  const sameAsMe = Math.max(1, scores.filter(s => s.score === myFinalScore).length); // at least 1 (the user)
   const percentile = total <= 1 ? 100 : Math.max(0, Math.min(100, Math.round(((belowMe + 0.5 * (sameAsMe - 1)) / (total - 1)) * 100)));
   const pctEl = document.getElementById('percentileVal');
   const pctDesc = document.getElementById('percentileDesc');
