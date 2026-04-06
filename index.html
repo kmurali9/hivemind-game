@@ -1428,7 +1428,7 @@ async function computeAndShowResults(isFinal) {
   });
 
   // Rank items in each row by popularity (most popular = 5 pts)
-  // Ties share the lowest rank in the group so a clear winner always beats a tie
+  // Ties share the BEST rank in the group — if you're tied for #1, you get 5 pts
   const rowRanks = counts.map(rowCounts => {
     const indexed = rowCounts.map((c, i) => ({ idx: i, count: c }));
     indexed.sort((a, b) => b.count - a.count);
@@ -1437,7 +1437,7 @@ async function computeAndShowResults(isFinal) {
     while (pos < indexed.length) {
       let end = pos + 1;
       while (end < indexed.length && indexed[end].count === indexed[pos].count) end++;
-      const tiedScore = 5 - (end - 1); // Tied items get the worst rank in the group
+      const tiedScore = 5 - pos; // Tied items share the best rank in the group
       for (let t = pos; t < end; t++) {
         ranks[indexed[t].idx] = indexed[t].count > 0 ? tiedScore : 0;
       }
@@ -1655,7 +1655,7 @@ function shareResults() {
     while (pos < indexed.length) {
       let end = pos + 1;
       while (end < indexed.length && indexed[end].count === indexed[pos].count) end++;
-      const tiedScore = 5 - (end - 1);
+      const tiedScore = 5 - pos; // Tied items share the best rank
       for (let t = pos; t < end; t++) {
         ranks[indexed[t].idx] = indexed[t].count > 0 ? tiedScore : 0;
       }
