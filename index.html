@@ -1441,12 +1441,20 @@ async function computeAndShowResults(isFinal) {
     return ranks;
   });
 
-  // Find most popular item index per row
-  const topIdxPerRow = counts.map(rowCounts => {
-    let maxIdx = 0;
-    rowCounts.forEach((c, i) => { if (c > rowCounts[maxIdx]) maxIdx = i; });
-    return maxIdx;
-  });
+  // Find max pick count per row (for tie-aware "most popular" checks)
+  const maxCountPerRow = counts.map(rowCounts => Math.max(...rowCounts));
+
+  // Is a given cell index a "top pick" in its row? (tie-aware)
+  function isTopPick(ri, ci) {
+    return counts[ri][ci] === maxCountPerRow[ri] && counts[ri][ci] > 0;
+  }
+
+  // Get one representative top pick name/pct for display (first one found)
+  function getTopDisplay(ri) {
+    const maxC = maxCountPerRow[ri];
+    const idx = counts[ri].findIndex(c => c === maxC);
+    return { name: TODAY.rows[ri].items[idx], pct: Math.round((maxC / total) * 100) };
+  }
 
   // Calculate scores for everyone using rank-based scoring + lock bonus
   const scores = allPicks.map(p => {
@@ -1454,10 +1462,10 @@ async function computeAndShowResults(isFinal) {
     p.selections.forEach((ci, ri) => {
       score += rowRanks[ri][ci];
     });
-    // Lock bonus/penalty
+    // Lock bonus/penalty — tie-aware: if your pick is tied for #1, it counts as a hit
     if (p.lockedRow != null) {
       const lockCi = p.selections[p.lockedRow];
-      if (lockCi === topIdxPerRow[p.lockedRow]) {
+      if (isTopPick(p.lockedRow, lockCi)) {
         score += 3;
       } else {
         score -= 3;
@@ -1476,8 +1484,9 @@ async function computeAndShowResults(isFinal) {
     const pct = Math.round((counts[ri][ci] / total) * 100);
     myScore += pts;
 
-    const topPct = Math.round((counts[ri][topIdxPerRow[ri]] / total) * 100);
+    const topInfo = getTopDisplay(ri);
     const isLocked = myLock === ri;
+    const myIsTop = isTopPick(ri, ci);
 
     breakdown.push({
       category: TODAY.rows[ri].label,
@@ -1485,17 +1494,18 @@ async function computeAndShowResults(isFinal) {
       pick: TODAY.rows[ri].items[ci],
       pts,
       pct,
-      topPick: TODAY.rows[ri].items[topIdxPerRow[ri]],
-      topPct,
+      topPick: topInfo.name,
+      topPct: topInfo.pct,
       isLocked,
-      lockHit: isLocked && ci === topIdxPerRow[ri]
+      isTopPick: myIsTop,
+      lockHit: isLocked && myIsTop
     });
   });
 
   // Apply lock bonus/penalty to my score
   if (myLock != null) {
     const lockCi = myPicks[myLock];
-    if (lockCi === topIdxPerRow[myLock]) {
+    if (isTopPick(myLock, lockCi)) {
       lockBonus = 3;
     } else {
       lockBonus = -3;
@@ -1530,7 +1540,7 @@ async function computeAndShowResults(isFinal) {
   breakdown.forEach(item => {
     const cls = item.pts >= 4 ? 'hi' : item.pts >= 3 ? 'mid' : 'lo';
     const barColor = item.pts >= 4 ? 'var(--green)' : item.pts >= 3 ? 'var(--orange)' : 'var(--red)';
-    const isTop = item.pick === item.topPick;
+    const isTop = item.isTopPick;
     const lockTag = item.isLocked
       ? (item.lockHit
         ? `<span style="font-size:11px; color:var(--green); font-weight:600;"> 🎲 +3</span>`
@@ -1651,11 +1661,7 @@ function shareResults() {
 
   let score = 0;
   const shareLock = cachedLock != null ? cachedLock : lockedRow;
-  const topShareIdx = counts.map(rowCounts => {
-    let maxIdx = 0;
-    rowCounts.forEach((c, i) => { if (c > rowCounts[maxIdx]) maxIdx = i; });
-    return maxIdx;
-  });
+  const shareMaxPerRow = counts.map(rowCounts => Math.max(...rowCounts));
 
   const emojis = cachedPicks.map((ci, ri) => {
     const pts = shareRanks[ri][ci];
@@ -1665,9 +1671,10 @@ function shareResults() {
     return base;
   });
 
-  // Apply lock bonus to share score
+  // Apply lock bonus to share score — tie-aware
   if (shareLock != null) {
-    score += cachedPicks[shareLock] === topShareIdx[shareLock] ? 3 : -3;
+    const lockCount = counts[shareLock][cachedPicks[shareLock]];
+    score += lockCount === shareMaxPerRow[shareLock] && lockCount > 0 ? 3 : -3;
   }
   const maxShare = shareLock != null ? 28 : 25;
 
