@@ -1331,11 +1331,22 @@ async function showResultsFromCache() {
       cachedPicks = JSON.parse(stored);
     } else {
       try {
+        // Try by userId first
         const doc = await db.collection('games').doc(TODAY.gameId)
           .collection('picks').doc(userId).get();
         if (doc.exists) {
           cachedPicks = doc.data().selections;
           cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+        } else {
+          // Try by deviceId (user may have a new anonymous UID)
+          const deviceId = getDeviceId();
+          const byDevice = await db.collection('games').doc(TODAY.gameId)
+            .collection('picks').where('deviceId', '==', deviceId).limit(1).get();
+          if (!byDevice.empty) {
+            const d = byDevice.docs[0].data();
+            cachedPicks = d.selections;
+            cachedLock = d.lockedRow != null ? d.lockedRow : null;
+          }
         }
       } catch (e) {}
     }
