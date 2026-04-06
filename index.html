@@ -747,8 +747,11 @@ async function loadTodaysPrompt() {
   <div class="welcome">
     <div class="welcome-icon">🧠</div>
     <h2>Think Like the Crowd</h2>
-    <p>Pick one item from each row. You have $15 but can't afford all the best picks — choose wisely! The more popular your picks, the higher your score.</p>
-    <p style="font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 28px;">🔒 Tap any pick twice to lock it in — +3 if it's the #1 answer, −3 if it's not!</p>
+    <p>Pick one item from each row. You have up to $15 to spend — choose wisely! The more popular your picks, the higher your score.</p>
+    <div style="margin: 16px auto 28px; padding: 14px 20px; background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 12px; max-width: 320px;">
+      <div style="font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px;">🔒 Lock It In!</div>
+      <div style="font-size: 13px; color: var(--text-sec); line-height: 1.4;">Tap any pick twice to lock it. <strong style="color: var(--green);">+3 points</strong> if it's the #1 answer, <strong style="color: var(--red);">−3 points</strong> if it's not!</div>
+    </div>
     <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
 </div>
@@ -1078,14 +1081,21 @@ async function hasPlayed() {
       cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
       return true;
     }
-    // Check by device ID (catches new anonymous UIDs on same device)
+    // Check by device ID (simple doc read — no query needed)
     const deviceId = getDeviceId();
-    const byDevice = await db.collection('games').doc(TODAY.gameId)
-      .collection('picks').where('deviceId', '==', deviceId).limit(1).get();
-    if (!byDevice.empty) {
-      const d = byDevice.docs[0].data();
-      cachedPicks = d.selections;
-      cachedLock = d.lockedRow != null ? d.lockedRow : null;
+    const deviceDoc = await db.collection('games').doc(TODAY.gameId)
+      .collection('devices').doc(deviceId).get();
+    if (deviceDoc.exists) {
+      // This device already played — load their picks
+      const pickUserId = deviceDoc.data().userId;
+      if (pickUserId) {
+        const pickDoc = await db.collection('games').doc(TODAY.gameId)
+          .collection('picks').doc(pickUserId).get();
+        if (pickDoc.exists) {
+          cachedPicks = pickDoc.data().selections;
+          cachedLock = pickDoc.data().lockedRow != null ? pickDoc.data().lockedRow : null;
+        }
+      }
       markPlayedLocally();
       return true;
     }
@@ -1299,14 +1309,21 @@ async function submitPicks() {
   btn.textContent = 'Submitting...';
 
   try {
-    await db.collection('games').doc(TODAY.gameId)
-      .collection('picks').doc(userId).set({
-        name: playerName,
-        selections: selections.slice(),
-        lockedRow: lockedRow,
-        deviceId: getDeviceId(),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
+    const deviceId = getDeviceId();
+    // Write pick + device lock atomically
+    const batch = db.batch();
+    batch.set(db.collection('games').doc(TODAY.gameId).collection('picks').doc(userId), {
+      name: playerName,
+      selections: selections.slice(),
+      lockedRow: lockedRow,
+      deviceId: deviceId,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    batch.set(db.collection('games').doc(TODAY.gameId).collection('devices').doc(deviceId), {
+      userId: userId,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    await batch.commit();
 
     trackEvent('submissions');
     cachedPicks = selections.slice();
@@ -1340,12 +1357,15 @@ async function showResultsFromCache() {
         } else {
           // Try by deviceId (user may have a new anonymous UID)
           const deviceId = getDeviceId();
-          const byDevice = await db.collection('games').doc(TODAY.gameId)
-            .collection('picks').where('deviceId', '==', deviceId).limit(1).get();
-          if (!byDevice.empty) {
-            const d = byDevice.docs[0].data();
-            cachedPicks = d.selections;
-            cachedLock = d.lockedRow != null ? d.lockedRow : null;
+          const deviceDoc = await db.collection('games').doc(TODAY.gameId)
+            .collection('devices').doc(deviceId).get();
+          if (deviceDoc.exists && deviceDoc.data().userId) {
+            const pickDoc = await db.collection('games').doc(TODAY.gameId)
+              .collection('picks').doc(deviceDoc.data().userId).get();
+            if (pickDoc.exists) {
+              cachedPicks = pickDoc.data().selections;
+              cachedLock = pickDoc.data().lockedRow != null ? pickDoc.data().lockedRow : null;
+            }
           }
         }
       } catch (e) {}
