@@ -6,15 +6,17 @@ service cloud.firestore {
     match /games/{gameId} {
       allow read: if request.auth != null;
 
-      // Picks: one per user, no overwrites
-      match /picks/{userId} {
+      // Picks: one per user per game. Update allowed on own doc only (for admin testing).
+      match /picks/{pickId} {
         allow create: if request.auth != null
-                      && userId == request.auth.uid
+                      && pickId == request.auth.uid
                       && request.resource.data.keys().hasAll(['name', 'selections', 'lockedRow', 'timestamp'])
                       && request.resource.data.selections is list
                       && request.resource.data.selections.size() == 5;
+        allow update: if request.auth != null
+                      && pickId == request.auth.uid;
         allow read: if request.auth != null;
-        allow update, delete: if false;
+        allow delete: if false;
       }
 
       // Device lock: one per device per game, no overwrites

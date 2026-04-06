@@ -1308,20 +1308,21 @@ async function submitPicks() {
 
   try {
     const deviceId = getDeviceId();
-    // Write pick + device lock atomically
-    const batch = db.batch();
-    batch.set(db.collection('games').doc(TODAY.gameId).collection('picks').doc(userId), {
+    // Write pick (create or update if admin replaying)
+    await db.collection('games').doc(TODAY.gameId).collection('picks').doc(userId).set({
       name: playerName,
       selections: selections.slice(),
       lockedRow: lockedRow,
       deviceId: deviceId,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-    batch.set(db.collection('games').doc(TODAY.gameId).collection('devices').doc(deviceId), {
-      userId: userId,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    await batch.commit();
+    // Write device lock (skip if admin since it may already exist)
+    if (!isAdmin) {
+      await db.collection('games').doc(TODAY.gameId).collection('devices').doc(deviceId).set({
+        userId: userId,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
 
     trackEvent('submissions');
     cachedPicks = selections.slice();
