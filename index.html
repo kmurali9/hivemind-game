@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Hivemind — Think Like the Crowd</title>
+<title>Think The Crowd — Can you think like everyone else?</title>
+<meta name="description" content="Pick one item from each row. $15 budget. Can you think like everyone else? Daily game, no signup needed.">
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -711,6 +712,30 @@ async function loadTodaysPrompt() {
   <div class="loading"><div class="spinner"></div>Loading...</div>
 </div>
 
+<!-- Email prompt -->
+<div class="screen" id="emailScreen">
+  <div class="hdr">
+    <div class="hdr-row">
+      <span class="hdr-brand" style="font-size:16px; letter-spacing:0.15em;">TTC</span> <span style="font-size:11px; color:var(--text-sec); letter-spacing:0.05em;">THINK THE CROWD</span>
+    </div>
+    <h1 class="prompt-title"></h1>
+    <div class="sub day-label"></div>
+  </div>
+  <div class="welcome">
+    <div class="welcome-icon">🎯</div>
+    <h2>Can you think like everyone else?</h2>
+    <p>Pick one item from each row. Items cost $5 down to $1, and you only have $15. The most popular pick scores 5 pts, least popular scores 1 pt. Predict the crowd to win!</p>
+    <div style="margin: 16px auto 20px; padding: 16px 20px; background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 12px; max-width: 320px;">
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 6px;">🎲 Double Down</div>
+      <div style="font-size: 13px; color: var(--text-sec); line-height: 1.5;">Feeling confident? Tap any pick twice to double down. <strong style="color: var(--green);">+3 bonus</strong> if it's the #1 answer, <strong style="color: var(--red);">−3 penalty</strong> if it's not!</div>
+    </div>
+    <input type="email" class="name-input" id="emailInput" placeholder="your@email.com" autocomplete="email" inputmode="email">
+    <button class="start-btn" id="emailBtn" onclick="submitEmail()">Play</button>
+    <p style="font-size: 11px; color: #bbb; margin-top: 12px; max-width: 260px;">Your email saves your streak and progress.</p>
+    <div id="emailError" style="font-size: 12px; color: var(--red); margin-top: 8px; display: none;"></div>
+  </div>
+</div>
+
 <!-- Setup needed -->
 <div class="screen" id="setupScreen">
   <div class="setup-msg">
@@ -734,24 +759,23 @@ async function loadTodaysPrompt() {
 <div class="screen" id="welcomeScreen">
   <div class="hdr">
     <div class="hdr-row">
-      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
-        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
-        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
-      </svg>
-      <span class="hdr-brand">Hivemind</span>
+      <span class="hdr-brand" style="font-size:16px; letter-spacing:0.15em;">TTC</span> <span style="font-size:11px; color:var(--text-sec); letter-spacing:0.05em;">THINK THE CROWD</span>
     </div>
     <h1 class="prompt-title"></h1>
     <div class="sub day-label"></div>
     <div class="date">No. <span id="wGameNum"></span></div>
   </div>
   <div class="welcome">
-    <div class="welcome-icon">🧠</div>
-    <h2>Think Like the Crowd</h2>
-    <p>Pick one item from each row. You have up to $15 to spend — choose wisely! The more popular your picks, the higher your score.</p>
+    <div class="welcome-icon">🎯</div>
+    <h2>Can you think like everyone else?</h2>
+    <p>Pick one item from each row. Items cost $5 down to $1, and you only have $15. The most popular pick scores 5 pts, least popular scores 1 pt. Predict the crowd to win!</p>
     <div style="margin: 16px auto 28px; padding: 16px 20px; background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 12px; max-width: 320px;">
       <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 6px;">🎲 Double Down</div>
       <div style="font-size: 13px; color: var(--text-sec); line-height: 1.5;">Feeling confident? Tap any pick twice to double down. <strong style="color: var(--green);">+3 bonus</strong> if it's the #1 answer, <strong style="color: var(--red);">−3 penalty</strong> if it's not!</div>
+    </div>
+    <div id="streakDisplay" style="display:none; margin-bottom: 20px;">
+      <div id="playStreakBadge" style="display:inline-block; padding: 6px 14px; background: #fff3e0; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">🔥 0 day streak</div>
+      <div id="hotStreakBadge" style="display:none; padding: 6px 14px; background: #e8f5ee; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">⚡ 0 day hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span></div>
     </div>
     <button class="start-btn ready" onclick="safeStartGame()">Let's Go</button>
   </div>
@@ -761,12 +785,7 @@ async function loadTodaysPrompt() {
 <div class="screen" id="gameScreen">
   <div class="hdr">
     <div class="hdr-row">
-      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
-        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
-        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
-      </svg>
-      <span class="hdr-brand">Hivemind</span>
+      <span class="hdr-brand" style="font-size:16px; letter-spacing:0.15em;">TTC</span> <span style="font-size:11px; color:var(--text-sec); letter-spacing:0.05em;">THINK THE CROWD</span>
     </div>
     <h1 class="prompt-title"></h1>
     <div class="sub day-label"></div>
@@ -779,7 +798,7 @@ async function loadTodaysPrompt() {
     <div class="htp-panel" id="htpPanel">
       <div class="htp-rule"><span class="htp-num">1</span><span>Pick <strong>one item from each row</strong>. Items cost $5 → $1 (best to worst).</span></div>
       <div class="htp-rule"><span class="htp-num">2</span><span>You have <strong>$15</strong> — not enough for all the best picks, so choose wisely!</span></div>
-      <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> by picking the most popular answer. The more people who chose the same thing, the more points you get!</span></div>
+      <div class="htp-rule"><span class="htp-num">3</span><span><strong>Score points</strong> — most popular pick = 5 pts, least popular = 1 pt. Predict what the crowd will choose!</span></div>
       <div class="htp-rule"><span class="htp-num">🎲</span><span><strong>Double Down</strong> — feeling confident? Tap any pick again to double down. If it's the #1 answer, <strong>+3 bonus</strong>. If not, <strong>−3 penalty</strong>. Tap a third time to undo.</span></div>
     </div>
 
@@ -808,12 +827,7 @@ async function loadTodaysPrompt() {
 <div class="screen" id="alreadyScreen">
   <div class="hdr">
     <div class="hdr-row">
-      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
-        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
-        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
-      </svg>
-      <span class="hdr-brand">Hivemind</span>
+      <span class="hdr-brand" style="font-size:16px; letter-spacing:0.15em;">TTC</span> <span style="font-size:11px; color:var(--text-sec); letter-spacing:0.05em;">THINK THE CROWD</span>
     </div>
     <h1 class="prompt-title"></h1>
     <div class="sub day-label"></div>
@@ -831,12 +845,7 @@ async function loadTodaysPrompt() {
 <div class="screen" id="resultsScreen">
   <div class="hdr">
     <div class="hdr-row">
-      <svg class="hdr-logo" viewBox="0 0 28 28" fill="none">
-        <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-        <circle cx="14" cy="10" r="2" fill="#1a1a1a"/><circle cx="9" cy="16" r="2" fill="#1a1a1a"/>
-        <circle cx="19" cy="16" r="2" fill="#1a1a1a"/><circle cx="14" cy="20" r="2" fill="#d4a843"/>
-      </svg>
-      <span class="hdr-brand">Hivemind</span>
+      <span class="hdr-brand" style="font-size:16px; letter-spacing:0.15em;">TTC</span> <span style="font-size:11px; color:var(--text-sec); letter-spacing:0.05em;">THINK THE CROWD</span>
     </div>
     <h1 id="resultsTitle">Nice picks!</h1>
     <div class="sub day-label"></div>
@@ -879,9 +888,165 @@ let lockedRow = null;       // which row (0-4) has the lock, or null
 let cachedPicks = null;
 let cachedAllPicks = null;
 let cachedLock = null;
+let playerEmailHash = null;  // SHA-256 hash of player's email
+let playerData = null;       // player doc from Firestore
 
 // ─── Admin bypass ───
 const isAdmin = new URLSearchParams(window.location.search).get('admin') === '1';
+
+// ─── Email Identity ───
+async function hashEmail(email) {
+  const normalized = email.trim().toLowerCase();
+  const encoder = new TextEncoder();
+  const data = encoder.encode(normalized);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function getStoredEmail() {
+  return localStorage.getItem('hivemind_email') || getCookie('hivemind_email') || null;
+}
+
+function storeEmail(email) {
+  localStorage.setItem('hivemind_email', email);
+  setCookie('hivemind_email', email, 365);
+}
+
+async function loadPlayerData(emailHash) {
+  try {
+    const doc = await db.collection('players').doc(emailHash).get();
+    if (doc.exists) return doc.data();
+  } catch (e) {}
+  return null;
+}
+
+async function submitEmail() {
+  const input = document.getElementById('emailInput');
+  const errorEl = document.getElementById('emailError');
+  const email = input.value.trim();
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    errorEl.textContent = 'Please enter a valid email address';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  errorEl.style.display = 'none';
+  const btn = document.getElementById('emailBtn');
+  btn.textContent = 'Loading...';
+  btn.disabled = true;
+
+  try {
+    playerEmailHash = await hashEmail(email);
+    storeEmail(email);
+
+    // Check if player exists
+    playerData = await loadPlayerData(playerEmailHash);
+
+    if (!playerData) {
+      // New player
+      await db.collection('players').doc(playerEmailHash).set({
+        emailHash: playerEmailHash,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        lastPlayedGameId: null,
+        playStreak: 0,
+        hotStreak: 0,
+        totalGamesPlayed: 0
+      });
+      playerData = { playStreak: 0, hotStreak: 0, totalGamesPlayed: 0, lastPlayedGameId: null };
+    }
+
+    // Continue to the normal game flow
+    await continueAfterEmail();
+  } catch (e) {
+    console.error('Email submit error:', e);
+    errorEl.textContent = 'Something went wrong. Please try again.';
+    errorEl.style.display = 'block';
+    btn.textContent = 'Play';
+    btn.disabled = false;
+  }
+}
+
+async function continueAfterEmail() {
+  setGameNums();
+  setDayLabels();
+  setPromptTitles();
+  updateStreakDisplay();
+
+  // Check if user played yesterday but hasn't seen final results
+  if (YESTERDAY) {
+    const seenFinal = localStorage.getItem('hivemind_seen_final_' + YESTERDAY.gameId) === 'true';
+    let playedYesterday = false;
+
+    // Check Firestore player record
+    if (playerData?.lastPlayedGameId === YESTERDAY.gameId || playerData?.lastPlayedGameId > YESTERDAY.gameId) {
+      playedYesterday = true;
+    }
+    // Also check local
+    if (!playedYesterday) {
+      playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true'
+        || getCookie('hivemind_played_' + YESTERDAY.gameId) === 'true';
+    }
+
+    if (playedYesterday && !seenFinal) {
+      await showYesterdayFinalResults();
+      return;
+    }
+  }
+
+  // Check if already played today
+  if (hasPlayedLocally()) {
+    showScreen('alreadyScreen');
+    return;
+  }
+  const played = await hasPlayed();
+  if (played) {
+    markPlayedLocally();
+    showScreen('alreadyScreen');
+  } else {
+    showScreen('welcomeScreen');
+  }
+}
+
+function updateStreakDisplay() {
+  if (!playerData) return;
+  const playStreak = playerData.playStreak || 0;
+  const hotStreak = playerData.hotStreak || 0;
+
+  const container = document.getElementById('streakDisplay');
+  const playBadge = document.getElementById('playStreakBadge');
+  const hotBadge = document.getElementById('hotStreakBadge');
+
+  if (playStreak > 0 || hotStreak > 0) {
+    container.style.display = 'block';
+  }
+
+  if (playStreak > 0) {
+    playBadge.textContent = `🔥 ${playStreak} day streak`;
+    playBadge.style.display = 'inline-block';
+  }
+
+  if (hotStreak > 0) {
+    hotBadge.innerHTML = `⚡ ${hotStreak} day hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span>`;
+    hotBadge.style.display = 'inline-block';
+  }
+}
+
+// Enable email button when input is valid
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('emailInput');
+  const btn = document.getElementById('emailBtn');
+  if (input && btn) {
+    input.addEventListener('input', () => {
+      const valid = input.value.includes('@') && input.value.includes('.');
+      btn.classList.toggle('ready', valid);
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && input.value.includes('@')) submitEmail();
+    });
+  }
+});
 
 // ─── Analytics tracking ───
 let visitorTracked = false;
@@ -978,7 +1143,7 @@ function getBrowserFingerprint() {
     const ctx = canvas.getContext('2d');
     ctx.textBaseline = 'top';
     ctx.font = '14px Arial';
-    ctx.fillText('hivemind-fp', 2, 2);
+    ctx.fillText('ttc-fp', 2, 2);
     const data = canvas.toDataURL();
     const ua = navigator.userAgent;
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -1036,53 +1201,39 @@ async function init() {
     trackEvent('page_views');
     trackUniqueVisitor();
 
-    // Use "Player" as default name (no name prompt)
+    // Use "Player" as default name
     playerName = localStorage.getItem('hivemind_name') || 'Player';
-    localStorage.setItem('hivemind_name', playerName);
 
-    setGameNums();
-    setDayLabels();
-    setPromptTitles();
-
-    // Check if user played yesterday but hasn't seen final results
-    if (YESTERDAY) {
-      const seenFinal = localStorage.getItem('hivemind_seen_final_' + YESTERDAY.gameId) === 'true';
-      let playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true'
-        || getCookie('hivemind_played_' + YESTERDAY.gameId) === 'true'
-        || getPlayedGames().includes(YESTERDAY.gameId);
-      // Firebase fallback: check device doc or user pick doc
-      if (!playedYesterday && !seenFinal) {
-        try {
-          const yDoc = await db.collection('games').doc(YESTERDAY.gameId)
-            .collection('picks').doc(userId).get();
-          if (yDoc.exists) {
-            playedYesterday = true;
-          } else {
-            const deviceId = getDeviceId();
-            const yDevice = await db.collection('games').doc(YESTERDAY.gameId)
-              .collection('devices').doc(deviceId).get();
-            if (yDevice.exists) playedYesterday = true;
-          }
-        } catch (e) { /* silent */ }
+    // Check for stored email — if found, auto-login; if not, show email screen
+    const storedEmail = getStoredEmail();
+    if (storedEmail) {
+      playerEmailHash = await hashEmail(storedEmail);
+      playerData = await loadPlayerData(playerEmailHash);
+      if (!playerData) {
+        // Email in localStorage but no player doc — create one
+        await db.collection('players').doc(playerEmailHash).set({
+          emailHash: playerEmailHash,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          lastPlayedGameId: null,
+          playStreak: 0,
+          hotStreak: 0,
+          totalGamesPlayed: 0
+        });
+        playerData = { playStreak: 0, hotStreak: 0, totalGamesPlayed: 0, lastPlayedGameId: null };
       }
-      if (playedYesterday && !seenFinal) {
-        // Show yesterday's final results first, with a button to continue to today
-        await showYesterdayFinalResults();
-        return;
-      }
-    }
-
-    // Check if already played today (localStorage first, then Firebase)
-    if (hasPlayedLocally()) {
-      showScreen('alreadyScreen');
-      return;
-    }
-    const played = await hasPlayed();
-    if (played) {
-      markPlayedLocally();
-      showScreen('alreadyScreen');
-    } else {
+      await continueAfterEmail();
+    } else if (isAdmin) {
+      // Admin bypass: skip email, go straight to game
+      setGameNums();
+      setDayLabels();
+      setPromptTitles();
       showScreen('welcomeScreen');
+    } else {
+      // No stored email — show email prompt
+      setGameNums();
+      setDayLabels();
+      setPromptTitles();
+      showScreen('emailScreen');
     }
   } catch (e) {
     console.error('Firebase init error:', e);
@@ -1114,11 +1265,21 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
 }
 
-async function hasPlayed(retries) {
+async function hasPlayed() {
   if (isAdmin) return false;
-  if (retries === undefined) retries = 2;
   try {
-    // Check by userId first
+    // Primary check: email hash in players/{hash}/games/{gameId}
+    if (playerEmailHash) {
+      const playerGameDoc = await db.collection('players').doc(playerEmailHash)
+        .collection('games').doc(TODAY.gameId).get();
+      if (playerGameDoc.exists) {
+        const d = playerGameDoc.data();
+        cachedPicks = d.selections || null;
+        cachedLock = d.lockedRow != null ? d.lockedRow : null;
+        return true;
+      }
+    }
+    // Fallback: check by userId (backward compatibility for pre-email users)
     const doc = await db.collection('games').doc(TODAY.gameId)
       .collection('picks').doc(userId).get();
     if (doc.exists) {
@@ -1126,52 +1287,10 @@ async function hasPlayed(retries) {
       cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
       return true;
     }
-    // Check by device ID (simple doc read — no query needed)
-    const deviceId = getDeviceId();
-    const deviceDoc = await db.collection('games').doc(TODAY.gameId)
-      .collection('devices').doc(deviceId).get();
-    if (deviceDoc.exists) {
-      // This device already played — load their picks
-      const pickUserId = deviceDoc.data().userId;
-      if (pickUserId) {
-        const pickDoc = await db.collection('games').doc(TODAY.gameId)
-          .collection('picks').doc(pickUserId).get();
-        if (pickDoc.exists) {
-          cachedPicks = pickDoc.data().selections;
-          cachedLock = pickDoc.data().lockedRow != null ? pickDoc.data().lockedRow : null;
-        }
-      }
-      markPlayedLocally();
-      return true;
-    }
-    // Check by browser fingerprint (survives localStorage/cookie clears)
-    const fp = getBrowserFingerprint();
-    if (fp) {
-      const fpDoc = await db.collection('games').doc(TODAY.gameId)
-        .collection('devices').doc(fp).get();
-      if (fpDoc.exists) {
-        const pickUserId = fpDoc.data().userId;
-        if (pickUserId) {
-          const pickDoc = await db.collection('games').doc(TODAY.gameId)
-            .collection('picks').doc(pickUserId).get();
-          if (pickDoc.exists) {
-            cachedPicks = pickDoc.data().selections;
-            cachedLock = pickDoc.data().lockedRow != null ? pickDoc.data().lockedRow : null;
-          }
-        }
-        markPlayedLocally();
-        return true;
-      }
-    }
     return false;
   } catch (e) {
-    console.error('hasPlayed check failed (retries left: ' + retries + '):', e);
-    if (retries > 0) {
-      await new Promise(r => setTimeout(r, 1000));
-      return hasPlayed(retries - 1);
-    }
-    // After all retries exhausted, fail safe: block play to prevent duplicate submissions
-    return true;
+    console.error('hasPlayed check failed:', e);
+    return false;
   }
 }
 
@@ -1378,37 +1497,23 @@ async function submitPicks() {
 
   try {
     const deviceId = getDeviceId();
-    // Write pick (create or update if admin replaying)
+    // Write pick to games collection (for results aggregation)
     await db.collection('games').doc(TODAY.gameId).collection('picks').doc(userId).set({
       name: playerName,
       selections: selections.slice(),
       lockedRow: lockedRow,
-      deviceId: deviceId,
+      emailHash: playerEmailHash || null,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-    // Write device lock (best-effort — don't let it block the submission)
-    if (!isAdmin) {
-      try {
-        await db.collection('games').doc(TODAY.gameId).collection('devices').doc(deviceId).set({
-          userId: userId,
+
+    // Write to player's game record (the primary play restriction)
+    if (playerEmailHash && !isAdmin) {
+      await db.collection('players').doc(playerEmailHash)
+        .collection('games').doc(TODAY.gameId).set({
+          selections: selections.slice(),
+          lockedRow: lockedRow,
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
-      } catch (deviceErr) {
-        console.log('Device doc write skipped (may already exist)');
-      }
-      // Also write browser fingerprint as a second device lock
-      const fp = getBrowserFingerprint();
-      if (fp) {
-        try {
-          await db.collection('games').doc(TODAY.gameId).collection('devices').doc(fp).set({
-            userId: userId,
-            deviceId: deviceId,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-          });
-        } catch (fpErr) {
-          console.log('Fingerprint doc write skipped');
-        }
-      }
     }
 
     trackEvent('submissions');
@@ -1416,7 +1521,10 @@ async function submitPicks() {
     cachedLock = lockedRow;
     localStorage.setItem('hivemind_picks_' + TODAY.gameId, JSON.stringify(cachedPicks));
     localStorage.setItem('hivemind_lock_' + TODAY.gameId, JSON.stringify(lockedRow));
-    await computeAndShowResults(false);
+    const finalScore = await computeAndShowResults(false);
+
+    // Update streaks after scoring
+    await updateStreaks(finalScore);
   } catch (e) {
     console.error('Submit error:', e);
     btn.disabled = false;
@@ -1427,31 +1535,29 @@ async function submitPicks() {
 
 // ─── Results ───
 async function showResultsFromCache() {
-  // Load picks from localStorage or Firebase if not already cached
+  // Load picks from localStorage, player record, or Firebase
   if (!cachedPicks) {
     const stored = localStorage.getItem('hivemind_picks_' + TODAY.gameId);
     if (stored) {
       cachedPicks = JSON.parse(stored);
     } else {
       try {
-        // Try by userId first
-        const doc = await db.collection('games').doc(TODAY.gameId)
-          .collection('picks').doc(userId).get();
-        if (doc.exists) {
-          cachedPicks = doc.data().selections;
-          cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
-        } else {
-          // Try by deviceId (user may have a new anonymous UID)
-          const deviceId = getDeviceId();
-          const deviceDoc = await db.collection('games').doc(TODAY.gameId)
-            .collection('devices').doc(deviceId).get();
-          if (deviceDoc.exists && deviceDoc.data().userId) {
-            const pickDoc = await db.collection('games').doc(TODAY.gameId)
-              .collection('picks').doc(deviceDoc.data().userId).get();
-            if (pickDoc.exists) {
-              cachedPicks = pickDoc.data().selections;
-              cachedLock = pickDoc.data().lockedRow != null ? pickDoc.data().lockedRow : null;
-            }
+        // Try player email hash first (most reliable)
+        if (playerEmailHash) {
+          const pDoc = await db.collection('players').doc(playerEmailHash)
+            .collection('games').doc(TODAY.gameId).get();
+          if (pDoc.exists) {
+            cachedPicks = pDoc.data().selections;
+            cachedLock = pDoc.data().lockedRow != null ? pDoc.data().lockedRow : null;
+          }
+        }
+        // Fallback: try by userId
+        if (!cachedPicks) {
+          const doc = await db.collection('games').doc(TODAY.gameId)
+            .collection('picks').doc(userId).get();
+          if (doc.exists) {
+            cachedPicks = doc.data().selections;
+            cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
           }
         }
       } catch (e) {}
@@ -1585,7 +1691,7 @@ async function computeAndShowResults(isFinal) {
   // Render results
   const maxScore = myLock != null ? 28 : 25;
   const title = document.getElementById('resultsTitle');
-  if (myScore >= 26) title.textContent = "Hivemind Master!";
+  if (myScore >= 26) title.textContent = "TTC Master!";
   else if (myScore >= 20) title.textContent = "Great minds think alike!";
   else if (myScore >= 13) title.textContent = "Not bad!";
   else title.textContent = "Unique taste!";
@@ -1675,6 +1781,8 @@ async function computeAndShowResults(isFinal) {
       bar.style.width = bar.dataset.w;
     });
   }, 300);
+
+  return myScore;
 }
 
 function animateNumber(el, target) {
@@ -1685,6 +1793,75 @@ function animateNumber(el, target) {
     if (current >= target) { current = target; clearInterval(interval); }
     el.textContent = current;
   }, 30);
+}
+
+// ─── Streaks ───
+async function updateStreaks(finalScore) {
+  if (!playerEmailHash || !playerData || isAdmin) return;
+
+  const yesterdayGameId = YESTERDAY ? YESTERDAY.gameId : null;
+  const lastPlayed = playerData.lastPlayedGameId;
+
+  // Play streak: did they play yesterday?
+  let newPlayStreak = 1; // today counts as 1
+  if (lastPlayed === yesterdayGameId) {
+    newPlayStreak = (playerData.playStreak || 0) + 1;
+  }
+
+  // Hot streak: did they score 20+ today AND had a hot streak going?
+  let newHotStreak = 0;
+  if (finalScore >= 20) {
+    if (lastPlayed === yesterdayGameId && (playerData.hotStreak || 0) > 0) {
+      newHotStreak = playerData.hotStreak + 1;
+    } else {
+      newHotStreak = 1; // start new hot streak
+    }
+  }
+
+  try {
+    await db.collection('players').doc(playerEmailHash).update({
+      lastPlayedGameId: TODAY.gameId,
+      playStreak: newPlayStreak,
+      hotStreak: newHotStreak,
+      totalGamesPlayed: firebase.firestore.FieldValue.increment(1)
+    });
+
+    // Update local state
+    playerData.playStreak = newPlayStreak;
+    playerData.hotStreak = newHotStreak;
+    playerData.lastPlayedGameId = TODAY.gameId;
+    playerData.totalGamesPlayed = (playerData.totalGamesPlayed || 0) + 1;
+
+    // Show updated streaks on results screen
+    showResultStreaks(newPlayStreak, newHotStreak);
+  } catch (e) {
+    console.error('Streak update failed:', e);
+  }
+}
+
+function showResultStreaks(playStreak, hotStreak) {
+  // Add streak badges to results screen
+  const actions = document.getElementById('resultsActions');
+  if (!actions) return;
+
+  let streakHtml = '<div style="text-align:center; margin-bottom: 12px;">';
+  if (playStreak > 1) {
+    streakHtml += `<span style="display:inline-block; padding: 6px 14px; background: #fff3e0; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">🔥 ${playStreak} day streak</span>`;
+  }
+  if (hotStreak > 1) {
+    streakHtml += `<span style="display:inline-block; padding: 6px 14px; background: #e8f5ee; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">⚡ ${hotStreak} day hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span></span>`;
+  }
+  streakHtml += '</div>';
+
+  if (playStreak > 1 || hotStreak > 1) {
+    const existing = document.getElementById('resultStreakBadges');
+    if (existing) existing.remove();
+    const div = document.createElement('div');
+    div.id = 'resultStreakBadges';
+    div.innerHTML = streakHtml;
+    const scoreHero = document.querySelector('.score-hero');
+    if (scoreHero) scoreHero.after(div);
+  }
 }
 
 function resetGame() {
@@ -1747,7 +1924,12 @@ function shareResults() {
   }
   const maxShare = shareLock != null ? 28 : 25;
 
-  const text = `🧠 Hivemind #${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}\n\nhttps://kmurali9.github.io/hivemind-game/`;
+  let streakLine = '';
+  if (playerData?.playStreak > 1) streakLine += `🔥 ${playerData.playStreak} day streak`;
+  if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} day hot streak`;
+  if (streakLine) streakLine = '\n' + streakLine;
+
+  const text = `🎯 Think The Crowd #${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}${streakLine}\n\nhttps://thinkthecrowd.com`;
 
   // Use native share sheet on mobile, clipboard on desktop
   if (navigator.share) {

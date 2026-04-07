@@ -1,8 +1,8 @@
-# Hivemind — Project Rules
+# Think The Crowd (TTC) — Project Rules
 
 ## Key links
-- **Game:** https://kmurali9.github.io/hivemind-game/
-- **Admin test:** https://kmurali9.github.io/hivemind-game/?admin=1
+- **Game:** https://thinkthecrowd.com
+- **Admin test:** https://thinkthecrowd.com/?admin=1
 - **GitHub repo:** https://github.com/kmurali9/hivemind-game
 - **Firebase console:** https://console.firebase.google.com/project/hivemind-game-ab3f1
 - **Firestore data:** https://console.firebase.google.com/project/hivemind-game-ab3f1/firestore
