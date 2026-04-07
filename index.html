@@ -1750,7 +1750,11 @@ async function computeAndShowResults(isFinal) {
   pctLabel.textContent = isFinal ? 'Final Percentile' : 'Your Percentile';
   pctEl.textContent = percentile + '%';
   pctEl.style.color = percentile >= 75 ? 'var(--green)' : percentile >= 40 ? 'var(--orange)' : 'var(--red)';
-  const rank = scores.findIndex(s => s.id === userId) + 1;
+  let rank = scores.findIndex(s => s.id === userId) + 1;
+  if (rank === 0) {
+    // User not found in scores (session expired / UID mismatch) — calculate rank from score
+    rank = scores.filter(s => s.score > myFinalScore).length + 1;
+  }
   if (total <= 1) pctDesc.textContent = 'More players needed for ranking';
   else if (percentile >= 90) pctDesc.textContent = `Top ${100 - percentile}% — #${rank} of ${total} players`;
   else if (percentile >= 75) pctDesc.textContent = `Strong showing — #${rank} of ${total} players`;
