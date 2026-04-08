@@ -837,7 +837,11 @@ async function loadTodaysPrompt() {
   <div class="already-played-body">
     <div style="font-size:48px; margin-bottom:16px;">✅</div>
     <h2>You've already played today!</h2>
-    <p>Scores shift as more people play throughout the day. Results lock tomorrow. Check the live standings!</p>
+    <p id="alreadyPlayedMsg">Scores shift as more people play throughout the day. Results lock tomorrow. Check the live standings!</p>
+    <div id="alreadyStreakDisplay" style="display:none; margin: 16px 0;">
+      <div id="alreadyPlayStreakBadge" style="display:none; padding: 6px 14px; background: #fff3e0; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px; display:inline-block;"></div>
+      <div id="alreadyHotStreakBadge" style="display:none; padding: 6px 14px; background: #e8f5ee; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px; display:inline-block;"></div>
+    </div>
     <button class="see-results-btn" onclick="showResultsFromCache()">See Current Results</button>
   </div>
 </div>
@@ -1015,22 +1019,39 @@ function updateStreakDisplay() {
   const playStreak = playerData.playStreak || 0;
   const hotStreak = playerData.hotStreak || 0;
 
+  // Welcome screen badges (only show real streaks >= 2)
   const container = document.getElementById('streakDisplay');
   const playBadge = document.getElementById('playStreakBadge');
   const hotBadge = document.getElementById('hotStreakBadge');
 
-  if (playStreak > 0 || hotStreak > 0) {
+  if (playStreak >= 2 || hotStreak >= 2) {
     container.style.display = 'block';
   }
-
-  if (playStreak > 0) {
-    playBadge.textContent = `🔥 ${playStreak} day streak`;
+  if (playStreak >= 2) {
+    playBadge.textContent = `🔥 ${playStreak} game streak`;
     playBadge.style.display = 'inline-block';
   }
-
-  if (hotStreak > 0) {
-    hotBadge.innerHTML = `⚡ ${hotStreak} day hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span>`;
+  if (hotStreak >= 2) {
+    hotBadge.innerHTML = `⚡ ${hotStreak} game hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span>`;
     hotBadge.style.display = 'inline-block';
+  }
+
+  // Already-played screen badges
+  const alreadyContainer = document.getElementById('alreadyStreakDisplay');
+  const alreadyPlayBadge = document.getElementById('alreadyPlayStreakBadge');
+  const alreadyHotBadge = document.getElementById('alreadyHotStreakBadge');
+  if (alreadyContainer) {
+    if (playStreak >= 2 || hotStreak >= 2) {
+      alreadyContainer.style.display = 'block';
+    }
+    if (playStreak >= 2 && alreadyPlayBadge) {
+      alreadyPlayBadge.textContent = `🔥 ${playStreak} game streak`;
+      alreadyPlayBadge.style.display = 'inline-block';
+    }
+    if (hotStreak >= 2 && alreadyHotBadge) {
+      alreadyHotBadge.innerHTML = `⚡ ${hotStreak} game hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span>`;
+      alreadyHotBadge.style.display = 'inline-block';
+    }
   }
 }
 
@@ -1310,13 +1331,23 @@ async function showYesterdayFinalResults() {
     cachedPicks = JSON.parse(yPicks);
     cachedLock = yLock ? JSON.parse(yLock) : null;
   } else {
-    // Try to fetch from Firebase
+    // Try to fetch from Firebase — email-based record first, then legacy userId
     try {
-      const doc = await db.collection('games').doc(YESTERDAY.gameId)
-        .collection('picks').doc(userId).get();
-      if (doc.exists) {
-        cachedPicks = doc.data().selections;
-        cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+      if (playerEmailHash) {
+        const pDoc = await db.collection('players').doc(playerEmailHash)
+          .collection('games').doc(YESTERDAY.gameId).get();
+        if (pDoc.exists) {
+          cachedPicks = pDoc.data().selections;
+          cachedLock = pDoc.data().lockedRow != null ? pDoc.data().lockedRow : null;
+        }
+      }
+      if (!cachedPicks) {
+        const doc = await db.collection('games').doc(YESTERDAY.gameId)
+          .collection('picks').doc(userId).get();
+        if (doc.exists) {
+          cachedPicks = doc.data().selections;
+          cachedLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+        }
       }
     } catch (e) {}
   }
@@ -1854,10 +1885,10 @@ function showResultStreaks(playStreak, hotStreak) {
 
   let streakHtml = '<div style="text-align:center; margin-bottom: 12px;">';
   if (playStreak > 1) {
-    streakHtml += `<span style="display:inline-block; padding: 6px 14px; background: #fff3e0; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">🔥 ${playStreak} day streak</span>`;
+    streakHtml += `<span style="display:inline-block; padding: 6px 14px; background: #fff3e0; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">🔥 ${playStreak} game streak</span>`;
   }
   if (hotStreak > 1) {
-    streakHtml += `<span style="display:inline-block; padding: 6px 14px; background: #e8f5ee; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">⚡ ${hotStreak} day hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span></span>`;
+    streakHtml += `<span style="display:inline-block; padding: 6px 14px; background: #e8f5ee; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 0 4px;">⚡ ${hotStreak} game hot streak <span style="font-size:11px; color:#999;">(20+ pts)</span></span>`;
   }
   streakHtml += '</div>';
 
@@ -1933,8 +1964,8 @@ function shareResults() {
   const maxShare = shareLock != null ? 28 : 25;
 
   let streakLine = '';
-  if (playerData?.playStreak > 1) streakLine += `🔥 ${playerData.playStreak} day streak`;
-  if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} day hot streak`;
+  if (playerData?.playStreak > 1) streakLine += `🔥 ${playerData.playStreak} game streak`;
+  if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} game hot streak`;
   if (streakLine) streakLine = '\n' + streakLine;
 
   const text = `🎯 Think The Crowd — Game ${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}${streakLine}\n\nhttps://thinkthecrowd.com`;
