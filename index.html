@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="ttc-version" content="20260408v1">
+<meta name="ttc-version" content="20260408v2">
 <title>Think The Crowd — Can you think like everyone else?</title>
 <script>
 // Force HTTPS — crypto.subtle (used for email hashing) requires secure context
@@ -1001,14 +1001,19 @@ async function submitEmail() {
   btn.disabled = true;
 
   try {
+    console.log('[EMAIL] hashing email...');
     playerEmailHash = await hashEmail(email);
+    console.log('[EMAIL] hash:', playerEmailHash.substring(0, 8) + '...');
     storeEmail(email);
 
     // Check if player exists
+    console.log('[EMAIL] loading player data...');
     playerData = await loadPlayerData(playerEmailHash);
+    console.log('[EMAIL] playerData:', playerData ? 'found' : 'new player');
 
     if (!playerData) {
       // New player
+      console.log('[EMAIL] creating new player doc...');
       await db.collection('players').doc(playerEmailHash).set({
         emailHash: playerEmailHash,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -1021,10 +1026,12 @@ async function submitEmail() {
     }
 
     // Continue to the normal game flow
+    console.log('[EMAIL] continuing after email...');
     await continueAfterEmail();
   } catch (e) {
     console.error('Email submit error:', e);
-    errorEl.textContent = 'Something went wrong. Please try again.';
+    console.error('Email submit stack:', e.stack);
+    errorEl.textContent = 'Something went wrong: ' + (e.message || e) + '. Please try again.';
     errorEl.style.display = 'block';
     btn.textContent = 'Play';
     btn.disabled = false;
