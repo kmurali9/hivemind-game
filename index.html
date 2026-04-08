@@ -204,9 +204,9 @@
 
   .g-row {
     display: grid;
-    grid-template-columns: 80px repeat(5, 1fr);
-    gap: 5px;
-    margin-bottom: 5px;
+    grid-template-columns: 90px repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
     animation: slideUp 0.25s ease backwards;
   }
   .g-row:nth-child(1) { animation-delay: .03s; }
@@ -448,8 +448,10 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--text-sec);
-    width: 56px;
+    width: 72px;
     flex-shrink: 0;
+    line-height: 1.2;
+    word-break: break-word;
   }
   .res-pick {
     font-size: 13px;
@@ -763,7 +765,7 @@ async function loadTodaysPrompt() {
     </div>
     <h1 class="prompt-title"></h1>
     <div class="sub day-label"></div>
-    <div class="date">No. <span id="wGameNum"></span></div>
+    <div class="date">Game <span id="wGameNum"></span></div>
   </div>
   <div class="welcome">
     <div class="welcome-icon">🎯</div>
@@ -789,7 +791,7 @@ async function loadTodaysPrompt() {
     </div>
     <h1 class="prompt-title"></h1>
     <div class="sub day-label"></div>
-    <div class="date">No. <span id="gGameNum"></span></div>
+    <div class="date">Game <span id="gGameNum"></span></div>
   </div>
   <div class="game-body">
     <div style="text-align:center">
@@ -831,7 +833,7 @@ async function loadTodaysPrompt() {
     </div>
     <h1 class="prompt-title"></h1>
     <div class="sub day-label"></div>
-    <div class="date">No. <span id="aGameNum"></span></div>
+    <div class="date">Game <span id="aGameNum"></span></div>
   </div>
   <div class="already-played-body">
     <div style="font-size:48px; margin-bottom:16px;">✅</div>
@@ -849,7 +851,7 @@ async function loadTodaysPrompt() {
     </div>
     <h1 id="resultsTitle">Nice picks!</h1>
     <div class="sub day-label"></div>
-    <div class="date">No. <span id="rGameNum"></span></div>
+    <div class="date">Game <span id="rGameNum"></span></div>
   </div>
   <div class="results-body">
     <div class="score-hero">
@@ -1933,7 +1935,7 @@ function shareResults() {
   if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} day hot streak`;
   if (streakLine) streakLine = '\n' + streakLine;
 
-  const text = `🎯 Think The Crowd #${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}${streakLine}\n\nhttps://thinkthecrowd.com`;
+  const text = `🎯 Think The Crowd — Game ${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}${streakLine}\n\nhttps://thinkthecrowd.com`;
 
   // Use native share sheet on mobile, clipboard on desktop
   if (navigator.share) {
