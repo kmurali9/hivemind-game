@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <title>Think The Crowd — Can you think like everyone else?</title>
 <meta name="description" content="Pick one item from each row. $15 budget. Can you think like everyone else? Daily game, no signup needed.">
 
@@ -999,36 +1001,30 @@ async function continueAfterEmail() {
   setPromptTitles();
   updateStreakDisplay();
 
-  // Show yesterday's results popup if they played yesterday but haven't played today
-  if (YESTERDAY && !hasPlayedLocally()) {
-    let playedYesterday = false;
+  // Check if already played today
+  const alreadyPlayedToday = hasPlayedLocally() || await hasPlayed();
+  if (alreadyPlayedToday && !hasPlayedLocally()) markPlayedLocally();
 
-    // Check Firestore player record
+  // Show yesterday's results popup if they played yesterday
+  if (YESTERDAY) {
+    let playedYesterday = false;
     if (playerData?.lastPlayedGameId === YESTERDAY.gameId || playerData?.lastPlayedGameId > YESTERDAY.gameId) {
       playedYesterday = true;
     }
-    // Also check local
     if (!playedYesterday) {
       playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true'
         || getCookie('hivemind_played_' + YESTERDAY.gameId) === 'true';
     }
 
     if (playedYesterday) {
-      // Show welcome screen first, then overlay yesterday's results popup
-      showScreen('welcomeScreen');
+      showScreen(alreadyPlayedToday ? 'alreadyScreen' : 'welcomeScreen');
       await showYesterdayPopup();
       return;
     }
   }
 
-  // Check if already played today
-  if (hasPlayedLocally()) {
-    showScreen('alreadyScreen');
-    return;
-  }
-  const played = await hasPlayed();
-  if (played) {
-    markPlayedLocally();
+  // No yesterday results to show — go directly to appropriate screen
+  if (alreadyPlayedToday) {
     showScreen('alreadyScreen');
   } else {
     showScreen('welcomeScreen');
