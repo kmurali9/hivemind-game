@@ -692,9 +692,8 @@ const BUDGET = 15;
 async function loadTodaysPrompt() {
   const res = await fetch('prompts.json?v=' + Date.now());
   ALL_PROMPTS = await res.json();
-  // Get today's date in Pacific Time
-  const ptDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-  const todayStr = ptDate.getFullYear() + '-' + String(ptDate.getMonth() + 1).padStart(2, '0') + '-' + String(ptDate.getDate()).padStart(2, '0');
+  // Get today's game date in Pacific Time (advances at 9pm PT)
+  const todayStr = getPTDateString();
   // Find today's prompt, or the most recent past prompt
   TODAY = ALL_PROMPTS.find(p => p.gameId === todayStr);
   if (!TODAY) {
@@ -1164,7 +1163,10 @@ function getBrowserFingerprint() {
 
 // ─── Pacific Time helpers ───
 function getPTDate() {
-  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  // Game day ends at 9pm PT — after 9pm, treat it as the next day
+  if (d.getHours() >= 21) d.setDate(d.getDate() + 1);
+  return d;
 }
 function getPTDateString() {
   const d = getPTDate();
