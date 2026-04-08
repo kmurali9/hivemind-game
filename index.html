@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="ttc-version" content="20260407v2">
+<meta name="ttc-version" content="20260407v3">
 <title>Think The Crowd — Can you think like everyone else?</title>
 <script>
 // Force reload if cached version is stale
@@ -1022,8 +1022,8 @@ async function continueAfterEmail() {
   const alreadyPlayedToday = hasPlayedLocally() || await hasPlayed();
   if (alreadyPlayedToday && !hasPlayedLocally()) markPlayedLocally();
 
-  // Show yesterday's results popup if they played yesterday
-  if (YESTERDAY) {
+  // Show yesterday's results popup if they played yesterday AND game is final AND not seen yet
+  if (YESTERDAY && isGameDayOver(YESTERDAY.gameId) && !localStorage.getItem('hivemind_seen_final_' + YESTERDAY.gameId)) {
     let playedYesterday = false;
     if (playerData?.lastPlayedGameId === YESTERDAY.gameId || playerData?.lastPlayedGameId > YESTERDAY.gameId) {
       playedYesterday = true;
@@ -1032,6 +1032,7 @@ async function continueAfterEmail() {
       playedYesterday = localStorage.getItem('hivemind_played_' + YESTERDAY.gameId) === 'true'
         || getCookie('hivemind_played_' + YESTERDAY.gameId) === 'true';
     }
+    console.log('[POPUP] YESTERDAY:', YESTERDAY.gameId, 'isOver:', isGameDayOver(YESTERDAY.gameId), 'playedYesterday:', playedYesterday);
 
     if (playedYesterday) {
       showScreen(alreadyPlayedToday ? 'alreadyScreen' : 'welcomeScreen');
@@ -1049,9 +1050,9 @@ async function continueAfterEmail() {
 }
 
 function updateStreakDisplay() {
-  if (!playerData) return;
-  const playStreak = playerData.playStreak || 0;
-  const hotStreak = playerData.hotStreak || 0;
+  const playStreak = calculateStreak();
+  const hotStreak = calculateHotStreak();
+  console.log('[DISPLAY] playStreak:', playStreak, 'hotStreak:', hotStreak);
 
   // Welcome screen badges (only show real streaks >= 2)
   const container = document.getElementById('streakDisplay');
@@ -1232,8 +1233,59 @@ function getDayName(dateStr) {
   const d = new Date(dateStr + 'T12:00:00');
   return days[d.getDay()];
 }
-function isGameDayOver() {
-  return getPTDateString() > TODAY.gameId;
+function isGameDayOver(gameId) {
+  if (!gameId) gameId = TODAY.gameId;
+  // Use RAW PT time (not getPTDate which advances after 9pm)
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  const nowStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  if (gameId < nowStr) return true;           // past days are always over
+  if (gameId === nowStr && now.getHours() >= 21) return true;  // today but past 9pm
+  return false;
+}
+
+function calculateStreak() {
+  const played = getPlayedGames().sort((a, b) => b.localeCompare(a)); // newest first
+  const completed = played.filter(g => isGameDayOver(g));
+  console.log('[STREAK] played games:', played, 'completed:', completed);
+  if (completed.length === 0) return 0;
+
+  let streak = 1;
+  for (let i = 0; i < completed.length - 1; i++) {
+    const curr = new Date(completed[i] + 'T12:00:00');
+    const prev = new Date(completed[i + 1] + 'T12:00:00');
+    const diffDays = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+    if (diffDays === 1) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+  console.log('[STREAK] calculated streak:', streak);
+  return streak;
+}
+
+function calculateHotStreak() {
+  const played = getPlayedGames().sort((a, b) => b.localeCompare(a)); // newest first
+  const completed = played.filter(g => isGameDayOver(g));
+
+  let hotStreak = 0;
+  for (let i = 0; i < completed.length; i++) {
+    const finalScore = localStorage.getItem('hivemind_final_score_' + completed[i]);
+    console.log('[HOT STREAK] game:', completed[i], 'finalScore:', finalScore);
+    if (finalScore === null || parseInt(finalScore) < 20) break;
+
+    // Check consecutive days (first game just needs a score, subsequent need day gap = 1)
+    if (i > 0) {
+      const curr = new Date(completed[i] + 'T12:00:00');
+      const prev = new Date(completed[i - 1] + 'T12:00:00');
+      const diffDays = Math.round((prev - curr) / (1000 * 60 * 60 * 24));
+      if (diffDays !== 1) break;
+    }
+    hotStreak++;
+  }
+  const result = hotStreak >= 2 ? hotStreak : 0;
+  console.log('[HOT STREAK] calculated:', hotStreak, 'display:', result);
+  return result;
 }
 
 // ─── Init ───
@@ -1845,6 +1897,12 @@ async function computeAndShowResults(isFinal) {
     actions.innerHTML = '';
   }
 
+  // Save final score to localStorage for hot streak calculation
+  if (isFinal) {
+    localStorage.setItem('hivemind_final_score_' + TODAY.gameId, String(myScore));
+    console.log('[FINAL SCORE] saved for', TODAY.gameId, ':', myScore);
+  }
+
   trackEvent('results_views');
   showScreen('resultsScreen');
 
@@ -1877,18 +1935,9 @@ async function updateStreaks(finalScore) {
   // Guard: don't double-count if already updated for this game
   if (playerData.lastPlayedGameId === TODAY.gameId) return;
 
-  const yesterdayGameId = YESTERDAY ? YESTERDAY.gameId : null;
-  const lastPlayed = playerData.lastPlayedGameId;
-
-  // Play streak: continues if they played the previous game
-  let newPlayStreak = 1;
-  if (yesterdayGameId && lastPlayed === yesterdayGameId) {
-    newPlayStreak = (playerData.playStreak || 0) + 1;
-  }
-
-  // Hot streak: DON'T update at submission — score isn't final yet.
-  // Hot streak gets updated in updateHotStreakFromFinal() when viewing final results.
-  const newHotStreak = playerData.hotStreak || 0;
+  // Use locally-calculated streaks (only counts completed games)
+  const newPlayStreak = calculateStreak();
+  const newHotStreak = calculateHotStreak();
 
   try {
     const newTotal = (playerData.totalGamesPlayed || 0) + 1;
@@ -1910,24 +1959,8 @@ async function updateStreaks(finalScore) {
   }
 }
 
-// Update hot streak from FINAL score (called when viewing yesterday's results popup)
-async function updateHotStreakFromFinal(finalScore, gameId) {
-  if (!playerEmailHash || !playerData) return;
-  const yesterdayGameId = YESTERDAY ? YESTERDAY.gameId : null;
-  if (gameId !== yesterdayGameId) return; // only update for the most recent final game
-
-  let newHotStreak = 0;
-  if (finalScore >= 20) {
-    // Check if there was a previous hot streak going
-    // For now, start at 1 — consecutive tracking improves as more games are played
-    newHotStreak = 1;
-  }
-
-  try {
-    await db.collection('players').doc(playerEmailHash).update({ hotStreak: newHotStreak });
-    playerData.hotStreak = newHotStreak;
-  } catch (e) {}
-}
+// Hot streak is now calculated locally from hivemind_final_score_{gameId} in localStorage
+// See calculateHotStreak() function
 
 function showResultStreaks(playStreak, hotStreak) {
   // Add streak badges to results screen
@@ -2015,8 +2048,10 @@ function shareResults() {
   const maxShare = shareLock != null ? 28 : 25;
 
   let streakLine = '';
-  if (playerData?.playStreak > 1) streakLine += `🔥 ${playerData.playStreak} game streak`;
-  if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} game hot streak`;
+  const sharePlayStreak = calculateStreak();
+  const shareHotStreak = calculateHotStreak();
+  if (sharePlayStreak > 1) streakLine += `🔥 ${sharePlayStreak} game streak`;
+  if (shareHotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${shareHotStreak} game hot streak`;
   if (streakLine) streakLine = '\n' + streakLine;
 
   const text = `🎯 Think The Crowd — Game ${TODAY.number}\n\n${emojis.join('')}  ${score}/${maxShare}${streakLine}\n\nhttps://thinkthecrowd.com`;
@@ -2080,11 +2115,11 @@ async function showYesterdayPopup() {
     const playerCount = allPicks.length;
 
     for (let r = 0; r < YESTERDAY.rows.length; r++) {
-      const counts = YESTERDAY.rows[r].options.map((_, i) =>
+      const items = YESTERDAY.rows[r].items || YESTERDAY.rows[r].options || [];
+      const counts = items.map((_, i) =>
         allPicks.filter(p => p.selections[r] === i).length
       );
       const maxCount = Math.max(...counts);
-      const minCount = Math.min(...counts);
       const myCount = counts[yPicks[r]] || 0;
       // Score: 5 for most popular, 1 for least, interpolated
       const sorted = [...new Set(counts)].sort((a, b) => b - a);
@@ -2133,8 +2168,9 @@ async function showYesterdayPopup() {
   window._yesterdayPicks = yPicks;
   window._yesterdayLock = yLock;
 
-  // Update hot streak from final score
-  await updateHotStreakFromFinal(score, YESTERDAY.gameId);
+  // Save final score to localStorage for hot streak calculation
+  localStorage.setItem('hivemind_final_score_' + YESTERDAY.gameId, String(score));
+  console.log('[POPUP] saved final score for', YESTERDAY.gameId, ':', score);
 }
 
 function dismissYesterdayPopup() {
@@ -2153,7 +2189,7 @@ function shareYesterdayResults() {
 
   let emojiGrid = '';
   for (let r = 0; r < YESTERDAY.rows.length; r++) {
-    const opts = YESTERDAY.rows[r].options;
+    const opts = YESTERDAY.rows[r].items || YESTERDAY.rows[r].options || [];
     const row = opts.map((_, i) => {
       if (i === picks[r]) return lock === r ? '🟡' : '🟢';
       return '⬜';
@@ -2162,8 +2198,10 @@ function shareYesterdayResults() {
   }
 
   let streakLine = '';
-  if (playerData?.playStreak > 1) streakLine += `🔥 ${playerData.playStreak} game streak`;
-  if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} game hot streak`;
+  const ySharePlayStreak = calculateStreak();
+  const yShareHotStreak = calculateHotStreak();
+  if (ySharePlayStreak > 1) streakLine += `🔥 ${ySharePlayStreak} game streak`;
+  if (yShareHotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${yShareHotStreak} game hot streak`;
   if (streakLine) streakLine = '\n' + streakLine;
 
   const text = `Think The Crowd #${gameNum}\n${score}/${scoreMax}\n\n${emojiGrid}${streakLine}\nthinkthecrowd.com`;
