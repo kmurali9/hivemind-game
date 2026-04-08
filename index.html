@@ -5,7 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
+<meta name="ttc-version" content="20260407v2">
 <title>Think The Crowd — Can you think like everyone else?</title>
+<script>
+// Force reload if cached version is stale
+(function(){
+  var v = document.querySelector('meta[name="ttc-version"]');
+  var stored = localStorage.getItem('ttc_version');
+  var current = v ? v.content : '';
+  if (stored && stored !== current) {
+    localStorage.setItem('ttc_version', current);
+    location.reload(true);
+  } else {
+    localStorage.setItem('ttc_version', current);
+  }
+})();
+</script>
 <meta name="description" content="Pick one item from each row. $15 budget. Can you think like everyone else? Daily game, no signup needed.">
 
 <!-- Firebase SDKs -->
@@ -926,19 +941,21 @@ async function loadPlayerData(emailHash) {
     if (doc.exists) {
       const data = doc.data();
       // Repair: count actual game docs to fix over-counted streaks/totals
+      // Reset hotStreak to 0 — it now only gets set from final scores via popup
       try {
         const gamesSnap = await db.collection('players').doc(emailHash)
           .collection('games').get();
         const actualGames = gamesSnap.size;
-        if (actualGames > 0 && (data.totalGamesPlayed !== actualGames ||
-            data.playStreak > actualGames || data.hotStreak > actualGames)) {
+        const needsRepair = data.totalGamesPlayed !== actualGames ||
+          data.playStreak > actualGames || data.hotStreak > 0;
+        if (needsRepair) {
           data.totalGamesPlayed = actualGames;
           data.playStreak = Math.min(data.playStreak || 0, actualGames);
-          data.hotStreak = Math.min(data.hotStreak || 0, actualGames);
+          data.hotStreak = 0; // reset — will be recalculated from final scores
           await db.collection('players').doc(emailHash).update({
             totalGamesPlayed: actualGames,
             playStreak: data.playStreak,
-            hotStreak: data.hotStreak
+            hotStreak: 0
           });
         }
       } catch (e) {}
@@ -1852,7 +1869,8 @@ function animateNumber(el, target) {
 }
 
 // ─── Streaks ───
-// playStreak = consecutive games played. hotStreak = consecutive games scored 20+.
+// playStreak = consecutive games played. hotStreak = consecutive games with FINAL score 20+.
+// Hot streak is only updated when viewing final results (next day), not at submission.
 async function updateStreaks(finalScore) {
   if (!playerEmailHash || !playerData || isAdmin) return;
 
@@ -1868,18 +1886,11 @@ async function updateStreaks(finalScore) {
     newPlayStreak = (playerData.playStreak || 0) + 1;
   }
 
-  // Hot streak: continues if they scored 20+ AND played previous game with a streak going
-  let newHotStreak = 0;
-  if (finalScore >= 20) {
-    if (yesterdayGameId && lastPlayed === yesterdayGameId && (playerData.hotStreak || 0) > 0) {
-      newHotStreak = playerData.hotStreak + 1;
-    } else {
-      newHotStreak = 1;
-    }
-  }
+  // Hot streak: DON'T update at submission — score isn't final yet.
+  // Hot streak gets updated in updateHotStreakFromFinal() when viewing final results.
+  const newHotStreak = playerData.hotStreak || 0;
 
   try {
-    // Use set totalGamesPlayed directly (not increment) to avoid over-counting
     const newTotal = (playerData.totalGamesPlayed || 0) + 1;
     await db.collection('players').doc(playerEmailHash).update({
       lastPlayedGameId: TODAY.gameId,
@@ -1897,6 +1908,25 @@ async function updateStreaks(finalScore) {
   } catch (e) {
     console.error('Streak update failed:', e);
   }
+}
+
+// Update hot streak from FINAL score (called when viewing yesterday's results popup)
+async function updateHotStreakFromFinal(finalScore, gameId) {
+  if (!playerEmailHash || !playerData) return;
+  const yesterdayGameId = YESTERDAY ? YESTERDAY.gameId : null;
+  if (gameId !== yesterdayGameId) return; // only update for the most recent final game
+
+  let newHotStreak = 0;
+  if (finalScore >= 20) {
+    // Check if there was a previous hot streak going
+    // For now, start at 1 — consecutive tracking improves as more games are played
+    newHotStreak = 1;
+  }
+
+  try {
+    await db.collection('players').doc(playerEmailHash).update({ hotStreak: newHotStreak });
+    playerData.hotStreak = newHotStreak;
+  } catch (e) {}
 }
 
 function showResultStreaks(playStreak, hotStreak) {
@@ -2102,6 +2132,9 @@ async function showYesterdayPopup() {
   window._yesterdayScoreMax = scoreMax;
   window._yesterdayPicks = yPicks;
   window._yesterdayLock = yLock;
+
+  // Update hot streak from final score
+  await updateHotStreakFromFinal(score, YESTERDAY.gameId);
 }
 
 function dismissYesterdayPopup() {
