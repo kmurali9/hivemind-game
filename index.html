@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="ttc-version" content="20260407v3">
+<meta name="ttc-version" content="20260407v4">
 <title>Think The Crowd — Can you think like everyone else?</title>
 <script>
 // Force reload if cached version is stale
@@ -946,12 +946,27 @@ async function loadPlayerData(emailHash) {
         const gamesSnap = await db.collection('players').doc(emailHash)
           .collection('games').get();
         const actualGames = gamesSnap.size;
+
+        // Sync played games cookie from Firestore (survives browser data clears)
+        const firestoreGameIds = gamesSnap.docs.map(d => d.id);
+        const localGames = getPlayedGames();
+        let needsSync = false;
+        firestoreGameIds.forEach(gid => {
+          if (!localGames.includes(gid)) { localGames.push(gid); needsSync = true; }
+        });
+        if (needsSync) {
+          localGames.sort();
+          while (localGames.length > 30) localGames.shift();
+          setCookie('hivemind_played_games', JSON.stringify(localGames), 30);
+          console.log('[SYNC] synced played games from Firestore:', localGames);
+        }
+
         const needsRepair = data.totalGamesPlayed !== actualGames ||
           data.playStreak > actualGames || data.hotStreak > 0;
         if (needsRepair) {
           data.totalGamesPlayed = actualGames;
           data.playStreak = Math.min(data.playStreak || 0, actualGames);
-          data.hotStreak = 0; // reset — will be recalculated from final scores
+          data.hotStreak = 0;
           await db.collection('players').doc(emailHash).update({
             totalGamesPlayed: actualGames,
             playStreak: data.playStreak,
