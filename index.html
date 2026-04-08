@@ -1856,6 +1856,7 @@ function animateNumber(el, target) {
 }
 
 // ─── Streaks ───
+// playStreak = consecutive games played. hotStreak = consecutive games scored 20+.
 async function updateStreaks(finalScore) {
   if (!playerEmailHash || !playerData || isAdmin) return;
 
@@ -1865,42 +1866,37 @@ async function updateStreaks(finalScore) {
   const yesterdayGameId = YESTERDAY ? YESTERDAY.gameId : null;
   const lastPlayed = playerData.lastPlayedGameId;
 
-  // Play streak: did they play the previous game?
-  let newPlayStreak = 1; // today counts as 1
+  // Play streak: continues if they played the previous game
+  let newPlayStreak = 1;
   if (yesterdayGameId && lastPlayed === yesterdayGameId) {
     newPlayStreak = (playerData.playStreak || 0) + 1;
   }
 
-  // Hot streak: did they score 20+ today AND had a hot streak going?
+  // Hot streak: continues if they scored 20+ AND played previous game with a streak going
   let newHotStreak = 0;
   if (finalScore >= 20) {
     if (yesterdayGameId && lastPlayed === yesterdayGameId && (playerData.hotStreak || 0) > 0) {
       newHotStreak = playerData.hotStreak + 1;
     } else {
-      newHotStreak = 1; // start new hot streak
+      newHotStreak = 1;
     }
   }
 
-  // Cap: streaks can never exceed total games played
-  const totalAfter = (playerData.totalGamesPlayed || 0) + 1;
-  newPlayStreak = Math.min(newPlayStreak, totalAfter);
-  newHotStreak = Math.min(newHotStreak, totalAfter);
-
   try {
+    // Use set totalGamesPlayed directly (not increment) to avoid over-counting
+    const newTotal = (playerData.totalGamesPlayed || 0) + 1;
     await db.collection('players').doc(playerEmailHash).update({
       lastPlayedGameId: TODAY.gameId,
       playStreak: newPlayStreak,
       hotStreak: newHotStreak,
-      totalGamesPlayed: firebase.firestore.FieldValue.increment(1)
+      totalGamesPlayed: newTotal
     });
 
-    // Update local state
     playerData.playStreak = newPlayStreak;
     playerData.hotStreak = newHotStreak;
     playerData.lastPlayedGameId = TODAY.gameId;
-    playerData.totalGamesPlayed = totalAfter;
+    playerData.totalGamesPlayed = newTotal;
 
-    // Show updated streaks on results screen
     showResultStreaks(newPlayStreak, newHotStreak);
   } catch (e) {
     console.error('Streak update failed:', e);
