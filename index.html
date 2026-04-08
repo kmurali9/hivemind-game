@@ -923,18 +923,23 @@ async function loadPlayerData(emailHash) {
     const doc = await db.collection('players').doc(emailHash).get();
     if (doc.exists) {
       const data = doc.data();
-      // Repair: cap streaks at totalGamesPlayed (fixes over-counted streaks)
-      const total = data.totalGamesPlayed || 0;
-      if (total > 0 && (data.playStreak > total || data.hotStreak > total)) {
-        data.playStreak = Math.min(data.playStreak || 0, total);
-        data.hotStreak = Math.min(data.hotStreak || 0, total);
-        try {
+      // Repair: count actual game docs to fix over-counted streaks/totals
+      try {
+        const gamesSnap = await db.collection('players').doc(emailHash)
+          .collection('games').get();
+        const actualGames = gamesSnap.size;
+        if (actualGames > 0 && (data.totalGamesPlayed !== actualGames ||
+            data.playStreak > actualGames || data.hotStreak > actualGames)) {
+          data.totalGamesPlayed = actualGames;
+          data.playStreak = Math.min(data.playStreak || 0, actualGames);
+          data.hotStreak = Math.min(data.hotStreak || 0, actualGames);
           await db.collection('players').doc(emailHash).update({
+            totalGamesPlayed: actualGames,
             playStreak: data.playStreak,
             hotStreak: data.hotStreak
           });
-        } catch (e) {}
-      }
+        }
+      } catch (e) {}
       return data;
     }
   } catch (e) {}
@@ -994,9 +999,8 @@ async function continueAfterEmail() {
   setPromptTitles();
   updateStreakDisplay();
 
-  // Check if user played yesterday but hasn't seen final results
-  if (YESTERDAY) {
-    const seenFinal = localStorage.getItem('hivemind_seen_final_' + YESTERDAY.gameId) === 'true';
+  // Show yesterday's results popup if they played yesterday but haven't played today
+  if (YESTERDAY && !hasPlayedLocally()) {
     let playedYesterday = false;
 
     // Check Firestore player record
@@ -1009,7 +1013,7 @@ async function continueAfterEmail() {
         || getCookie('hivemind_played_' + YESTERDAY.gameId) === 'true';
     }
 
-    if (playedYesterday && !seenFinal) {
+    if (playedYesterday) {
       // Show welcome screen first, then overlay yesterday's results popup
       showScreen('welcomeScreen');
       await showYesterdayPopup();
