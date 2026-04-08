@@ -5,9 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="ttc-version" content="20260407v4">
+<meta name="ttc-version" content="20260408v1">
 <title>Think The Crowd — Can you think like everyone else?</title>
 <script>
+// Force HTTPS — crypto.subtle (used for email hashing) requires secure context
+if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+  location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+}
 // Force reload if cached version is stale
 (function(){
   var v = document.querySelector('meta[name="ttc-version"]');
@@ -2219,7 +2223,7 @@ function shareYesterdayResults() {
   if (yShareHotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${yShareHotStreak} game hot streak`;
   if (streakLine) streakLine = '\n' + streakLine;
 
-  const text = `Think The Crowd #${gameNum}\n${score}/${scoreMax}\n\n${emojiGrid}${streakLine}\nthinkthecrowd.com`;
+  const text = `Think The Crowd #${gameNum}\n${score}/${scoreMax}\n\n${emojiGrid}${streakLine}\nhttps://thinkthecrowd.com`;
 
   if (navigator.share) {
     navigator.share({ text }).catch(() => {});
