@@ -921,7 +921,22 @@ function storeEmail(email) {
 async function loadPlayerData(emailHash) {
   try {
     const doc = await db.collection('players').doc(emailHash).get();
-    if (doc.exists) return doc.data();
+    if (doc.exists) {
+      const data = doc.data();
+      // Repair: cap streaks at totalGamesPlayed (fixes over-counted streaks)
+      const total = data.totalGamesPlayed || 0;
+      if (total > 0 && (data.playStreak > total || data.hotStreak > total)) {
+        data.playStreak = Math.min(data.playStreak || 0, total);
+        data.hotStreak = Math.min(data.hotStreak || 0, total);
+        try {
+          await db.collection('players').doc(emailHash).update({
+            playStreak: data.playStreak,
+            hotStreak: data.hotStreak
+          });
+        } catch (e) {}
+      }
+      return data;
+    }
   } catch (e) {}
   return null;
 }
@@ -995,7 +1010,9 @@ async function continueAfterEmail() {
     }
 
     if (playedYesterday && !seenFinal) {
-      await showYesterdayFinalResults();
+      // Show welcome screen first, then overlay yesterday's results popup
+      showScreen('welcomeScreen');
+      await showYesterdayPopup();
       return;
     }
   }
@@ -1838,24 +1855,32 @@ function animateNumber(el, target) {
 async function updateStreaks(finalScore) {
   if (!playerEmailHash || !playerData || isAdmin) return;
 
+  // Guard: don't double-count if already updated for this game
+  if (playerData.lastPlayedGameId === TODAY.gameId) return;
+
   const yesterdayGameId = YESTERDAY ? YESTERDAY.gameId : null;
   const lastPlayed = playerData.lastPlayedGameId;
 
-  // Play streak: did they play yesterday?
+  // Play streak: did they play the previous game?
   let newPlayStreak = 1; // today counts as 1
-  if (lastPlayed === yesterdayGameId) {
+  if (yesterdayGameId && lastPlayed === yesterdayGameId) {
     newPlayStreak = (playerData.playStreak || 0) + 1;
   }
 
   // Hot streak: did they score 20+ today AND had a hot streak going?
   let newHotStreak = 0;
   if (finalScore >= 20) {
-    if (lastPlayed === yesterdayGameId && (playerData.hotStreak || 0) > 0) {
+    if (yesterdayGameId && lastPlayed === yesterdayGameId && (playerData.hotStreak || 0) > 0) {
       newHotStreak = playerData.hotStreak + 1;
     } else {
       newHotStreak = 1; // start new hot streak
     }
   }
+
+  // Cap: streaks can never exceed total games played
+  const totalAfter = (playerData.totalGamesPlayed || 0) + 1;
+  newPlayStreak = Math.min(newPlayStreak, totalAfter);
+  newHotStreak = Math.min(newHotStreak, totalAfter);
 
   try {
     await db.collection('players').doc(playerEmailHash).update({
@@ -1869,7 +1894,7 @@ async function updateStreaks(finalScore) {
     playerData.playStreak = newPlayStreak;
     playerData.hotStreak = newHotStreak;
     playerData.lastPlayedGameId = TODAY.gameId;
-    playerData.totalGamesPlayed = (playerData.totalGamesPlayed || 0) + 1;
+    playerData.totalGamesPlayed = totalAfter;
 
     // Show updated streaks on results screen
     showResultStreaks(newPlayStreak, newHotStreak);
@@ -1979,6 +2004,147 @@ function shareResults() {
       const orig = btn.textContent;
       btn.textContent = '✓ Copied!';
       setTimeout(() => { btn.textContent = orig; }, 2000);
+    });
+  }
+}
+
+// ─── Yesterday's Results Popup ───
+async function showYesterdayPopup() {
+  // Load yesterday's picks
+  let yPicks = null;
+  let yLock = null;
+  const stored = localStorage.getItem('hivemind_picks_' + YESTERDAY.gameId);
+  const storedLock = localStorage.getItem('hivemind_lock_' + YESTERDAY.gameId);
+  if (stored) {
+    yPicks = JSON.parse(stored);
+    yLock = storedLock ? JSON.parse(storedLock) : null;
+  } else {
+    try {
+      if (playerEmailHash) {
+        const pDoc = await db.collection('players').doc(playerEmailHash)
+          .collection('games').doc(YESTERDAY.gameId).get();
+        if (pDoc.exists) {
+          yPicks = pDoc.data().selections;
+          yLock = pDoc.data().lockedRow != null ? pDoc.data().lockedRow : null;
+        }
+      }
+      if (!yPicks) {
+        const doc = await db.collection('games').doc(YESTERDAY.gameId)
+          .collection('picks').doc(userId).get();
+        if (doc.exists) {
+          yPicks = doc.data().selections;
+          yLock = doc.data().lockedRow != null ? doc.data().lockedRow : null;
+        }
+      }
+    } catch (e) {}
+  }
+
+  if (!yPicks) {
+    localStorage.setItem('hivemind_seen_final_' + YESTERDAY.gameId, 'true');
+    return;
+  }
+
+  // Compute score from yesterday's game data
+  let score = 0;
+  let scoreMax = 25;
+  try {
+    const snap = await db.collection('games').doc(YESTERDAY.gameId)
+      .collection('picks').get();
+    const allPicks = snap.docs.map(d => d.data());
+    const playerCount = allPicks.length;
+
+    for (let r = 0; r < YESTERDAY.rows.length; r++) {
+      const counts = YESTERDAY.rows[r].options.map((_, i) =>
+        allPicks.filter(p => p.selections[r] === i).length
+      );
+      const maxCount = Math.max(...counts);
+      const minCount = Math.min(...counts);
+      const myCount = counts[yPicks[r]] || 0;
+      // Score: 5 for most popular, 1 for least, interpolated
+      const sorted = [...new Set(counts)].sort((a, b) => b - a);
+      const rank = sorted.indexOf(myCount);
+      score += 5 - rank;
+      // Double down
+      if (yLock === r) {
+        scoreMax = 28;
+        score += (myCount === maxCount && myCount > 0) ? 3 : -3;
+      }
+    }
+  } catch (e) {
+    // If we can't compute score, skip popup
+    localStorage.setItem('hivemind_seen_final_' + YESTERDAY.gameId, 'true');
+    return;
+  }
+
+  // Build and show popup overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'yesterdayPopup';
+  overlay.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center; padding:20px;';
+
+  const popup = document.createElement('div');
+  popup.style.cssText = 'background:#fff; border-radius:16px; padding:32px 24px; max-width:340px; width:100%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);';
+
+  const gameNum = YESTERDAY.number != null ? YESTERDAY.number : '';
+  popup.innerHTML = `
+    <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-bottom:8px;">Yesterday's Results</div>
+    <div style="font-size:18px; font-weight:700; color:#1a1a1a; margin-bottom:4px;">${YESTERDAY.prompt}</div>
+    <div style="font-size:13px; color:#999; margin-bottom:20px;">Game ${gameNum} — Final</div>
+    <div style="font-family:'Libre Franklin',sans-serif; font-size:56px; font-weight:800; color:#1a1a1a; line-height:1;">${score}</div>
+    <div style="font-size:14px; color:#999; margin-bottom:24px;">out of ${scoreMax} points</div>
+    <div style="display:flex; gap:10px; justify-content:center;">
+      <button onclick="shareYesterdayResults()" style="flex:1; padding:12px 20px; background:#1a1a1a; color:#fff; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer;">Share</button>
+      <button onclick="dismissYesterdayPopup()" style="flex:1; padding:12px 20px; background:#f0f0f0; color:#1a1a1a; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer;">Play Today →</button>
+    </div>
+  `;
+
+  overlay.appendChild(popup);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) dismissYesterdayPopup(); });
+  document.body.appendChild(overlay);
+
+  // Store for share function
+  window._yesterdayScore = score;
+  window._yesterdayScoreMax = scoreMax;
+  window._yesterdayPicks = yPicks;
+  window._yesterdayLock = yLock;
+}
+
+function dismissYesterdayPopup() {
+  const overlay = document.getElementById('yesterdayPopup');
+  if (overlay) overlay.remove();
+  localStorage.setItem('hivemind_seen_final_' + YESTERDAY.gameId, 'true');
+}
+
+function shareYesterdayResults() {
+  // Build share text for yesterday's game
+  const score = window._yesterdayScore;
+  const scoreMax = window._yesterdayScoreMax;
+  const gameNum = YESTERDAY.number != null ? YESTERDAY.number : '';
+  const picks = window._yesterdayPicks;
+  const lock = window._yesterdayLock;
+
+  let emojiGrid = '';
+  for (let r = 0; r < YESTERDAY.rows.length; r++) {
+    const opts = YESTERDAY.rows[r].options;
+    const row = opts.map((_, i) => {
+      if (i === picks[r]) return lock === r ? '🟡' : '🟢';
+      return '⬜';
+    }).join('');
+    emojiGrid += row + '\n';
+  }
+
+  let streakLine = '';
+  if (playerData?.playStreak > 1) streakLine += `🔥 ${playerData.playStreak} game streak`;
+  if (playerData?.hotStreak > 1) streakLine += (streakLine ? ' · ' : '') + `⚡ ${playerData.hotStreak} game hot streak`;
+  if (streakLine) streakLine = '\n' + streakLine;
+
+  const text = `Think The Crowd #${gameNum}\n${score}/${scoreMax}\n\n${emojiGrid}${streakLine}\nthinkthecrowd.com`;
+
+  if (navigator.share) {
+    navigator.share({ text }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('#yesterdayPopup button');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Share', 1500); }
     });
   }
 }
